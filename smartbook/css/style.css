@@ -1,0 +1,56 @@
+.container {
+    min-width: 320px;
+    max-width: 480px;
+    min-height: 100vh;
+    height: 100vh;
+    max-height: 100vh;
+    margin: auto;
+    padding: 5px;
+    background-color: darkgrey;
+}
+
+.main {
+    padding: 5px;
+    background-color: beige;
+}
+
+.preview {
+    width: 250px;
+    height: 250px;
+    margin: auto;
+    background-color: black;
+}
+
+.input {
+    padding: 10px;
+}
+
+.input input {
+    display: block;
+    width: 80%;
+    margin: auto;
+    border-style: dashed;
+    border-color: darkgrey;
+    border-width: 1px;
+    border-bottom-style: solid;
+    border-bottom-color: darkslategrey;
+    border-bottom-width: 2px;
+}
+.input input:focus {
+    border-color: darkgrey;
+    border-bottom-style: solid;
+    border-bottom-color: darkslategrey;
+    border-bottom-width: 2px;
+}
+.input input::-webkit-input-placeholder {
+    text-align: center;
+}
+.input input:-moz-placeholder { /* Firefox 18- */
+    text-align: center;  
+}
+.input input::-moz-placeholder {  /* Firefox 19+ */
+    text-align: center;  
+}
+.input input:-ms-input-placeholder {
+    text-align: center; 
+}
