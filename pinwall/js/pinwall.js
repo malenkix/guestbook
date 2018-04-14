@@ -9,7 +9,7 @@ $(function() {
 	var pic = document.createElement("img");
 	pic.setAttribute("id", "1024");
 	pic.setAttribute("class", "post");
-	pic.setAttribute("src", "temp/preview.jpg");
+	pic.setAttribute("src", "images/preview.jpg");
 	pic.setAttribute("style", "top:" + top + "px; left:" + left + "px;");
 	
 	
