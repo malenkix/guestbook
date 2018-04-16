@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+
+  <title>Guestbook</title>
+
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="stylesheet" href="../../static/shared/css/normalize.css" th:href="@{/shared/css/normalize.css}">
+  <link rel="stylesheet" href="../../static/shared/css/skeleton.css" th:href="@{/shared/css/skeleton.css}">
+  <link rel="stylesheet" href="../../static/apps/pinnwall/style.css" th:href="@{/apps/pinnwall/style.css}">
+
+  <link rel="icon" type="image/png" href="../../static/favicon.png" th:href="@{/favicon.png}">
+
+</head>
+
+<body>
+
+  <div class="container">
+    <div class="inner">
+	  <img class="logo" src="../../static/shared/images/logo.svg" th:src="@{/shared/images/logo.svg}" alt="smart guestbook logo" title="smart guestbook v1.0"/>
+	  <div id="wall" class="main">
+        <img id="12345" class="post" src="../../static/apps/pinnwall/preview.jpg" th:src="@{/apps/pinnwall/preview.jpg}" style="top:50px; left:150px;" />
+      </div>
+    </div>
+  </div>
+
+  <script src="../../static/shared/js/jquery.js" th:src="@{/shared/js/jquery.js}"></script>
+  <script src="../../static/apps/pinnwall/pinwall.js" th:src="@{/apps/pinnwall/pinwall.js}"></script>
+
+</body>
+
+</html>
