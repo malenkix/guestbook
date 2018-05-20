@@ -2,6 +2,12 @@ package de.nadirhelix.image.processing.util;
 
 import processing.core.PGraphics;
 
+/**
+ * Utility class to convert a hexadecimal String representation of a color into
+ * an int value that can be interpreted by processing.
+ * 
+ * @author Phil
+ */
 public class ColorConverter extends PGraphics {
 
 	private static ColorConverter instance = new ColorConverter();

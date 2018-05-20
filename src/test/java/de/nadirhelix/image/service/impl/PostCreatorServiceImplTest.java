@@ -1,5 +1,6 @@
 package de.nadirhelix.image.service.impl;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 import java.io.File;
@@ -82,7 +83,9 @@ public class PostCreatorServiceImplTest {
 	public void testCreateImage() {
 		data.setWishes("ID123456");
 		
-		postCreatorService.createImage(data);
+		String id = postCreatorService.createImage(data);
+		
+		assertEquals(data.getWishes(), id);
 	}
 	
 	@Test
@@ -90,7 +93,9 @@ public class PostCreatorServiceImplTest {
 		data.setWishes("ID123457");
 		data.getMessage().setContent(StringUtils.EMPTY);
 		
-		postCreatorService.createImage(data);
+		String id = postCreatorService.createImage(data);
+		
+		assertEquals(data.getWishes(), id);
 	}
 	
 	@Test
@@ -98,7 +103,9 @@ public class PostCreatorServiceImplTest {
 		data.setWishes("ID123458");
 		data.setImage(null);
 		
-		postCreatorService.createImage(data);
+		String id = postCreatorService.createImage(data);
+		
+		assertEquals(data.getWishes(), id);
 	}
 	
 	@Test
@@ -106,7 +113,9 @@ public class PostCreatorServiceImplTest {
 		data.setWishes("ID123459");
 		data.setBackground(null);
 		
-		postCreatorService.createImage(data);
+		String id = postCreatorService.createImage(data);
+		
+		assertEquals(data.getWishes(), id);
 	}
 
 	@After

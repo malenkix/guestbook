@@ -3,7 +3,11 @@ package de.nadirhelix.post.dao.impl;
 import java.util.List;
 
 import de.nadirhelix.post.dao.PostDAO;
-
+/**
+ * Default implementation of {@link PostDAO}.
+ * 
+ * @author Phil
+ */
 public class DefaultPostDAO implements PostDAO {
 
 	@Override

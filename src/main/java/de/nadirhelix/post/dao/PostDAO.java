@@ -2,6 +2,11 @@ package de.nadirhelix.post.dao;
 
 import java.util.List;
 
+/**
+ * DAO to store and receive Posts.
+ * 
+ * @author Phil
+ */
 public interface PostDAO {
 	
 	void storePost(String postId);

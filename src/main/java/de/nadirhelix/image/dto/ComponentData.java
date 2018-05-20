@@ -2,6 +2,11 @@ package de.nadirhelix.image.dto;
 
 import de.nadirhelix.image.util.Point;
 
+/**
+ * Interface for drawable components.
+ * 
+ * @author Phil
+ */
 public interface ComponentData {
 
 	int getPosX();

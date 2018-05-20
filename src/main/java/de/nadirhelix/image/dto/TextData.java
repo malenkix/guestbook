@@ -2,6 +2,12 @@ package de.nadirhelix.image.dto;
 
 import org.apache.commons.lang3.StringUtils;
 
+/**
+ * DTO containing all relevant data to create a text.
+ * Will be transformed to a {@link TextImage}.
+ * 
+ * @author Phil
+ */
 public class TextData {
 	
 	private String content = StringUtils.EMPTY;

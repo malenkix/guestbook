@@ -7,7 +7,11 @@ import java.util.List;
 import de.nadirhelix.image.processing.util.ColorConverter;
 import de.nadirhelix.image.util.Point;
 
-
+/**
+ * Constants class containing hard-coded configurations.
+ * 
+ * @author Phil
+ */
 public class PostConstants {
 	
 	public static final int POST_WIDTH = 544;

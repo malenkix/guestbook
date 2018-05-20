@@ -1,5 +1,10 @@
 package de.nadirhelix.image.util;
 
+/**
+ * Helper class representing a two-dimensional Point.
+ * 
+ * @author Phil
+ */
 public class Point {
 
 	private final float x;

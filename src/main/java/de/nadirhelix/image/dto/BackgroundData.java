@@ -3,7 +3,7 @@ package de.nadirhelix.image.dto;
 import org.apache.commons.lang3.StringUtils;
 
 /**
- * DOT containing all relevant data to create a background.
+ * DTO containing all relevant data to create a background.
  * 
  * @author Phil
  */

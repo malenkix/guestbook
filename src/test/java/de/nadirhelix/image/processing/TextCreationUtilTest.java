@@ -11,7 +11,12 @@ import de.nadirhelix.image.dto.TextImage;
 import de.nadirhelix.image.util.Point;
 import de.nadirhelix.image.util.TextCreationUtil;
 
-public class TextImageTest {
+/**
+ * Tests the {@link TextCreationUtil}.
+ * 
+ * @author Phil
+ */
+public class TextCreationUtilTest {
 	
 	private static final String GREEN = "#0F0";
 	
