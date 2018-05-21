@@ -6,10 +6,10 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
-import de.nadirhelix.image.dto.TextData;
-import de.nadirhelix.image.dto.TextImage;
-import de.nadirhelix.image.util.Point;
-import de.nadirhelix.image.util.TextCreationUtil;
+import de.nadirhelix.guestbook.image.dto.TextData;
+import de.nadirhelix.guestbook.image.dto.TextImage;
+import de.nadirhelix.guestbook.image.util.Point;
+import de.nadirhelix.guestbook.image.util.TextCreationUtil;
 
 /**
  * Tests the {@link TextCreationUtil}.

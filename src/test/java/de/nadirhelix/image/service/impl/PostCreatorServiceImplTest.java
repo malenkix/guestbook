@@ -1,24 +1,21 @@
 package de.nadirhelix.image.service.impl;
 
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
-import java.io.File;
 import java.util.Date;
 
 import org.apache.commons.lang3.StringUtils;
 import org.h2.store.fs.FileUtils;
-import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
-import de.nadirhelix.image.dto.BackgroundData;
-import de.nadirhelix.image.dto.ImageData;
-import de.nadirhelix.image.dto.PostData;
-import de.nadirhelix.image.dto.TextData;
-import de.nadirhelix.image.service.PostCreatorService;
+import de.nadirhelix.guestbook.image.dto.BackgroundData;
+import de.nadirhelix.guestbook.image.dto.ImageData;
+import de.nadirhelix.guestbook.image.dto.PostData;
+import de.nadirhelix.guestbook.image.dto.TextData;
+import de.nadirhelix.guestbook.image.service.PostCreatorService;
+import de.nadirhelix.guestbook.image.service.impl.PostCreatorServiceImpl;
+import de.nadirhelix.guestbook.post.model.Post;
 
 /**
  * UnitTest for {@link PostCreatorServiceImpl}.
@@ -27,25 +24,11 @@ import de.nadirhelix.image.service.PostCreatorService;
  */
 public class PostCreatorServiceImplTest {
 
+	private static final String FILE_PATH = System.getProperty("user.dir") + "/posts/%s.png";
+
 	private PostCreatorService postCreatorService = new PostCreatorServiceImpl();
 	
 	private PostData data;
-	
-	private static String currentDir = System.getProperty("user.dir");
-	
-	@BeforeClass
-	public static void preparePath() {
-		System.setProperty("user.dir", 
-				new StringBuilder(currentDir).append(File.separator)
-					.append("src").append(File.separator)
-					.append("test").append(File.separator)
-					.append("resources").toString());
-	}
-	
-	@AfterClass
-	public static void cleanup() {
-		System.setProperty("user.dir", currentDir);
-	}
 	
 	@Before
 	public void prepareData() {
@@ -53,7 +36,7 @@ public class PostCreatorServiceImplTest {
 		
 		data.setDate(new Date());
 		ImageData image = new ImageData();
-		image.setFileName("tempID123456.png");
+		image.setFile("tempID123456.png");
 		image.setPosX(50);
 		image.setPosY(40);
 		image.setHeight(250);
@@ -83,45 +66,46 @@ public class PostCreatorServiceImplTest {
 	public void testCreateImage() {
 		data.setWishes("ID123456");
 		
-		String id = postCreatorService.createImage(data);
-		
-		assertEquals(data.getWishes(), id);
+		Post post = postCreatorService.createImage(data);
+
+		assertFileCreated(post.getId());
 	}
 	
 	@Test
 	public void testCreateImageWithoutMessage() {
-		data.setWishes("ID123457");
 		data.getMessage().setContent(StringUtils.EMPTY);
 		
-		String id = postCreatorService.createImage(data);
-		
-		assertEquals(data.getWishes(), id);
+		Post post = postCreatorService.createImage(data);
+
+		assertFileCreated(post.getId());
 	}
 	
 	@Test
 	public void testCreateImageWithoutImage() {
-		data.setWishes("ID123458");
 		data.setImage(null);
-		
-		String id = postCreatorService.createImage(data);
-		
-		assertEquals(data.getWishes(), id);
+
+		Post post = postCreatorService.createImage(data);
+
+		assertFileCreated(post.getId());
 	}
 	
-	@Test
-	public void testCreateImageWithoutBackground() {
-		data.setWishes("ID123459");
-		data.setBackground(null);
-		
-		String id = postCreatorService.createImage(data);
-		
-		assertEquals(data.getWishes(), id);
+	private void assertFileCreated(String id) {
+		String fileName = String.format(FILE_PATH, id);
+		assertTrue(FileUtils.exists(fileName));
+		deleteFile(id);
 	}
 
-	@After
-	public void deleteFile() {
-		String fileName = currentDir + "/src/test/resources/posts/" + data.getWishes() + ".png";
-		assertTrue(FileUtils.exists(fileName));
+	@Test
+	public void testCreateImageWithoutBackground() {
+		data.setBackground(null);
+
+		Post post = postCreatorService.createImage(data);
+
+		assertFileCreated(post.getId());
+	}
+
+	public void deleteFile(String id) {
+		String fileName = String.format(FILE_PATH, id);
 		FileUtils.delete(fileName);
 	}
 }
