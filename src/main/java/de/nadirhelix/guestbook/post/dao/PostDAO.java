@@ -18,6 +18,8 @@ public interface PostDAO {
 	List<Post> getAllActivePosts();
 	
 	void setPinned(String postId, boolean isActive);
+
+	String getLatestId();
 	
 	
 

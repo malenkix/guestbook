@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 
 import de.nadirhelix.guestbook.post.dao.PostDAO;
 import de.nadirhelix.guestbook.post.model.Post;
@@ -38,5 +39,15 @@ public class DefaultPostDAO implements PostDAO {
 	public void setPinned(String postId, boolean isActive) {
 		posts.stream().filter(p -> p.getId().equals(postId))
 				.findFirst().ifPresent(p -> p.setPinned(isActive));
+	}
+	
+	@Override
+	public String getLatestId() {
+		if (CollectionUtils.isEmpty(getAllActivePosts())) {
+			return "-1";
+		}
+		List<String> sortedIds = getAllPostIds().stream().sorted(String::compareTo).collect(Collectors.toList());
+		return sortedIds.get(sortedIds.size() -1);
+		
 	}
 }

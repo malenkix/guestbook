@@ -9,6 +9,7 @@ import de.nadirhelix.guestbook.image.dto.BackgroundData;
 import de.nadirhelix.guestbook.image.dto.PostData;
 import de.nadirhelix.guestbook.image.service.PostCreatorService;
 import de.nadirhelix.guestbook.post.model.Post;
+import de.nadirhelix.guestbook.post.util.PostIDGenerator;
 import de.nadirhelix.guestbook.processing.PostApplet;
 
 /**
@@ -49,7 +50,7 @@ public class PostCreatorServiceImpl implements PostCreatorService {
 	}
 
 	private String generatePostID(PostData data) {
-		return UUID.randomUUID().toString();
+		return PostIDGenerator.generateId();
 	}
 
 	private Post createPost(String postId, PostData data, String fileName) {
