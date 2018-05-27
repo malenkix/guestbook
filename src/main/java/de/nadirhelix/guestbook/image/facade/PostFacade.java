@@ -1,5 +1,7 @@
 package de.nadirhelix.guestbook.image.facade;
 
+import java.io.IOException;
+
 import de.nadirhelix.guestbook.image.dto.PostData;
 
 /**
@@ -11,6 +13,6 @@ public interface PostFacade {
 
 	String addPost(PostData data);
 
-	String uploadImage(Object payload);
+	String uploadImage(byte[] payload, String originalFileName) throws IOException;
 	
 }

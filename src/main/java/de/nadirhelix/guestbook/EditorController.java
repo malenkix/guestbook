@@ -1,5 +1,6 @@
 package de.nadirhelix.guestbook;
 
+import java.io.IOException;
 import java.util.Date;
 
 import javax.annotation.Resource;
@@ -9,7 +10,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import de.nadirhelix.guestbook.image.dto.PostData;
 import de.nadirhelix.guestbook.image.facade.PostFacade;
@@ -43,8 +46,16 @@ public class EditorController {
 	
 	// TODO ...
 	@PostMapping("/posts/upload")
-	public ResponseEntity<String> uploadImage(Object payload) {
-		String fileName = postFacade.uploadImage(payload);
-		return ResponseEntity.status(HttpStatus.OK.value()).body(fileName);
+	public ResponseEntity<String> uploadImage(@RequestParam("image") MultipartFile multipartFile) {
+		String fileName;
+		try {
+			fileName = postFacade.uploadImage(multipartFile.getBytes(), multipartFile.getOriginalFilename());
+			return ResponseEntity.ok().body(fileName);
+		} catch (IOException e) {
+			// TODO log
+			e.printStackTrace();
+		}
+		return ResponseEntity.unprocessableEntity().body("Unable to upload image");
 	}
+	
 }

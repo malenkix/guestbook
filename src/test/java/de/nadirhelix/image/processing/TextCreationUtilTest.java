@@ -4,7 +4,12 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
+import java.awt.GraphicsEnvironment;
+import java.lang.reflect.Field;
+
+import org.junit.BeforeClass;
 import org.junit.Test;
+import org.springframework.util.ReflectionUtils;
 
 import de.nadirhelix.guestbook.image.dto.TextData;
 import de.nadirhelix.guestbook.image.dto.TextImage;
@@ -19,6 +24,13 @@ import de.nadirhelix.guestbook.image.util.TextCreationUtil;
 public class TextCreationUtilTest {
 	
 	private static final String GREEN = "#0F0";
+
+	@BeforeClass
+	public static void prepareTest() throws NoSuchFieldException, SecurityException {
+		Field field = GraphicsEnvironment.class.getDeclaredField("headless");
+		field.setAccessible(true);
+		ReflectionUtils.setField(field, GraphicsEnvironment.class, Boolean.FALSE);
+	}
 	
 	@Test
 	public void testImageCreation() {

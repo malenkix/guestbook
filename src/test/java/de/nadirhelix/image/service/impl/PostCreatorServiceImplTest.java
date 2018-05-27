@@ -2,12 +2,16 @@ package de.nadirhelix.image.service.impl;
 
 import static org.junit.Assert.assertTrue;
 
+import java.awt.GraphicsEnvironment;
+import java.lang.reflect.Field;
 import java.util.Date;
 
 import org.apache.commons.lang3.StringUtils;
 import org.h2.store.fs.FileUtils;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
+import org.springframework.util.ReflectionUtils;
 
 import de.nadirhelix.guestbook.image.dto.BackgroundData;
 import de.nadirhelix.guestbook.image.dto.ImageData;
@@ -29,6 +33,13 @@ public class PostCreatorServiceImplTest {
 	private PostCreatorService postCreatorService = new PostCreatorServiceImpl();
 	
 	private PostData data;
+	
+	@BeforeClass
+	public static void prepareTest() throws NoSuchFieldException, SecurityException {
+		Field field = GraphicsEnvironment.class.getDeclaredField("headless");
+		field.setAccessible(true);
+		ReflectionUtils.setField(field, GraphicsEnvironment.class, Boolean.FALSE);
+	}
 	
 	@Before
 	public void prepareData() {
