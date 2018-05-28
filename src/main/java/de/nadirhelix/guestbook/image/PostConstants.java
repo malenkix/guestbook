@@ -4,6 +4,7 @@ import java.io.File;
 import java.util.Arrays;
 import java.util.List;
 
+import de.nadirhelix.guestbook.GuestbookApplication;
 import de.nadirhelix.guestbook.image.processing.util.ColorConverter;
 import de.nadirhelix.guestbook.image.util.Point;
 
@@ -24,13 +25,13 @@ public class PostConstants {
 
 	public static final String DEFAULT_BG_COLOR = "#00ff00";
 	
-	public static final String ASSETS_PATH = buildPath(false, true, "src", "main", "resources", "assets");
+	public static final String ASSETS_PATH = buildPath(true, "resources");
 	
-	public static final String POST_FILE_PATH = buildPath(true, true, "posts");
+	public static final String POST_FILE_PATH = buildPath(true, "posts");
 	
-	public static final String  TEMP_IMAGE_PATH = buildPath(true, true, "temp");
+	public static final String  TEMP_IMAGE_PATH = buildPath(true, "temp");
 	
-	public static final String BACKGROUND_IMAGE_PATH = ASSETS_PATH + buildPath(true, false, "images", "background");
+	public static final String BACKGROUND_IMAGE_PATH = ASSETS_PATH + "background" + File.separator;
 	
 	
 	public static final int DEFAULT_FONT_SIZE = 12;
@@ -46,7 +47,7 @@ public class PostConstants {
 	
 	public static final int SUBTEXT_MAXLENGTH = 32;
 	
-	public static final String DEFAULT_SUBTEXT_FONT = ASSETS_PATH + buildPath(false, false, "font", "subtextFont.vlw");
+	public static final String DEFAULT_SUBTEXT_FONT = ASSETS_PATH + buildPath(false, "subtextFont.vlw");
 	
 	public static final int DEFAULT_SUBTEXT_COLOR = ColorConverter.convert("#000");
 	
@@ -55,19 +56,28 @@ public class PostConstants {
 	public static final int DEFAULT_SUBTEXT_POS_Y = 600;
 	
 	
-	public static String buildPath(boolean hasClosingSeparator, boolean isOnClassPath, String... args) {
+	public static String buildPath(boolean isRootPath, String... args) {
 		List<String> arguments = Arrays.asList(args);
 		StringBuilder sb = new StringBuilder();
-		if (isOnClassPath) {
+		if (isRootPath) {
 			sb.append('.');
-		}
-		arguments.forEach(a -> {sb.append(File.separator); sb.append(a);});
-		if (hasClosingSeparator) {
 			sb.append(File.separator);
+			checkForDevMode(sb);
 		}
-		return sb.toString();
+		arguments.forEach(a -> { sb.append(a); sb.append(File.separator);});
+		if (isRootPath) {
+			return sb.toString();
+		}
+		return sb.toString().substring(0, sb.length() - 1);
 	}
 	
+	private static void checkForDevMode(StringBuilder sb) {
+		if (GuestbookApplication.isDevMode()) {
+			sb.append("target").append(File.separator);
+		}
+		
+	}
+
 	private PostConstants() {
 		//
 	}

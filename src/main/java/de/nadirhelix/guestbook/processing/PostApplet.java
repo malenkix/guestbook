@@ -15,6 +15,8 @@ import static de.nadirhelix.guestbook.image.PostConstants.SCALING_FACTOR;
 import static de.nadirhelix.guestbook.image.PostConstants.SUBTEXT_MAXLENGTH;
 import static de.nadirhelix.guestbook.image.PostConstants.TEMP_IMAGE_PATH;
 
+import java.io.File;
+import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
@@ -50,6 +52,8 @@ public class PostApplet extends PApplet {
 	private static ThreadLocal<Integer> targetWidth = new ThreadLocal<>();
 
 	private static ThreadLocal<Integer> targetHeight = new ThreadLocal<>();
+	
+	private String postSketchPath;
 	
 	static {
 		Method m = null;
@@ -112,7 +116,14 @@ public class PostApplet extends PApplet {
 			size(POST_WIDTH, POST_HEIGHT);
 		}
 		smooth();
-		sketchPath();
+		try {
+		Field field = PApplet.class.getDeclaredField("sketchPath");
+		field.setAccessible(true);
+			field.set(this, System.getProperty("user.dir"));
+		} catch (IllegalAccessException | NoSuchFieldException | SecurityException e) {
+			//
+		} 
+		postSketchPath = System.getProperty("user.dir");
 	}
 	
 	/**
@@ -184,7 +195,7 @@ public class PostApplet extends PApplet {
 	 * Draws the Polaroid frame.
 	 */
 	public void drawFrame() {
-		PImage frame = getImage(FRAME, ASSETS_PATH + "/images/");
+		PImage frame = getImage(FRAME, ASSETS_PATH);
 		image(frame, 0, 0);
 	}
 
@@ -256,5 +267,15 @@ public class PostApplet extends PApplet {
 	private static void setTargetDimensions(int width, int height) {
 		targetWidth.set(width);
 		targetHeight.set(height);
-	}
+	} 
+	
+	@Override
+	public File dataFile(String where) {
+	    File why = new File(where);
+	    if (why.isAbsolute()) return why;
+	    
+	    File workingDirItem =
+	      new File(postSketchPath + File.separator + "data" + File.separator + where);
+	    return workingDirItem;
+	  }
 }
