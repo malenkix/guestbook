@@ -5,33 +5,24 @@ import static de.nadirhelix.guestbook.image.PostConstants.POST_FILE_PATH;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
+
+import javax.annotation.Resource;
 
 import org.apache.commons.io.IOUtils;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.Resource;
-import org.springframework.core.io.ResourceLoader;
 import org.springframework.stereotype.Component;
 
 import de.nadirhelix.guestbook.image.facade.ImageFacade;
-import de.nadirhelix.guestbook.util.PathFinder;
+import de.nadirhelix.guestbook.resources.service.ResourceService;
 
 @Component("imageFacade")
 public class ImageFacadeImpl implements ImageFacade {
 	
-	private ResourceLoader resourceLoader;
+	@Resource
+	private ResourceService resourceService;
 
-    @Autowired
-    public ImageFacadeImpl(ResourceLoader resourceLoader) {
-        this.resourceLoader = resourceLoader;
-    }
-    
 	@Override
 	public byte[] getImage(String path) throws IOException {
-		Resource resource = resourceLoader.getResource("classpath:assets/images/" + path);
-		Path p = PathFinder.getFilePath(resource.getURI());
-		return Files.readAllBytes(p);
+		return resourceService.loadResource("classpath:assets/images/" + path);
 	}
 
 	@Override

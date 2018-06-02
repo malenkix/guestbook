@@ -24,7 +24,7 @@ import de.nadirhelix.guestbook.image.facade.ImageFacade;
 @RequestMapping("/images")
 public class ImageController {
 	
-	private static Logger log = LoggerFactory.getLogger(ImageController.class); 
+	private static final Logger LOG = LoggerFactory.getLogger(ImageController.class); 
 
 	@Resource
 	private ImageFacade imageFacade;
@@ -41,7 +41,8 @@ public class ImageController {
 		try {
 			return ResponseEntity.ok().contentType(MediaType.IMAGE_PNG).body(imageFacade.getPostImage(id));
 		} catch (IOException e) {
-			log.debug("Could not find post with id " + id, e);
+			LOG.warn("Could not find post with id {}", id);
+			LOG.debug("Following Exception was caught:",e);
 		}
 		return ResponseEntity.notFound().build();
 	}
@@ -84,9 +85,9 @@ public class ImageController {
 			if (mediaType != null) {
 				return ResponseEntity.ok().contentType(mediaType).body(image);
 			}
-			log.debug("Unknown MediaType at Filename: " + id);
+			LOG.debug("Unknown MediaType at Filename: {}", id);
 		} catch (IOException e) {
-			log.error("Message", e);
+			LOG.error("Error during getImage:", e);
 		}
 		return ResponseEntity.notFound().build();
 	}

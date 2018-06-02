@@ -21,6 +21,8 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
 import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import de.nadirhelix.guestbook.image.dto.ComponentData;
 import de.nadirhelix.guestbook.image.dto.ImageData;
@@ -48,6 +50,8 @@ public class PostApplet extends PApplet {
 	private static final String FRAME = "frame";
 	
 	private static final Method HANDLE_SETTINGS;
+	
+	private static final Logger LOG = LoggerFactory.getLogger(PostApplet.class);
 	
 	private static ThreadLocal<Integer> targetWidth = new ThreadLocal<>();
 
@@ -117,11 +121,11 @@ public class PostApplet extends PApplet {
 		}
 		smooth();
 		try {
-		Field field = PApplet.class.getDeclaredField("sketchPath");
-		field.setAccessible(true);
+			Field field = PApplet.class.getDeclaredField("sketchPath");
+			field.setAccessible(true);
 			field.set(this, System.getProperty("user.dir"));
 		} catch (IllegalAccessException | NoSuchFieldException | SecurityException e) {
-			//
+			LOG.error("Cannot proceed creating Posts.", e);
 		} 
 		postSketchPath = System.getProperty("user.dir");
 	}
@@ -269,6 +273,13 @@ public class PostApplet extends PApplet {
 		targetHeight.set(height);
 	} 
 	
+	/**
+	 * <p>Most parts of this method is a copy of the original implementation in {@link PApplet} 
+	 * with some omissions to make the project work when run inside an executable jar.</p>
+	 * <p>Namings have not been adjusted.</p>
+	 * 
+	 * @see PApplet#dataFile()
+	 */
 	@Override
 	public File dataFile(String where) {
 	    File why = new File(where);

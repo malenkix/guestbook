@@ -55,7 +55,6 @@ public class PostConstants {
 	
 	public static final int DEFAULT_SUBTEXT_POS_Y = 600;
 	
-	
 	public static String buildPath(boolean isRootPath, String... args) {
 		List<String> arguments = Arrays.asList(args);
 		StringBuilder sb = new StringBuilder();

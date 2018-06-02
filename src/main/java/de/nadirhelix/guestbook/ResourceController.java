@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import de.nadirhelix.guestbook.resources.ResourceFacade;
+import de.nadirhelix.guestbook.resources.facade.ResourceFacade;
 
 /**
  * This Controller handles all requests for certain resources such as .js-files or .css-files.
@@ -24,7 +24,7 @@ import de.nadirhelix.guestbook.resources.ResourceFacade;
 @RequestMapping("/")
 public class ResourceController {
 	
-	private static Logger log = LoggerFactory.getLogger(ResourceController.class); 
+	private static final Logger LOG = LoggerFactory.getLogger(ResourceController.class); 
 
 	@Resource
 	private ResourceFacade resourceFacade;
@@ -39,12 +39,12 @@ public class ResourceController {
 	 * @return {@link ResponseEntity} containing byte[] 
 	 */
 	@GetMapping("{path:.+}/css/{fileName:.+}")
-	public ResponseEntity<byte[]> getCSS(@PathVariable("path") String path, @PathVariable("fileName") String fileName) {
+	public ResponseEntity<byte[]> getCss(@PathVariable("path") String path, @PathVariable("fileName") String fileName) {
 		String targetPath = normalizePath(path);
 		try {
-			return ResponseEntity.ok().contentType(MediaType.TEXT_PLAIN).body(resourceFacade.getCSS(targetPath, fileName));
+			return ResponseEntity.ok().contentType(MediaType.TEXT_PLAIN).body(resourceFacade.getCss(targetPath, fileName));
 		} catch (IOException e) {
-			log.debug(String.format("Could not find js file %s in path: %s", fileName, path), e);
+			LOG.debug(String.format("Could not find js file %s in path: %s", fileName, path), e);
 		}
 		return ResponseEntity.notFound().build();
 	}
@@ -59,12 +59,12 @@ public class ResourceController {
 	 * @return {@link ResponseEntity} containing byte[] 
 	 */
 	@GetMapping("{path:.+}/js/{fileName:.+}")
-	public ResponseEntity<byte[]> getJS(@PathVariable("path") String path, @PathVariable("fileName") String fileName) {
+	public ResponseEntity<byte[]> getJs(@PathVariable("path") String path, @PathVariable("fileName") String fileName) {
 		String targetPath = normalizePath(path);
 		try {
-			return ResponseEntity.ok().contentType(MediaType.TEXT_PLAIN).body(resourceFacade.getJS(targetPath, fileName));
+			return ResponseEntity.ok().contentType(MediaType.TEXT_PLAIN).body(resourceFacade.getJs(targetPath, fileName));
 		} catch (IOException e) {
-			log.debug(String.format("Could not find js file %s in path: %s", fileName, path), e);
+			LOG.debug(String.format("Could not find js file %s in path: %s", fileName, path), e);
 		}
 		return ResponseEntity.notFound().build();
 	}
