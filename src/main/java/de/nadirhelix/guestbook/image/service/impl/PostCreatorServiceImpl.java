@@ -1,6 +1,6 @@
 package de.nadirhelix.guestbook.image.service.impl;
 
-import java.util.UUID;
+import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
@@ -9,6 +9,7 @@ import de.nadirhelix.guestbook.image.dto.BackgroundData;
 import de.nadirhelix.guestbook.image.dto.PostData;
 import de.nadirhelix.guestbook.image.service.PostCreatorService;
 import de.nadirhelix.guestbook.post.model.Post;
+import de.nadirhelix.guestbook.post.util.PostIdGenerator;
 import de.nadirhelix.guestbook.processing.PostApplet;
 
 /**
@@ -18,6 +19,9 @@ import de.nadirhelix.guestbook.processing.PostApplet;
  */
 @Service("postCreatorService")
 public class PostCreatorServiceImpl implements PostCreatorService {
+	
+	@Resource
+	PostIdGenerator postIdGenerator;
 
 	@Override
 	public Post createImage(PostData data) {
@@ -49,7 +53,7 @@ public class PostCreatorServiceImpl implements PostCreatorService {
 	}
 
 	private String generatePostID(PostData data) {
-		return UUID.randomUUID().toString();
+		return postIdGenerator.generateId();
 	}
 
 	private Post createPost(String postId, PostData data, String fileName) {
