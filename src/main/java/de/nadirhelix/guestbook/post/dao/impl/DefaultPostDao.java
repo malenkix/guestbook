@@ -4,41 +4,45 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import org.springframework.stereotype.Service;
-import org.springframework.util.CollectionUtils;
-
-import de.nadirhelix.guestbook.post.dao.PostDAO;
+import de.nadirhelix.guestbook.post.dao.PostDao;
 import de.nadirhelix.guestbook.post.model.Post;
 /**
- * Default implementation of {@link PostDAO}.
+ * Default implementation of {@link PostDao}.
  * This DAO does only deal with in memory data.
  * 
  * @author Phil
  */
-@Service("postDao")
-public class DefaultPostDAO implements PostDAO {
+public class DefaultPostDao implements PostDao {
 	
-	List<Post> posts = new ArrayList<>(); 
+	private List<Post> posts = new ArrayList<>(); 
 
 	@Override
 	public void storePost(Post post) {
-		posts.add(post);		
+		synchronized (posts) {
+			posts.add(post);			
+		}
 	}
 
 	@Override
 	public List<String> getAllPostIds() {
-		return posts.stream().map(Post::getId).collect(Collectors.toList());
+		synchronized (posts) {
+			return posts.stream().map(Post::getId).collect(Collectors.toList());
+		}
 	}
 
 	@Override
 	public List<Post> getAllActivePosts() {
-		return posts.stream().filter(Post::isPinned).collect(Collectors.toList());
+		synchronized (posts) {
+			return posts.stream().filter(Post::isPinned).collect(Collectors.toList());
+		}
 	}
 
 	@Override
 	public void setPinned(String postId, boolean isActive) {
-		posts.stream().filter(p -> p.getId().equals(postId))
+		synchronized (posts) {
+			posts.stream().filter(p -> p.getId().equals(postId))
 				.findFirst().ifPresent(p -> p.setPinned(isActive));
+		}
 	}
 	
 	@Override

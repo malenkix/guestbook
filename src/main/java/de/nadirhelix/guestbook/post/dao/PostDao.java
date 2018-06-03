@@ -9,7 +9,7 @@ import de.nadirhelix.guestbook.post.model.Post;
  * 
  * @author Phil
  */
-public interface PostDAO {
+public interface PostDao {
 	
 	void storePost(Post post);
 	

@@ -1,4 +1,4 @@
-package de.nadirhelix.guestbook.image;
+package de.nadirhelix.guestbook;
 
 import java.io.File;
 import java.util.Arrays;
@@ -31,7 +31,9 @@ public class PostConstants {
 	
 	public static final String  TEMP_IMAGE_PATH = buildPath(true, "temp");
 	
-	public static final String BACKGROUND_IMAGE_PATH = ASSETS_PATH + "background" + File.separator;
+	public static final String XML_DB_FILE_PATH = buildPath(false, true, "data", "post.xml");
+	
+	public static final String BACKGROUND_IMAGE_PATH = ASSETS_PATH + buildPath(true, false, "images", "background");
 	
 	
 	public static final int DEFAULT_FONT_SIZE = 12;

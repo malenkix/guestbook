@@ -1,6 +1,6 @@
 package de.nadirhelix.guestbook.image.facade.impl;
 
-import static de.nadirhelix.guestbook.image.PostConstants.TEMP_IMAGE_PATH;
+import static de.nadirhelix.guestbook.PostConstants.TEMP_IMAGE_PATH;
 
 import java.io.File;
 import java.io.IOException;

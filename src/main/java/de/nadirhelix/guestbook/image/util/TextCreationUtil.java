@@ -1,11 +1,11 @@
 package de.nadirhelix.guestbook.image.util;
 
-import static de.nadirhelix.guestbook.image.PostConstants.DEFAULT_FONT_SIZE;
-import static de.nadirhelix.guestbook.image.PostConstants.DEFAULT_MESSAGE_FONT;
-import static de.nadirhelix.guestbook.image.PostConstants.FONTS;
-import static de.nadirhelix.guestbook.image.PostConstants.MAX_FONT_SIZE;
-import static de.nadirhelix.guestbook.image.PostConstants.MESSAGE_MAXLENGTH;
-import static de.nadirhelix.guestbook.image.PostConstants.SCALING_FACTOR;
+import static de.nadirhelix.guestbook.PostConstants.DEFAULT_FONT_SIZE;
+import static de.nadirhelix.guestbook.PostConstants.DEFAULT_MESSAGE_FONT;
+import static de.nadirhelix.guestbook.PostConstants.FONTS;
+import static de.nadirhelix.guestbook.PostConstants.MAX_FONT_SIZE;
+import static de.nadirhelix.guestbook.PostConstants.MESSAGE_MAXLENGTH;
+import static de.nadirhelix.guestbook.PostConstants.SCALING_FACTOR;
 
 import org.apache.commons.lang3.StringUtils;
 
