@@ -19,6 +19,4 @@ public interface PostDAO {
 	
 	void setPinned(String postId, boolean isActive);
 	
-	
-
 }

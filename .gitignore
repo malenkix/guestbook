@@ -50,3 +50,6 @@ org.eclipse.rse.internal.core.RSELocalConnectionInitializer.mark
 node.properties
 workingsets.xml
 version.ini
+/*.log
+/posts
+/temp
