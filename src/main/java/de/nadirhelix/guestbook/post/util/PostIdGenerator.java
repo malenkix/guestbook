@@ -4,7 +4,7 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Component;
 
-import de.nadirhelix.guestbook.post.dao.PostDAO;
+import de.nadirhelix.guestbook.post.dao.PostDao;
 
 @Component("postIdGenerator")
 public class PostIdGenerator {
@@ -12,7 +12,7 @@ public class PostIdGenerator {
 	private Long lastId = -1l;
 	
 	@Resource
-	private PostDAO postDao;
+	private PostDao postDao;
 	
 	public String generateId() {
 		synchronized (lastId) {

@@ -1,8 +1,12 @@
 package de.nadirhelix.guestbook.post.dao.impl;
 
-import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
+import java.util.Map.Entry;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Collectors;
+
+import org.springframework.util.CollectionUtils;
 
 import de.nadirhelix.guestbook.post.dao.PostDao;
 import de.nadirhelix.guestbook.post.model.Post;
@@ -14,35 +18,26 @@ import de.nadirhelix.guestbook.post.model.Post;
  */
 public class DefaultPostDao implements PostDao {
 	
-	private List<Post> posts = new ArrayList<>(); 
+	private ConcurrentHashMap<String, Post> posts = new ConcurrentHashMap<>(); 
 
 	@Override
 	public void storePost(Post post) {
-		synchronized (posts) {
-			posts.add(post);			
-		}
+		posts.put(post.getId(), post);			
 	}
 
 	@Override
-	public List<String> getAllPostIds() {
-		synchronized (posts) {
-			return posts.stream().map(Post::getId).collect(Collectors.toList());
-		}
+	public Collection<String> getAllPostIds() {
+		return posts.keySet();
 	}
 
 	@Override
-	public List<Post> getAllActivePosts() {
-		synchronized (posts) {
-			return posts.stream().filter(Post::isPinned).collect(Collectors.toList());
-		}
+	public Collection<Post> getAllActivePosts() {
+		return posts.entrySet().stream().map(Entry::getValue).filter(Post::isPinned).collect(Collectors.toList());
 	}
 
 	@Override
 	public void setPinned(String postId, boolean isActive) {
-		synchronized (posts) {
-			posts.stream().filter(p -> p.getId().equals(postId))
-				.findFirst().ifPresent(p -> p.setPinned(isActive));
-		}
+		posts.get(postId).setPinned(isActive);
 	}
 	
 	@Override

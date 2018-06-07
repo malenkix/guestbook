@@ -25,11 +25,11 @@ public class PostConstants {
 
 	public static final String DEFAULT_BG_COLOR = "#00ff00";
 	
-	public static final String ASSETS_PATH = buildPath(true, "resources");
+	public static final String ASSETS_PATH = buildPath(true, true, "resources");
 	
-	public static final String POST_FILE_PATH = buildPath(true, "posts");
+	public static final String POST_FILE_PATH = buildPath(true, true, "posts");
 	
-	public static final String  TEMP_IMAGE_PATH = buildPath(true, "temp");
+	public static final String  TEMP_IMAGE_PATH = buildPath(true, true, "temp");
 	
 	public static final String XML_DB_FILE_PATH = buildPath(false, true, "data", "post.xml");
 	
@@ -49,7 +49,7 @@ public class PostConstants {
 	
 	public static final int SUBTEXT_MAXLENGTH = 32;
 	
-	public static final String DEFAULT_SUBTEXT_FONT = ASSETS_PATH + buildPath(false, "subtextFont.vlw");
+	public static final String DEFAULT_SUBTEXT_FONT = ASSETS_PATH + buildPath(false, false, "subtextFont.vlw");
 	
 	public static final int DEFAULT_SUBTEXT_COLOR = ColorConverter.convert("#000");
 	
@@ -57,7 +57,7 @@ public class PostConstants {
 	
 	public static final int DEFAULT_SUBTEXT_POS_Y = 600;
 	
-	public static String buildPath(boolean isRootPath, String... args) {
+	public static String buildPath(boolean hasClosingSeparator, boolean isRootPath, String... args) {
 		List<String> arguments = Arrays.asList(args);
 		StringBuilder sb = new StringBuilder();
 		if (isRootPath) {
@@ -66,7 +66,7 @@ public class PostConstants {
 			checkForDevMode(sb);
 		}
 		arguments.forEach(a -> { sb.append(a); sb.append(File.separator);});
-		if (isRootPath) {
+		if (hasClosingSeparator) {
 			return sb.toString();
 		}
 		return sb.toString().substring(0, sb.length() - 1);

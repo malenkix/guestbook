@@ -21,7 +21,7 @@ import de.nadirhelix.guestbook.processing.PostApplet;
 public class PostCreatorServiceImpl implements PostCreatorService {
 	
 	@Resource
-	PostIdGenerator postIdGenerator;
+	private PostIdGenerator postIdGenerator;
 
 	@Override
 	public Post createImage(PostData data) {
