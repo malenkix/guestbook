@@ -1,4 +1,4 @@
-package de.nadirhelix.guestbook;
+package de.nadirhelix.guestbook.controller;
 
 import java.io.IOException;
 
@@ -42,7 +42,7 @@ public class ResourceController {
 	public ResponseEntity<byte[]> getCss(@PathVariable("path") String path, @PathVariable("fileName") String fileName) {
 		String targetPath = normalizePath(path);
 		try {
-			return ResponseEntity.ok().contentType(MediaType.TEXT_PLAIN).body(resourceFacade.getCss(targetPath, fileName));
+			return ResponseEntity.ok().body(resourceFacade.getCss(targetPath, fileName));
 		} catch (IOException e) {
 			LOG.debug(String.format("Could not find js file %s in path: %s", fileName, path), e);
 		}

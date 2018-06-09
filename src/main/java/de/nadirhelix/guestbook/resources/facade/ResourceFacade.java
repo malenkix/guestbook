@@ -8,4 +8,6 @@ public interface ResourceFacade {
 
 	byte[] getJs(String path, String fileName) throws IOException;
 
+	byte[] getHtml(String string) throws IOException;
+
 }
