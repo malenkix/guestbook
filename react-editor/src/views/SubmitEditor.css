@@ -1,0 +1,5 @@
+.submitEditor .view {
+    display: flex;
+    flex-direction: column;
+    background-color: #7f7f7f;
+}

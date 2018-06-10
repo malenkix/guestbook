@@ -1,0 +1,16 @@
+.header {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+}
+
+.header .icon {
+    display: inline-block;
+    width: 35px;
+    height: 35px;
+}
+
+.header .logo {
+    height: 35px;
+}

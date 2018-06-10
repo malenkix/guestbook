@@ -1,0 +1,12 @@
+.fancyBox {
+    display: inline-block;
+    width: 45px;
+    height: 45px;
+    border: 2px solid #666666;
+    background-size: cover;
+    cursor: pointer;
+}
+
+.fancyBox.selected {
+    border: 2px solid blue
+}

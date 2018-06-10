@@ -1,0 +1,26 @@
+.imageEditor .view {
+    display: flex;
+    flex-direction: column;
+    background-color: #7f7f7f;
+}
+
+.imageEditor .view .content {
+    padding: 0px 15px;
+}
+
+.imageEditor .view .content .slider {
+    display: inline-block;
+    width: 50%;
+}
+
+.imageEditor .view .content .line:first-child {
+  margin-bottom: 5px;
+}
+
+.imageEditor .view .content .line .slider:first-child {
+  padding-right: 15px;
+}
+
+.imageEditor .view .content .line .slider:last-child {
+  padding-left: 15px;
+}
