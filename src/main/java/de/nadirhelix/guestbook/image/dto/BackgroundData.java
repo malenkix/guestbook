@@ -23,7 +23,7 @@ public class BackgroundData {
 		return imageId;
 	}
 	
-	public void setImage(boolean isImage) {
+	public void setIsImage(boolean isImage) {
 		this.isImage = isImage;
 	}
 	

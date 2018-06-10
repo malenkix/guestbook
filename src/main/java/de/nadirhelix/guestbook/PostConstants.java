@@ -33,7 +33,7 @@ public class PostConstants {
 	
 	public static final String XML_DB_FILE_PATH = buildPath(false, true, "data", "post.xml");
 	
-	public static final String BACKGROUND_IMAGE_PATH = ASSETS_PATH + buildPath(true, false, "images", "background");
+	public static final String BACKGROUND_IMAGE_PATH = ASSETS_PATH + buildPath(true, false, "background");
 	
 	
 	public static final int DEFAULT_FONT_SIZE = 12;

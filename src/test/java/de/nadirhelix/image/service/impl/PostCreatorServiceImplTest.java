@@ -73,7 +73,7 @@ public class PostCreatorServiceImplTest {
 		data.setImage(image);
 		
 		BackgroundData background = new BackgroundData();
-		background.setImage(false);
+		background.setIsImage(false);
 		background.setColor("#ffaaff");
 		data.setBackground(background);
 		
