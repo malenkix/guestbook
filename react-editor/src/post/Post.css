@@ -1,0 +1,72 @@
+/* width: .post.screen.width + 2*.post.padding = 300 + 50 = 350 */
+
+.post {
+    padding: 25px;
+    background-color: #fcfcfc;
+}
+
+.post .screen {
+    /* 360 x 372 = 30:31 */
+    width: 300px;
+    height: 310px;
+    margin-bottom: 25px;
+    position: relative;
+    overflow: hidden;
+    white-space: nowrap;
+    background-color: black;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.post .screen .image {
+    display: inline-block;
+    position: absolute;
+    transform-origin: 50% 50%
+}
+
+.post .screen .text {
+    display: inline-block;
+    position: absolute;
+    transform-origin: 50% 50%
+}
+
+.post .sub {
+    text-align: center;
+}
+
+.post .sub input {
+    width: 85%;
+    padding: 5px;
+    text-align: center;
+    border-style: dashed;
+    border-color: #666666;
+    border-width: 1px;
+    border-bottom-style: solid;
+    border-bottom-color: black;
+    border-bottom-width: 2px;
+}
+
+.post .sub input:focus {
+    border-color: #666666;
+    border-bottom-style: solid;
+    border-bottom-color: black;
+    border-bottom-width: 2px;
+}
+
+.post .sub input::-webkit-input-placeholder {
+    text-align: center;
+}
+
+.post .sub input:-moz-placeholder {
+    /* Firefox 18- */
+    text-align: center;
+}
+
+.post .sub input::-moz-placeholder {
+    /* Firefox 19+ */
+    text-align: center;
+}
+
+.post .sub input:-ms-input-placeholder {
+    text-align: center;
+}

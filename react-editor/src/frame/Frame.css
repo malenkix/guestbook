@@ -1,0 +1,20 @@
+.frame {
+    display: flex;
+    flex-flow: column;
+    min-height: 100vh;
+    padding: 15px;
+    background-color: #afafaf;
+}
+
+.frame:not(.active) {
+    display: none;
+}
+
+.frame>div {
+    margin-bottom: 15px;
+}
+
+.frame>div:last-child {
+    flex-grow: 1;
+    margin-bottom: 0px;
+}
