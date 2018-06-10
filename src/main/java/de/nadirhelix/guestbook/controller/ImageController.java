@@ -1,4 +1,4 @@
-package de.nadirhelix.guestbook;
+package de.nadirhelix.guestbook.controller;
 
 import java.io.IOException;
 

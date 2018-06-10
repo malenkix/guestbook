@@ -25,6 +25,11 @@ public class ResourceFacadeImpl implements ResourceFacade {
 		return resourceService.loadResource(buildFullPath(path, "js", fileName));
 	}
 
+	@Override
+	public byte[] getHtml(String target) throws IOException {
+		return resourceService.loadResource(buildFullPath("apps", target, "index.html"));
+	}
+
 	private String buildFullPath(String path, String type, String fileName) {
 		StringBuilder sb = new StringBuilder();
 		sb.append("classpath:static/").append(path);

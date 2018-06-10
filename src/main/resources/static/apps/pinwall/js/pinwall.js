@@ -1,17 +1,67 @@
-var lastUpdate;
+var lastUpdate = 0;
+var failureCounter = 0;
 
-// will create a new image 3 seconds after site was fully loaded.
-$(function() {
+(function update(){
+	setTimeout(function(){
+		$.ajax({
+		    url: "/pinwall/update",
+		    type: 'POST',
+		    data: { lastUpdate: lastUpdate },
+		    success: function(data){
+			   	append(data);
+				update();
+			},
+		    error: function (err) {
+		    	if (err.status == "400" || failureCounter >= 10) {
+		    		location.reload();
+		    	}
+		    	failureCounter++;
+		    	setTimeout(update(), 10000);
+		    }
+		})
+		
+	}, 1000);
+})();
+	   
+function append(data) {
+	lastUpdate = data.updateId;
+	if (data.pinnedPosts) {
+		data.pinnedPosts.forEach(function(element){
+			pin(element);
+		});
+	}
+};
+		
+function pin(pinnedPost) {
+	if (!pinnedPost) {
+		return;
+	}
+	var post = document.getElementById(pinnedPost.index);
 	var wall = document.getElementById("wall");
-	var top = 250;
-	var left = 667;
+	var isNew = false;
+	if (!post) {
+		post = document.createElement("img");
+		isNew = true;
+	}	
+	if (!pinnedPost.postId) {
+		wall.remove(pic);
+		return;
+	}
 	
-	var pic = document.createElement("img");
-	pic.setAttribute("id", "1024");
-	pic.setAttribute("class", "post");
-	pic.setAttribute("src", "/apps/pinnwall/preview.jpg");
-	pic.setAttribute("style", "top:" + top + "px; left:" + left + "px;");
+	populatePost(pinnedPost, post);
 	
-	
-	setTimeout(function(){ wall.appendChild(pic) }, 3000);
-});
+	if (isNew) {
+		wall.appendChild(post);
+	}
+}
+
+function populatePost(pinnedPost, post) {
+	var left = pinnedPost.position.posX;
+	var top = pinnedPost.position.posY;
+	var rot = pinnedPost.position.rotation;
+		
+	post.setAttribute("id", pinnedPost.index);
+	post.setAttribute("class", "post");
+	post.setAttribute("src", "../images/posts/" + pinnedPost.postId);
+	post.setAttribute("style", "top:" + top + "px; left:" + left + "px; transform:rotate(" + rot + "deg)");
+}
