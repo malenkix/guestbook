@@ -16,11 +16,11 @@ var failureCounter = 0;
 		    		location.reload();
 		    	}
 		    	failureCounter++;
-		    	setTimeout(update(), 10000);
+		    	setTimeout(update(), 60000);
 		    }
 		})
 		
-	}, 1000);
+	}, 5000);
 })();
 	   
 function append(data) {
@@ -36,7 +36,7 @@ function pin(pinnedPost) {
 	if (!pinnedPost) {
 		return;
 	}
-	var post = document.getElementById(pinnedPost.index);
+	var post = document.getElementById(pinnedPost.position.index);
 	var wall = document.getElementById("wall");
 	var isNew = false;
 	if (!post) {
@@ -44,7 +44,7 @@ function pin(pinnedPost) {
 		isNew = true;
 	}	
 	if (!pinnedPost.postId) {
-		wall.remove(pic);
+		wall.remove(post);
 		return;
 	}
 	
@@ -60,8 +60,8 @@ function populatePost(pinnedPost, post) {
 	var top = pinnedPost.position.posY;
 	var rot = pinnedPost.position.rotation;
 		
-	post.setAttribute("id", pinnedPost.index);
+	post.setAttribute("id", pinnedPost.position.index);
 	post.setAttribute("class", "post");
-	post.setAttribute("src", "../images/posts/" + pinnedPost.postId);
+	post.setAttribute("src", "../posts/" + pinnedPost.postId);
 	post.setAttribute("style", "top:" + top + "px; left:" + left + "px; transform:rotate(" + rot + "deg)");
 }

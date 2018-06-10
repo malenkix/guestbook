@@ -1,6 +1,7 @@
 package de.nadirhelix.guestbook.pinwall;
 
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Stack;
@@ -12,20 +13,60 @@ import java.util.concurrent.ConcurrentHashMap;
  * @author Phil
  */
 public class PinwallPositioningStrategy {
+	
+	private static final int COLUMN_1 = 30;
+	private static final int COLUMN_2 = 250;
+	private static final int COLUMN_3 = 470;
+	private static final int COLUMN_4 = 690;
+	private static final int COLUMN_5 = 910;
+	private static final int COLUMN_6 = 1130;
+	private static final int COLUMN_7 = 1350;
+	private static final int COLUMN_8 = 1570;
+	
+	private static final int ROW_1 = 20;
+	private static final int ROW_2 = 240;
+	private static final int ROW_3 = 460;
+	private static final int ROW_4 = 680;
 
 	private static Stack<PinwallPosition> availablePositions = new Stack<>();
 
 	private static Map<String, PinwallPosition> occupiedPostitions = new ConcurrentHashMap<>();
 	
 	static {
-		availablePositions.push(new PinwallPosition(0, 100, 100, 10));
-		availablePositions.push(new PinwallPosition(1, 350, 100, -5));
-		availablePositions.push(new PinwallPosition(2, 600, 100, 3));
-		availablePositions.push(new PinwallPosition(3, 850, 100, -6));
-		availablePositions.push(new PinwallPosition(4, 100, 100, 0.5f));
-		availablePositions.push(new PinwallPosition(5, 350, 350, 3.2f));
-		availablePositions.push(new PinwallPosition(6, 600, 350, -1));
-		availablePositions.push(new PinwallPosition(7, 850, 350, 22));
+		availablePositions.push(new PinwallPosition(COLUMN_1, ROW_1));
+		availablePositions.push(new PinwallPosition(COLUMN_2, ROW_1));
+		availablePositions.push(new PinwallPosition(COLUMN_3, ROW_1));
+		availablePositions.push(new PinwallPosition(COLUMN_4, ROW_1));
+		availablePositions.push(new PinwallPosition(COLUMN_5, ROW_1));
+		availablePositions.push(new PinwallPosition(COLUMN_6, ROW_1));
+		availablePositions.push(new PinwallPosition(COLUMN_7, ROW_1));
+		availablePositions.push(new PinwallPosition(COLUMN_8, ROW_1));
+		availablePositions.push(new PinwallPosition(COLUMN_1, ROW_2));
+		availablePositions.push(new PinwallPosition(COLUMN_2, ROW_2));
+		availablePositions.push(new PinwallPosition(COLUMN_3, ROW_2));
+		availablePositions.push(new PinwallPosition(COLUMN_4, ROW_2));
+		availablePositions.push(new PinwallPosition(COLUMN_5, ROW_2));
+		availablePositions.push(new PinwallPosition(COLUMN_6, ROW_2));
+		availablePositions.push(new PinwallPosition(COLUMN_7, ROW_2));
+		availablePositions.push(new PinwallPosition(COLUMN_8, ROW_2));
+		availablePositions.push(new PinwallPosition(COLUMN_1, ROW_3));
+		availablePositions.push(new PinwallPosition(COLUMN_2, ROW_3));
+		availablePositions.push(new PinwallPosition(COLUMN_3, ROW_3));
+		availablePositions.push(new PinwallPosition(COLUMN_4, ROW_3));
+		availablePositions.push(new PinwallPosition(COLUMN_5, ROW_3));
+		availablePositions.push(new PinwallPosition(COLUMN_6, ROW_3));
+		availablePositions.push(new PinwallPosition(COLUMN_7, ROW_3));
+		availablePositions.push(new PinwallPosition(COLUMN_8, ROW_3));
+		availablePositions.push(new PinwallPosition(COLUMN_1, ROW_4));
+		availablePositions.push(new PinwallPosition(COLUMN_2, ROW_4));
+		availablePositions.push(new PinwallPosition(COLUMN_3, ROW_4));
+		availablePositions.push(new PinwallPosition(COLUMN_4, ROW_4));
+		availablePositions.push(new PinwallPosition(COLUMN_5, ROW_4));
+		availablePositions.push(new PinwallPosition(COLUMN_6, ROW_4));
+		availablePositions.push(new PinwallPosition(COLUMN_7, ROW_4));
+		availablePositions.push(new PinwallPosition(COLUMN_8, ROW_4));
+		
+		Collections.shuffle(availablePositions);
 	}
 	
 	private PinwallPositioningStrategy() {

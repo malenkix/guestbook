@@ -21,7 +21,6 @@ import de.nadirhelix.guestbook.image.facade.ImageFacade;
  * @author Phil
  */
 @RestController
-@RequestMapping("/images")
 public class ImageController {
 	
 	private static final Logger LOG = LoggerFactory.getLogger(ImageController.class); 

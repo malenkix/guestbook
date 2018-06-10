@@ -18,7 +18,6 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -59,6 +58,8 @@ public class BroadcastingServiceImplTest {
 		posts = new ArrayList<>();
 		when(postDao.getAllActivePosts()).thenAnswer(new ActivePostsAnswer());
 		doAnswer(new PinPostAnswer()).when(postDao).setPinned(anyString(), anyBoolean());
+		PinwallUpdateStrategy.clear();
+		PinwallPositioningStrategy.clear();
 
 	}
 
@@ -139,6 +140,7 @@ public class BroadcastingServiceImplTest {
 	public void testSetPinnedFalseWithOutRepin() {
 		int amount = PinwallPositioningStrategy.availablePositionsAmount();
 		List<String> postIds = createPostIdsAndUpdates(amount);
+
 		String unpinnedPostId = postIds.remove(amount - 1);
 
 		broadcastingService.setPinned(unpinnedPostId, false);
@@ -182,12 +184,6 @@ public class BroadcastingServiceImplTest {
 	private void assertEmptyPostIdInUpdate() {
 		Map<Integer, String> update = PinwallUpdateStrategy.getUpdate(PinwallUpdateStrategy.getLastUpdateId() - 1);
 		assertEquals("", update.entrySet().iterator().next().getValue());
-	}
-
-	@After
-	public void clear() {
-		PinwallUpdateStrategy.clear();
-		PinwallPositioningStrategy.clear();
 	}
 
 	private Post createPost(String postId) {

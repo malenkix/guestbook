@@ -13,6 +13,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
+import de.nadirhelix.guestbook.pinwall.PinwallPositioningStrategy;
+import de.nadirhelix.guestbook.pinwall.PinwallUpdateStrategy;
 import de.nadirhelix.guestbook.post.dao.vo.PostsVO;
 import de.nadirhelix.guestbook.post.model.Post;
 
@@ -39,12 +41,18 @@ public class XmlPostDao extends DefaultPostDao {
 			Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
 			
 			storedPosts = (PostsVO) jaxbUnmarshaller.unmarshal(file);
+			storedPosts.getPosts().forEach(this::addToPinwall);
 		} catch (JAXBException e) {
 			LOG.info("Haven't found file {}. Will create new file. ErrorMessage: {}", XML_DB_FILE_PATH, e.getMessage());
 			LOG.debug("Stacktrace:", e);
 			storedPosts = new PostsVO();
 			writePostsToFile();
 		}
+	}
+	
+	private void addToPinwall(Post post) {
+		int index = PinwallPositioningStrategy.pin(post.getId());
+		PinwallUpdateStrategy.update(index, post.getId());
 	}
 
 	@Override

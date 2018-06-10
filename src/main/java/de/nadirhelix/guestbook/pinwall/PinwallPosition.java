@@ -7,6 +7,8 @@ package de.nadirhelix.guestbook.pinwall;
  */
 public class PinwallPosition {
 	
+	private static int instanceCount = 0;
+	
 	private final int index;
 	
 	private int posX;
@@ -15,7 +17,19 @@ public class PinwallPosition {
 	
 	private float rotation;
 	
-	public PinwallPosition(int index, int xPos, int yPos, float rotation){
+	public PinwallPosition(int xPos, int yPos) {
+		this(createIndex(), xPos, yPos, rotate());
+	}
+
+	private static int createIndex() {
+		return instanceCount++;
+	}
+	
+	private static float rotate() {
+		return (float) Math.random() * 20 - 10;
+	}
+
+	private PinwallPosition(int index, int xPos, int yPos, float rotation){
 		this.index = index;
 		this.posX = xPos;
 		this.posY = yPos;

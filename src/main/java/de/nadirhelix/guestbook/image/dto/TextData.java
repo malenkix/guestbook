@@ -1,7 +1,5 @@
 package de.nadirhelix.guestbook.image.dto;
 
-import org.apache.commons.lang3.StringUtils;
-
 /**
  * DTO containing all relevant data to create a text.
  * Will be transformed to a {@link TextImage}.

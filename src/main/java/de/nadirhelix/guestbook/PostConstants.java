@@ -40,7 +40,7 @@ public class PostConstants {
 	
 	public static final int MAX_FONT_SIZE = 72;
 	
-	public static final List<String> FONTS = Arrays.asList("Arial", "Comic Sans MS", "Times New Roman");
+	public static final List<String> FONTS = Arrays.asList("Arial", "Arial Black", "Comic Sans MS", "Ubuntu Condensed");
 
 	public static final String DEFAULT_MESSAGE_FONT = "Arial";
 	
