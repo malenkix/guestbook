@@ -1,19 +1,19 @@
 package de.nadirhelix.guestbook.processing;
 
-import static de.nadirhelix.guestbook.image.PostConstants.ASSETS_PATH;
-import static de.nadirhelix.guestbook.image.PostConstants.BACKGROUND_IMAGE_PATH;
-import static de.nadirhelix.guestbook.image.PostConstants.DEFAULT_BG_COLOR;
-import static de.nadirhelix.guestbook.image.PostConstants.DEFAULT_SUBTEXT_COLOR;
-import static de.nadirhelix.guestbook.image.PostConstants.DEFAULT_SUBTEXT_FONT;
-import static de.nadirhelix.guestbook.image.PostConstants.DEFAULT_SUBTEXT_POS_X;
-import static de.nadirhelix.guestbook.image.PostConstants.DEFAULT_SUBTEXT_POS_Y;
-import static de.nadirhelix.guestbook.image.PostConstants.LEFT_UPPER_CORNER;
-import static de.nadirhelix.guestbook.image.PostConstants.POST_FILE_PATH;
-import static de.nadirhelix.guestbook.image.PostConstants.POST_HEIGHT;
-import static de.nadirhelix.guestbook.image.PostConstants.POST_WIDTH;
-import static de.nadirhelix.guestbook.image.PostConstants.SCALING_FACTOR;
-import static de.nadirhelix.guestbook.image.PostConstants.SUBTEXT_MAXLENGTH;
-import static de.nadirhelix.guestbook.image.PostConstants.TEMP_IMAGE_PATH;
+import static de.nadirhelix.guestbook.PostConstants.ASSETS_PATH;
+import static de.nadirhelix.guestbook.PostConstants.BACKGROUND_IMAGE_PATH;
+import static de.nadirhelix.guestbook.PostConstants.DEFAULT_BG_COLOR;
+import static de.nadirhelix.guestbook.PostConstants.DEFAULT_SUBTEXT_COLOR;
+import static de.nadirhelix.guestbook.PostConstants.DEFAULT_SUBTEXT_FONT;
+import static de.nadirhelix.guestbook.PostConstants.DEFAULT_SUBTEXT_POS_X;
+import static de.nadirhelix.guestbook.PostConstants.DEFAULT_SUBTEXT_POS_Y;
+import static de.nadirhelix.guestbook.PostConstants.LEFT_UPPER_CORNER;
+import static de.nadirhelix.guestbook.PostConstants.POST_FILE_PATH;
+import static de.nadirhelix.guestbook.PostConstants.POST_HEIGHT;
+import static de.nadirhelix.guestbook.PostConstants.POST_WIDTH;
+import static de.nadirhelix.guestbook.PostConstants.SCALING_FACTOR;
+import static de.nadirhelix.guestbook.PostConstants.SUBTEXT_MAXLENGTH;
+import static de.nadirhelix.guestbook.PostConstants.TEMP_IMAGE_PATH;
 
 import java.io.File;
 import java.lang.reflect.Field;

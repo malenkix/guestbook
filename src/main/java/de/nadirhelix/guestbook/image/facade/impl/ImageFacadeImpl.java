@@ -1,6 +1,6 @@
 package de.nadirhelix.guestbook.image.facade.impl;
 
-import static de.nadirhelix.guestbook.image.PostConstants.POST_FILE_PATH;
+import static de.nadirhelix.guestbook.PostConstants.POST_FILE_PATH;
 
 import java.io.File;
 import java.io.FileInputStream;

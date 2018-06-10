@@ -1,6 +1,6 @@
 package de.nadirhelix.guestbook.post.dao;
 
-import java.util.List;
+import java.util.Collection;
 
 import de.nadirhelix.guestbook.post.model.Post;
 
@@ -9,13 +9,13 @@ import de.nadirhelix.guestbook.post.model.Post;
  * 
  * @author Phil
  */
-public interface PostDAO {
+public interface PostDao {
 	
 	void storePost(Post post);
 	
-	List<String> getAllPostIds();
+	Collection<String> getAllPostIds();
 	
-	List<Post> getAllActivePosts();
+	Collection<Post> getAllActivePosts();
 	
 	void setPinned(String postId, boolean isActive);
 

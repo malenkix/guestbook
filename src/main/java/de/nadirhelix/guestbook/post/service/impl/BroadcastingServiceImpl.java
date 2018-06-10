@@ -4,7 +4,7 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
-import de.nadirhelix.guestbook.post.dao.PostDAO;
+import de.nadirhelix.guestbook.post.dao.PostDao;
 import de.nadirhelix.guestbook.post.model.Post;
 import de.nadirhelix.guestbook.post.service.BroadcastingService;
 
@@ -12,7 +12,7 @@ import de.nadirhelix.guestbook.post.service.BroadcastingService;
 public class BroadcastingServiceImpl implements BroadcastingService {
 	
 	@Resource
-	private PostDAO postDao;
+	private PostDao postDao;
 
 	@Override
 	public void addPost(Post post) {

@@ -1,16 +1,22 @@
 package de.nadirhelix.image.service.impl;
 
 import static org.junit.Assert.assertTrue;
+import static org.mockito.Mockito.when;
 
 import java.awt.GraphicsEnvironment;
 import java.lang.reflect.Field;
 import java.util.Date;
+import java.util.UUID;
 
 import org.apache.commons.lang3.StringUtils;
 import org.h2.store.fs.FileUtils;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.util.ReflectionUtils;
 
 import de.nadirhelix.guestbook.image.dto.BackgroundData;
@@ -20,17 +26,23 @@ import de.nadirhelix.guestbook.image.dto.TextData;
 import de.nadirhelix.guestbook.image.service.PostCreatorService;
 import de.nadirhelix.guestbook.image.service.impl.PostCreatorServiceImpl;
 import de.nadirhelix.guestbook.post.model.Post;
+import de.nadirhelix.guestbook.post.util.PostIdGenerator;
 
 /**
  * UnitTest for {@link PostCreatorServiceImpl}.
  * 
  * @author Phil
  */
+@RunWith(MockitoJUnitRunner.class)
 public class PostCreatorServiceImplTest {
 
 	private static final String FILE_PATH = System.getProperty("user.dir") + "/posts/%s.png";
-
+	
+	@InjectMocks
 	private PostCreatorService postCreatorService = new PostCreatorServiceImpl();
+	
+	@Mock
+	private PostIdGenerator postIdGenerator;
 	
 	private PostData data;
 	
@@ -39,6 +51,11 @@ public class PostCreatorServiceImplTest {
 		Field field = GraphicsEnvironment.class.getDeclaredField("headless");
 		field.setAccessible(true);
 		ReflectionUtils.setField(field, GraphicsEnvironment.class, Boolean.FALSE);
+	}
+	
+	@Before
+	public void prepareDependencies() {
+		when(postIdGenerator.generateId()).thenReturn(UUID.randomUUID().toString());
 	}
 	
 	@Before
@@ -75,7 +92,6 @@ public class PostCreatorServiceImplTest {
 	
 	@Test
 	public void testCreateImage() {
-		data.setWishes("ID123456");
 		
 		Post post = postCreatorService.createImage(data);
 
