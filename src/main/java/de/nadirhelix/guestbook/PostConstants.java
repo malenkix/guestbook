@@ -22,14 +22,14 @@ public class PostConstants {
 	public static final Point LEFT_UPPER_CORNER = new Point(25, 25);	
 	
 	public static final float SCALING_FACTOR = 1.0f;
-
-	public static final String DEFAULT_BG_COLOR = "#00ff00";
 	
 	public static final String ASSETS_PATH = buildPath(true, true, "resources");
 	
 	public static final String POST_FILE_PATH = buildPath(true, true, "posts");
 	
 	public static final String  TEMP_IMAGE_PATH = buildPath(true, true, "temp");
+	
+	public static final String  ARCHIVE_IMAGE_PATH = buildPath(true, true, "archive");
 	
 	public static final String XML_DB_FILE_PATH = buildPath(false, true, "data", "post.xml");
 	

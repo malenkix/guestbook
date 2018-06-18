@@ -2,7 +2,6 @@ package de.nadirhelix.guestbook.processing;
 
 import static de.nadirhelix.guestbook.PostConstants.ASSETS_PATH;
 import static de.nadirhelix.guestbook.PostConstants.BACKGROUND_IMAGE_PATH;
-import static de.nadirhelix.guestbook.PostConstants.DEFAULT_BG_COLOR;
 import static de.nadirhelix.guestbook.PostConstants.DEFAULT_SUBTEXT_COLOR;
 import static de.nadirhelix.guestbook.PostConstants.DEFAULT_SUBTEXT_FONT;
 import static de.nadirhelix.guestbook.PostConstants.DEFAULT_SUBTEXT_POS_X;
@@ -51,11 +50,15 @@ public class PostApplet extends PApplet {
 	
 	private static final Method HANDLE_SETTINGS;
 	
-	private static final Logger LOG = LoggerFactory.getLogger(PostApplet.class);
+	private static final PostApplet INSTANCE;
+		
+	private static final PostApplet TEXT_INSTANCE;
 	
-	private static ThreadLocal<Integer> targetWidth = new ThreadLocal<>();
+	private static final Logger LOG = LoggerFactory.getLogger(PostApplet.class);
 
-	private static ThreadLocal<Integer> targetHeight = new ThreadLocal<>();
+	private static boolean instanceLocked = false;
+
+	private static boolean textInstanceLocked = false;
 	
 	private String postSketchPath;
 	
@@ -68,8 +71,33 @@ public class PostApplet extends PApplet {
 		} catch (SecurityException | NoSuchMethodException e) {
 			throw new IllegalStateException(HANDLE_SEETINGS_ERROR_MESSAGE, e);
 		}
-		HANDLE_SETTINGS = m;		
+		HANDLE_SETTINGS = m;
+		
+		INSTANCE = create();
+		
+		TEXT_INSTANCE = create();
 	}
+
+	public static PostApplet instance() {
+		while (instanceLocked){};
+		instanceLocked = true;
+		return INSTANCE;
+	}
+	
+	public static void releaseInstance() {
+		instanceLocked = false;
+	}
+	
+	public static PostApplet textInstance() {
+		while (textInstanceLocked){};
+		textInstanceLocked = true;
+		return TEXT_INSTANCE;
+	}
+	
+	public static void releaseTextInstance() {
+		textInstanceLocked = false;
+	}
+
 
 	/**
 	 * Default private constructor.
@@ -77,12 +105,7 @@ public class PostApplet extends PApplet {
 	private PostApplet() {
 		super();
 		surface = initSurface();
-		if (targetWidth.get() != null && targetWidth.get() >  0 && 
-				targetHeight.get() != null && targetHeight.get() > 0) {
-			g = createGraphics(targetWidth.get(), targetHeight.get());			
-		} else {
-			g = createGraphics(POST_WIDTH, POST_HEIGHT);
-		}
+		g = createGraphics(POST_WIDTH, POST_HEIGHT);
 		g.beginDraw();
 	}
 	
@@ -92,16 +115,12 @@ public class PostApplet extends PApplet {
 	 * @return the newly created PostApplet
 	 */
 	public static PostApplet create() {
-		return create(0, 0);
-	}	
-	
-	public static PostApplet create(int width, int height) {
-		setTargetDimensions(width, height);
 		PostApplet result = new PostApplet();
 		try {
 			HANDLE_SETTINGS.invoke(result);
 		} catch (IllegalAccessException | IllegalArgumentException
 				| InvocationTargetException e) {
+			LOG.error("Unable to continue startup process: ", e);
 			throw new IllegalStateException(HANDLE_SEETINGS_ERROR_MESSAGE, e);
 		}
 		result.noLoop();
@@ -113,12 +132,7 @@ public class PostApplet extends PApplet {
 	 */
 	@Override
 	public void settings() {
-		if (targetWidth.get() != null && targetWidth.get() >  0 && 
-				targetHeight.get() != null && targetHeight.get() > 0) {
-			size(targetWidth.get(), targetHeight.get());			
-		} else {
-			size(POST_WIDTH, POST_HEIGHT);
-		}
+		size(POST_WIDTH, POST_HEIGHT);
 		smooth();
 		try {
 			Field field = PApplet.class.getDeclaredField("sketchPath");
@@ -135,12 +149,7 @@ public class PostApplet extends PApplet {
 	 */
 	@Override
 	public void background(PImage image) {
-		initBackground();
 		super.background(image);
-	}
-
-	private void initBackground() {
-		background(DEFAULT_BG_COLOR);
 	}
 	
 	/**
@@ -173,12 +182,16 @@ public class PostApplet extends PApplet {
 	 * @param image 
 	 * 			the image to be drawn.
 	 */
-	public void addImage(ImageData image) {
-		if (image == null || StringUtils.isBlank(image.getFile())) {
-			return;
+	public boolean addImage(ImageData image) {
+		if (image != null && StringUtils.isNotBlank(image.getFile())) {
+			PImage postImage = loadImage(TEMP_IMAGE_PATH + image.getFile());
+			if (postImage != null) {
+				applyGraphic(image, postImage);
+			} else {
+				return false;
+			}
 		}
-		PImage postImage = loadImage(TEMP_IMAGE_PATH + image.getFile());
-		applyGraphic(image, postImage);
+		return true;
 	}
 
 	/**
@@ -267,11 +280,6 @@ public class PostApplet extends PApplet {
 		save(fileName);
 		return fileName;
 	}
-
-	private static void setTargetDimensions(int width, int height) {
-		targetWidth.set(width);
-		targetHeight.set(height);
-	} 
 	
 	/**
 	 * <p>Most parts of this method is a copy of the original implementation in {@link PApplet} 

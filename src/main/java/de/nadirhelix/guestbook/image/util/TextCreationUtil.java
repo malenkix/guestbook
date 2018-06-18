@@ -34,7 +34,7 @@ public class TextCreationUtil {
 	 * @return the {@link TextImage}
 	 */
 	public static TextImage createTextImage(TextData data) {
-		PostApplet applet = PostApplet.create();
+		PostApplet applet = PostApplet.textInstance();
 		String message = StringUtils.substring(data.getContent(), 0, MESSAGE_MAXLENGTH);
 		prepareFont(data, applet);
 		applet.text(message, 0, applet.height);
@@ -43,7 +43,7 @@ public class TextCreationUtil {
 		result.setPosY(data.getPosY());
 		result.setRotation(data.getRotation());
 		calculateDimension(result);
-		applet.dispose();
+		PostApplet.releaseTextInstance();
 		
 		return result;
 	}

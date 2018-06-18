@@ -23,25 +23,25 @@ import de.nadirhelix.guestbook.image.dto.BackgroundData;
 import de.nadirhelix.guestbook.image.dto.ImageData;
 import de.nadirhelix.guestbook.image.dto.PostData;
 import de.nadirhelix.guestbook.image.dto.TextData;
-import de.nadirhelix.guestbook.image.service.PostCreatorService;
-import de.nadirhelix.guestbook.image.service.impl.PostCreatorServiceImpl;
+import de.nadirhelix.guestbook.image.service.PostCreationService;
+import de.nadirhelix.guestbook.image.service.impl.PostCreationServiceImpl;
 import de.nadirhelix.guestbook.post.model.Post;
 import de.nadirhelix.guestbook.post.util.PostIdGenerator;
 
 /**
- * UnitTest for {@link PostCreatorServiceImpl}.
+ * UnitTest for {@link PostCreationServiceImpl}.
  * 
  * @author Phil
  */
 @RunWith(MockitoJUnitRunner.class)
-public class PostCreatorServiceImplTest {
+public class PostCreationServiceImplTest {
 
 	private static final String FILE_PATH = System.getProperty("user.dir") + "/posts/%s.png";
 	private static final AtomicLong ID = new AtomicLong();
 
 	@InjectMocks
-	private PostCreatorService postCreatorService = new PostCreatorServiceImpl();
-
+	private PostCreationService postCreationService = new PostCreationServiceImpl();
+	
 	@Mock
 	private PostIdGenerator postIdGenerator;
 
@@ -92,19 +92,15 @@ public class PostCreatorServiceImplTest {
 	}
 
 	@Test
-	public void testCreateImage() {
-
-		Post post = postCreatorService.createImage(data);
-
+	public void testCreateImage() {		
+		Post post = postCreationService.createImage(data);
 		assertFileCreated(post.getId());
 	}
 
 	@Test
 	public void testCreateImageWithoutMessage() {
-		data.getMessage().setContent(StringUtils.EMPTY);
-
-		Post post = postCreatorService.createImage(data);
-
+		data.getMessage().setContent(StringUtils.EMPTY);		
+		Post post = postCreationService.createImage(data);
 		assertFileCreated(post.getId());
 	}
 
@@ -112,7 +108,7 @@ public class PostCreatorServiceImplTest {
 	public void testCreateImageWithoutImage() {
 		data.setImage(null);
 
-		Post post = postCreatorService.createImage(data);
+		Post post = postCreationService.createImage(data);
 
 		assertFileCreated(post.getId());
 	}
@@ -127,7 +123,7 @@ public class PostCreatorServiceImplTest {
 	public void testCreateImageWithoutBackground() {
 		data.setBackground(null);
 
-		Post post = postCreatorService.createImage(data);
+		Post post = postCreationService.createImage(data);
 
 		assertFileCreated(post.getId());
 	}

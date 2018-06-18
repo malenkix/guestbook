@@ -6,7 +6,7 @@ import de.nadirhelix.guestbook.post.model.Post;
 /**
  * 
  */
-public interface PostCreatorService {
+public interface PostCreationService {
 	
 	/**
 	 * Creates and stores an Image out of incoming {@link PostData} and returns the id for it.

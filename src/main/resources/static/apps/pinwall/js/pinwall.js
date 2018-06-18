@@ -1,7 +1,11 @@
 var lastUpdate = 0;
 var failureCounter = 0;
 
-(function update(){
+(function startup(){
+	update();
+})();
+
+function update() {
 	setTimeout(function(){
 		$.ajax({
 		    url: "/pinwall/update",
@@ -21,7 +25,7 @@ var failureCounter = 0;
 		})
 		
 	}, 5000);
-})();
+}
 	   
 function append(data) {
 	lastUpdate = data.updateId;
