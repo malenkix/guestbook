@@ -3,12 +3,14 @@ package de.nadirhelix.guestbook.post.dao.impl;
 import static de.nadirhelix.guestbook.PostConstants.XML_DB_FILE_PATH;
 
 import java.io.File;
+import java.io.IOException;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
 
+import org.apache.commons.io.FileUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
@@ -73,6 +75,7 @@ public class XmlPostDao extends DefaultPostDao {
 	public void writePostsToFile() {
 		try {
 			File file = new File(XML_DB_FILE_PATH);
+			FileUtils.touch(file);
 			JAXBContext jaxbContext = JAXBContext.newInstance(PostsVO.class);
 			Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
 
@@ -81,7 +84,7 @@ public class XmlPostDao extends DefaultPostDao {
 			synchronized (storedPosts) {
 				jaxbMarshaller.marshal(storedPosts, file);
 			}
-		} catch (JAXBException e) {
+		} catch (JAXBException | IOException e) {
 			LOG.warn("Could not store post informations to disk", e);
 		}
 	}

@@ -26,26 +26,32 @@ import de.nadirhelix.guestbook.resources.util.FontsProvider;
 public class TextCreationUtil {
 
 	/**
-	 * <p>Creates a {@link TextImage} containing a graphical representation from a given {@link TextData}
-	 * and its dimensions. </p>
+	 * <p>
+	 * Creates a {@link TextImage} containing a graphical representation from a
+	 * given {@link TextData} and its dimensions.
+	 * </p>
 	 * 
-	 * @param data 
-	 * 			the {@link TextData}
+	 * @param data
+	 *            the {@link TextData}
 	 * @return the {@link TextImage}
 	 */
 	public static TextImage createTextImage(TextData data) {
-		PostApplet applet = PostApplet.textInstance();
-		String message = StringUtils.substring(data.getContent(), 0, MESSAGE_MAXLENGTH);
-		prepareFont(data, applet);
-		applet.text(message, 0, applet.height);
-		TextImage result = TextImage.create(applet.get());
-		result.setPosX(data.getPosX());
-		result.setPosY(data.getPosY());
-		result.setRotation(data.getRotation());
-		calculateDimension(result);
-		PostApplet.releaseTextInstance();
-		
-		return result;
+		try {
+			PostApplet applet = PostApplet.textInstance();
+			String message = StringUtils.substring(data.getContent(), 0,
+					MESSAGE_MAXLENGTH);
+			prepareFont(data, applet);
+			applet.text(message, 0, applet.height);
+			TextImage result = TextImage.create(applet.get());
+			result.setPosX(data.getPosX());
+			result.setPosY(data.getPosY());
+			result.setRotation(data.getRotation());
+			calculateDimension(result);
+
+			return result;
+		} finally {
+			PostApplet.releaseTextInstance();
+		}
 	}
 
 	private static void calculateDimension(TextImage result) {
@@ -53,14 +59,15 @@ public class TextCreationUtil {
 		image.loadPixels();
 		int[] pixels = image.pixels;
 		int firstPixel = pixels.length;
-		for (int i = 0 ; i < pixels.length ; i++) {
+		for (int i = 0; i < pixels.length; i++) {
 			if (pixels[i] != 0) {
 				firstPixel = i;
 				break;
 			}
 		}
 		int verticalTranslation = firstPixel / image.width;
-		int horizontalTranslation = getHorizontalTranslation(image, pixels, firstPixel, verticalTranslation);
+		int horizontalTranslation = getHorizontalTranslation(image, pixels, 
+				firstPixel, verticalTranslation);
 		int horizontalAmplitude = getHorizontalAmplitude(image, pixels, verticalTranslation);
 		result.setVerticalTranslation(verticalTranslation);
 		result.setHorizontalTranslation(horizontalTranslation);
@@ -68,15 +75,16 @@ public class TextCreationUtil {
 		result.setHeightEffective(image.height - verticalTranslation);
 	}
 
-	private static int getHorizontalTranslation(PImage image, int[] pixels, int firstPixel, int verticalTranslation) {
+	private static int getHorizontalTranslation(PImage image, int[] pixels,
+			int firstPixel, int verticalTranslation) {
 		int horizontalTranslation = firstPixel % image.width;
 		if (horizontalTranslation > 0) {
 			for (int i = image.height - 1; i >= verticalTranslation; i--) {
-				for (int j = horizontalTranslation - 1;  j >= 0; j--) {
+				for (int j = horizontalTranslation - 1; j >= 0; j--) {
 					int index = i * image.width + j;
 					if (pixels[index] > 0) {
 						horizontalTranslation = j;
-					}				
+					}
 				}
 				if (horizontalTranslation == 0) {
 					break;
@@ -90,11 +98,11 @@ public class TextCreationUtil {
 			int verticalTranslation) {
 		int horizontalAmplitude = 0;
 		for (int i = image.height - 1; i >= verticalTranslation; i--) {
-			for (int j = image.width - 1;  j > horizontalAmplitude; j--) {
+			for (int j = image.width - 1; j > horizontalAmplitude; j--) {
 				int index = i * image.width + j;
 				if (pixels[index] > 0) {
 					horizontalAmplitude = j;
-				}				
+				}
 			}
 			if (horizontalAmplitude == image.width - 1) {
 				break;
@@ -125,5 +133,5 @@ public class TextCreationUtil {
 		}
 		return result;
 	}
-	
+
 }

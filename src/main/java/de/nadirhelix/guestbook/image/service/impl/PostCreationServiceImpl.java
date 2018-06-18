@@ -21,24 +21,27 @@ import de.nadirhelix.guestbook.processing.PostApplet;
  */
 @Service("postCreationService")
 public class PostCreationServiceImpl implements PostCreationService {
-	
+
 	private static final Logger LOG = LoggerFactory.getLogger(PostCreationServiceImpl.class);
-	
+
 	@Resource
 	private PostIdGenerator postIdGenerator;
 
 	@Override
 	public Post createImage(PostData data) {
-		PostApplet applet = PostApplet.instance();
-		setBackground(applet, data.getBackground());
-		addImage(applet, data);
-		applet.addMessage(data.getMessage());
-		applet.drawFrame();
-		applet.addSubtext(data.getSubtext());
-		String postId = postIdGenerator.generateId();
-		String fileName = applet.storeImage(postId);
-		PostApplet.releaseInstance();
-		return createPost(postId, data, fileName);
+		try{
+			PostApplet applet = PostApplet.instance();
+			setBackground(applet, data.getBackground());
+			addImage(applet, data);
+			applet.addMessage(data.getMessage());
+			applet.drawFrame();
+			applet.addSubtext(data.getSubtext());
+			String postId = postIdGenerator.generateId();
+			String fileName = applet.storeImage(postId);
+			return createPost(postId, data, fileName);
+		} finally {
+			PostApplet.releaseInstance();
+		}
 	}
 
 	private void setBackground(PostApplet applet, BackgroundData bg) {
@@ -48,17 +51,18 @@ public class PostCreationServiceImpl implements PostCreationService {
 				applet.background(image);
 			} else {
 				applet.background(bg.getColor());
-			}			
+			}
 		}
 	}
 
 	private void addImage(PostApplet applet, PostData data) {
 		boolean success = applet.addImage(data.getImage());
 		if (!success) {
-			LOG.warn("Could not apply image to post. File ({}) seems to be missing.", data.getImage().getFile());
+			LOG.warn("Could not apply image to post. File ({}) seems to be missing.",
+					data.getImage().getFile());
 		}
 	}
-	
+
 	private Post createPost(String postId, PostData data, String fileName) {
 		return new Post(postId, data.getDate(), fileName, data.getWishes(), data.getName());
 	}
