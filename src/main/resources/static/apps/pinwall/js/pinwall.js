@@ -42,16 +42,17 @@ function pin(pinnedPost) {
 	}
 	var post = document.getElementById(pinnedPost.position.index);
 	var wall = document.getElementById("wall");
-	var isNew = false;
+	var isNew = false;	
+	if (!pinnedPost.postId) {
+		if (post) {
+			wall.removeChild(post);
+		}
+		return;
+	}
 	if (!post) {
 		post = document.createElement("img");
 		isNew = true;
-	}	
-	if (!pinnedPost.postId) {
-		wall.remove(post);
-		return;
 	}
-	
 	populatePost(pinnedPost, post);
 	
 	if (isNew) {
