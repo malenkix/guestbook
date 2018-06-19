@@ -1,5 +1,6 @@
 package de.nadirhelix.guestbook.post.service.impl;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -91,7 +92,8 @@ public class BroadcastingServiceImpl implements BroadcastingService {
 		activePostsIds.removeAll(PinwallPositioningStrategy.getPinnedPosts());
 		
 		if (!CollectionUtils.isEmpty(activePostsIds)) {
-			String candidate = activePostsIds.get(activePostsIds.size() -1);
+			Collections.reverse(activePostsIds);
+			String candidate = activePostsIds.get(0);
 			int index = PinwallPositioningStrategy.pin(candidate);
 			
 			PinwallUpdateStrategy.update(index, candidate);
