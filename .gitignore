@@ -57,3 +57,6 @@ version.ini
 /*.log
 /posts
 /temp
+archive
+/fonts
+/data

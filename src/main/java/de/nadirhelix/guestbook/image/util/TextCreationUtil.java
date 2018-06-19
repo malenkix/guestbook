@@ -1,11 +1,11 @@
 package de.nadirhelix.guestbook.image.util;
 
 import static de.nadirhelix.guestbook.PostConstants.DEFAULT_FONT_SIZE;
-import static de.nadirhelix.guestbook.PostConstants.DEFAULT_MESSAGE_FONT;
-import static de.nadirhelix.guestbook.PostConstants.FONTS;
+import static de.nadirhelix.guestbook.PostConstants.FONTS_PATH;
 import static de.nadirhelix.guestbook.PostConstants.MAX_FONT_SIZE;
 import static de.nadirhelix.guestbook.PostConstants.MESSAGE_MAXLENGTH;
 import static de.nadirhelix.guestbook.PostConstants.SCALING_FACTOR;
+import static de.nadirhelix.guestbook.resources.util.FontsProvider.DEFAULT_MESSAGE_FONT;
 
 import org.apache.commons.lang3.StringUtils;
 
@@ -16,6 +16,7 @@ import de.nadirhelix.guestbook.image.dto.TextData;
 import de.nadirhelix.guestbook.image.dto.TextImage;
 import de.nadirhelix.guestbook.image.processing.util.ColorConverter;
 import de.nadirhelix.guestbook.processing.PostApplet;
+import de.nadirhelix.guestbook.resources.util.FontsProvider;
 
 /**
  * Allows to create a drawable {@link TextImage} out of a simple {@link TextData}.
@@ -104,16 +105,17 @@ public class TextCreationUtil {
 
 	private static void prepareFont(TextData data, PostApplet applet) {
 		applet.textAlign(PConstants.LEFT, PConstants.BOTTOM);
-		PFont font = applet.createFont(normalizeFontName(data.getFont()), normalizeSize(data.getSize()));
-		applet.textFont(font);
+		PFont font = applet.loadFont(findFont(data.getFont()));
+		applet.textFont(font, normalizeSize(data.getSize()));
 		applet.fill(ColorConverter.convert(data.getColor()));
 	}
 
-	private static String normalizeFontName(String font) {
-		if (StringUtils.isBlank(font) || !FONTS.contains(font)) {
-			return DEFAULT_MESSAGE_FONT;
+	private static String findFont(String font) {
+		String fileName = FontsProvider.getFileNameForFont(font);
+		if (StringUtils.isEmpty(fileName)) {
+			return FONTS_PATH + DEFAULT_MESSAGE_FONT;
 		}
-		return font;
+		return FONTS_PATH + fileName;
 	}
 
 	private static float normalizeSize(int size) {
