@@ -29,7 +29,7 @@ public class PostConstants {
 	
 	public static final String  TEMP_IMAGE_PATH = buildPath(true, true, "temp");
 	
-	public static final String  ARCHIVE_IMAGE_PATH = buildPath(true, true, "archive");
+	public static final String  ARCHIVE_PATH = buildPath(true, true, "archive");
 	
 	public static final String XML_DB_FILE_PATH = buildPath(false, true, "data", "post.xml");
 	

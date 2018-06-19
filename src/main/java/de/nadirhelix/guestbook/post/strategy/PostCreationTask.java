@@ -51,7 +51,7 @@ public class PostCreationTask extends Thread {
 		} catch (Exception e) {
 			// caught to keep Task alive
 			LOG.warn(e.getMessage());
-			LOG.debug("Post creation unfinished:", e);
+			LOG.info("Post creation unfinished:", e);
 		}
 	}
 	

@@ -1,12 +1,13 @@
 package de.nadirhelix.guestbook.post.strategy;
 
-import static de.nadirhelix.guestbook.PostConstants.ARCHIVE_IMAGE_PATH;
+import static de.nadirhelix.guestbook.PostConstants.ARCHIVE_PATH;
 import static de.nadirhelix.guestbook.PostConstants.TEMP_IMAGE_PATH;
 
 import java.io.File;
 import java.io.IOException;
 
 import javax.annotation.Resource;
+import javax.xml.bind.JAXBException;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -18,7 +19,7 @@ import de.nadirhelix.guestbook.image.dto.PostData;
 import de.nadirhelix.guestbook.image.service.PostCreationService;
 import de.nadirhelix.guestbook.post.model.Post;
 import de.nadirhelix.guestbook.post.service.BroadcastingService;
-import de.nadirhelix.guestbook.post.util.PostUtil;
+import de.nadirhelix.guestbook.post.util.PostMarshallingUtil;
 
 /**
  * This Strategy takes care of post creation. It feeds a task with new post data and handles 
@@ -73,14 +74,26 @@ public class PostCreationStrategy {
 	private void clearTempData(PostData data, String id) {
 		if (data.getImage()!= null && StringUtils.isNotEmpty(data.getImage().getFile())) {
 			String tempFileName = TEMP_IMAGE_PATH + data.getImage().getFile();
-			String archivedFileName = ARCHIVE_IMAGE_PATH + id + PostUtil.getFileExtension(tempFileName);
+			String archivedFileName = ARCHIVE_PATH + data.getImage().getFile();
 			try {
 				FileUtils.moveFile(new File(tempFileName), new File(archivedFileName));
 			} catch (IOException e) {
 				LOG.warn("Could not move tempFile ({}) to archive ({})", tempFileName, archivedFileName);
 				LOG.debug("Post creation unfinished:", e);
 			}
+			storeData(data, id);
 		}
 	}
-	
+
+	private void storeData(PostData data, String id) {
+		try {
+			File file = new File(ARCHIVE_PATH + id + ".xml");
+			FileUtils.touch(file);
+			PostMarshallingUtil.marshal(PostData.class, data, file);
+		} catch (JAXBException | IOException e) {
+			LOG.warn("Could not store postData informations to disk", e);
+			LOG.debug("post data were not stored for id {}", id);
+		}
+	}
+
 }
