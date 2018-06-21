@@ -10,8 +10,8 @@ import Nav from '../nav/Nav'
 import FancyBox from '../box/FancyBox'
 
 const BackgroundEditor = ({ state, callbacks }) => {
-  const colorTabSelected = state.backgroundActiveTab === 'color'
-  const imageTabSelected = state.backgroundActiveTab === 'image'
+  const colorTabSelected = state.backgroundActiveTab === Constants.TABS.TAB_BG_COLOR
+  const imageTabSelected = state.backgroundActiveTab === Constants.TABS.TAB_BG_IMAGE
   return (
     <Frame name={Constants.FRAMES.BACKGROUND_EDITOR} state={state}>
       <Header icon='/assets/btn-bg.png' callbacks={callbacks} />
@@ -21,13 +21,13 @@ const BackgroundEditor = ({ state, callbacks }) => {
           <div className='tabs'>
             <button
               className={colorTabSelected ? 'selected' : ''}
-              onClick={() => callbacks.setBackgroundActiveTab('color')}
+              onClick={() => callbacks.setBackgroundActiveTab(Constants.TABS.TAB_BG_COLOR)}
             >
               Farbe
             </button>
             <button
               className={imageTabSelected ? 'selected' : ''}
-              onClick={() => callbacks.setBackgroundActiveTab('image')}
+              onClick={() => callbacks.setBackgroundActiveTab(Constants.TABS.TAB_BG_IMAGE)}
             >
               Grafik
             </button>

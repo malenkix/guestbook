@@ -357,7 +357,76 @@ eval("// extracted by mini-css-extract-plugin\n\n//# sourceURL=webpack:///./src/
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\n\nvar _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if (\"value\" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();\n\nvar _react = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n\nvar _react2 = _interopRequireDefault(_react);\n\nvar _App = __webpack_require__(/*! ./App.css */ \"./src/App.css\");\n\nvar _App2 = _interopRequireDefault(_App);\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\nfunction _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError(\"Cannot call a class as a function\"); } }\n\nfunction _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError(\"this hasn't been initialised - super() hasn't been called\"); } return call && (typeof call === \"object\" || typeof call === \"function\") ? call : self; }\n\nfunction _inherits(subClass, superClass) { if (typeof superClass !== \"function\" && superClass !== null) { throw new TypeError(\"Super expression must either be null or a function, not \" + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }\n\nvar App = function (_React$Component) {\n  _inherits(App, _React$Component);\n\n  function App(props) {\n    _classCallCheck(this, App);\n\n    return _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this, props));\n  }\n\n  _createClass(App, [{\n    key: 'render',\n    value: function render() {\n      return _react2.default.createElement(\n        'h1',\n        null,\n        'Hallo Welt!'\n      );\n    }\n  }]);\n\n  return App;\n}(_react2.default.Component);\n\nexports.default = App;\n\n//# sourceURL=webpack:///./src/App.jsx?");
+eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\n\nvar _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if (\"value\" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();\n\nvar _react = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n\nvar _react2 = _interopRequireDefault(_react);\n\nvar _App = __webpack_require__(/*! ./App.css */ \"./src/App.css\");\n\nvar _App2 = _interopRequireDefault(_App);\n\nvar _Constants = __webpack_require__(/*! ./services/Constants */ \"./src/services/Constants.js\");\n\nvar _Constants2 = _interopRequireDefault(_Constants);\n\nvar _State = __webpack_require__(/*! ./services/State */ \"./src/services/State.js\");\n\nvar _State2 = _interopRequireDefault(_State);\n\nvar _PostEditor = __webpack_require__(/*! ./views/PostEditor */ \"./src/views/PostEditor.jsx\");\n\nvar _PostEditor2 = _interopRequireDefault(_PostEditor);\n\nvar _BackgroundEditor = __webpack_require__(/*! ./views/BackgroundEditor */ \"./src/views/BackgroundEditor.jsx\");\n\nvar _BackgroundEditor2 = _interopRequireDefault(_BackgroundEditor);\n\nvar _ImageEditor = __webpack_require__(/*! ./views/ImageEditor */ \"./src/views/ImageEditor.jsx\");\n\nvar _ImageEditor2 = _interopRequireDefault(_ImageEditor);\n\nvar _TextEditor = __webpack_require__(/*! ./views/TextEditor */ \"./src/views/TextEditor.jsx\");\n\nvar _TextEditor2 = _interopRequireDefault(_TextEditor);\n\nvar _SubmitEditor = __webpack_require__(/*! ./views/SubmitEditor */ \"./src/views/SubmitEditor.jsx\");\n\nvar _SubmitEditor2 = _interopRequireDefault(_SubmitEditor);\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\nfunction _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError(\"Cannot call a class as a function\"); } }\n\nfunction _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError(\"this hasn't been initialised - super() hasn't been called\"); } return call && (typeof call === \"object\" || typeof call === \"function\") ? call : self; }\n\nfunction _inherits(subClass, superClass) { if (typeof superClass !== \"function\" && superClass !== null) { throw new TypeError(\"Super expression must either be null or a function, not \" + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }\n\nvar App = function (_React$PureComponent) {\n  _inherits(App, _React$PureComponent);\n\n  function App(props) {\n    _classCallCheck(this, App);\n\n    var _this = _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this, props));\n\n    _State2.default.setupState(_this);\n    return _this;\n  }\n\n  _createClass(App, [{\n    key: 'render',\n    value: function render() {\n      return _react2.default.createElement(\n        _react2.default.Fragment,\n        null,\n        _react2.default.createElement(_PostEditor2.default, { state: this.state, callbacks: this.callbacks }),\n        _react2.default.createElement(_BackgroundEditor2.default, { state: this.state, callbacks: this.callbacks }),\n        _react2.default.createElement(_ImageEditor2.default, { state: this.state, callbacks: this.callbacks }),\n        _react2.default.createElement(_TextEditor2.default, { state: this.state, callbacks: this.callbacks }),\n        _react2.default.createElement(_SubmitEditor2.default, { state: this.state, callbacks: this.callbacks })\n      );\n    }\n  }]);\n\n  return App;\n}(_react2.default.PureComponent);\n\nexports.default = App;\n\n//# sourceURL=webpack:///./src/App.jsx?");
+
+/***/ }),
+
+/***/ "./src/box/FancyBox.css":
+/*!******************************!*\
+  !*** ./src/box/FancyBox.css ***!
+  \******************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("// extracted by mini-css-extract-plugin\n\n//# sourceURL=webpack:///./src/box/FancyBox.css?");
+
+/***/ }),
+
+/***/ "./src/box/FancyBox.jsx":
+/*!******************************!*\
+  !*** ./src/box/FancyBox.jsx ***!
+  \******************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\n\nvar _react = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n\nvar _react2 = _interopRequireDefault(_react);\n\nvar _FancyBox = __webpack_require__(/*! ./FancyBox.css */ \"./src/box/FancyBox.css\");\n\nvar _FancyBox2 = _interopRequireDefault(_FancyBox);\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\nvar FancyBox = function FancyBox(_ref) {\n  var color = _ref.color,\n      image = _ref.image,\n      selected = _ref.selected,\n      onClick = _ref.onClick;\n\n  var inline = {\n    backgroundColor: color && color,\n    backgroundImage: image && 'url(' + image + ')'\n  };\n  return _react2.default.createElement('div', {\n    className: 'fancyBox ' + (selected && 'selected' || ''),\n    style: inline,\n    onClick: onClick });\n};\n\nexports.default = FancyBox;\n\n//# sourceURL=webpack:///./src/box/FancyBox.jsx?");
+
+/***/ }),
+
+/***/ "./src/frame/Frame.css":
+/*!*****************************!*\
+  !*** ./src/frame/Frame.css ***!
+  \*****************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("// extracted by mini-css-extract-plugin\n\n//# sourceURL=webpack:///./src/frame/Frame.css?");
+
+/***/ }),
+
+/***/ "./src/frame/Frame.jsx":
+/*!*****************************!*\
+  !*** ./src/frame/Frame.jsx ***!
+  \*****************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\n\nvar _react = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n\nvar _react2 = _interopRequireDefault(_react);\n\nvar _Frame = __webpack_require__(/*! ./Frame.css */ \"./src/frame/Frame.css\");\n\nvar _Frame2 = _interopRequireDefault(_Frame);\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\nvar Frame = function Frame(_ref) {\n  var _ref$state = _ref.state,\n      state = _ref$state === undefined ? {} : _ref$state,\n      name = _ref.name,\n      children = _ref.children;\n\n  var active = state.uiActiveFrame && state.uiActiveFrame === name;\n  return _react2.default.createElement(\n    'section',\n    { className: 'frame ' + (name ? name : '') + ' ' + (active ? 'active' : '') },\n    children\n  );\n};\n\nexports.default = Frame;\n\n//# sourceURL=webpack:///./src/frame/Frame.jsx?");
+
+/***/ }),
+
+/***/ "./src/header/Header.css":
+/*!*******************************!*\
+  !*** ./src/header/Header.css ***!
+  \*******************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("// extracted by mini-css-extract-plugin\n\n//# sourceURL=webpack:///./src/header/Header.css?");
+
+/***/ }),
+
+/***/ "./src/header/Header.jsx":
+/*!*******************************!*\
+  !*** ./src/header/Header.jsx ***!
+  \*******************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\n\nvar _react = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n\nvar _react2 = _interopRequireDefault(_react);\n\nvar _Header = __webpack_require__(/*! ./Header.css */ \"./src/header/Header.css\");\n\nvar _Header2 = _interopRequireDefault(_Header);\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\nvar empty = _react2.default.createElement('div', { className: 'icon' });\n\nvar Header = function Header(_ref) {\n  var _ref$callbacks = _ref.callbacks,\n      callbacks = _ref$callbacks === undefined ? {} : _ref$callbacks,\n      icon = _ref.icon,\n      alt = _ref.alt,\n      title = _ref.title;\n\n  return _react2.default.createElement(\n    'div',\n    { className: 'header' },\n    icon != null ? _react2.default.createElement('img', { className: 'icon', src: icon, alt: alt, title: title }) : empty,\n    _react2.default.createElement('img', { className: 'logo', src: '/assets/logo.svg', alt: '', title: '', onClick: callbacks.showStateAndCallbacks }),\n    empty\n  );\n};\n\nexports.default = Header;\n\n//# sourceURL=webpack:///./src/header/Header.jsx?");
 
 /***/ }),
 
@@ -370,6 +439,238 @@ eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\n
 
 "use strict";
 eval("\n\nvar _react = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n\nvar _react2 = _interopRequireDefault(_react);\n\nvar _reactDom = __webpack_require__(/*! react-dom */ \"./node_modules/react-dom/index.js\");\n\nvar _reactDom2 = _interopRequireDefault(_reactDom);\n\nvar _App = __webpack_require__(/*! ./App */ \"./src/App.jsx\");\n\nvar _App2 = _interopRequireDefault(_App);\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\n_reactDom2.default.render(_react2.default.createElement(_App2.default, null), document.getElementById('app'));\n\n//# sourceURL=webpack:///./src/index.js?");
+
+/***/ }),
+
+/***/ "./src/input/Slider.css":
+/*!******************************!*\
+  !*** ./src/input/Slider.css ***!
+  \******************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("// extracted by mini-css-extract-plugin\n\n//# sourceURL=webpack:///./src/input/Slider.css?");
+
+/***/ }),
+
+/***/ "./src/input/Slider.jsx":
+/*!******************************!*\
+  !*** ./src/input/Slider.jsx ***!
+  \******************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\n\nvar _react = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n\nvar _react2 = _interopRequireDefault(_react);\n\nvar _Slider = __webpack_require__(/*! ./Slider.css */ \"./src/input/Slider.css\");\n\nvar _Slider2 = _interopRequireDefault(_Slider);\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\nvar Slider = function Slider(_ref) {\n  var name = _ref.name,\n      label = _ref.label,\n      _ref$min = _ref.min,\n      min = _ref$min === undefined ? 0 : _ref$min,\n      _ref$max = _ref.max,\n      max = _ref$max === undefined ? 100 : _ref$max,\n      _ref$step = _ref.step,\n      step = _ref$step === undefined ? 1 : _ref$step,\n      value = _ref.value,\n      onChange = _ref.onChange,\n      ticks = _ref.ticks;\n\n  return _react2.default.createElement(\n    'div',\n    { className: 'slider ' + name },\n    _react2.default.createElement(\n      'div',\n      { className: 'label' },\n      _react2.default.createElement(\n        'span',\n        null,\n        label\n      )\n    ),\n    _react2.default.createElement('input', {\n      name: name, type: 'range',\n      min: min, max: max, step: step,\n      value: value != null ? value : (max - min) / 2,\n      onChange: onChange\n    }),\n    _react2.default.createElement(\n      'div',\n      { className: 'ticks' },\n      ticks && ticks.map(function (value, index) {\n        return _react2.default.createElement(\n          'span',\n          { key: index },\n          value\n        );\n      })\n    )\n  );\n};\n\nexports.default = Slider;\n\n//# sourceURL=webpack:///./src/input/Slider.jsx?");
+
+/***/ }),
+
+/***/ "./src/nav/Nav.css":
+/*!*************************!*\
+  !*** ./src/nav/Nav.css ***!
+  \*************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("// extracted by mini-css-extract-plugin\n\n//# sourceURL=webpack:///./src/nav/Nav.css?");
+
+/***/ }),
+
+/***/ "./src/nav/Nav.jsx":
+/*!*************************!*\
+  !*** ./src/nav/Nav.jsx ***!
+  \*************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\n\nvar _react = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n\nvar _react2 = _interopRequireDefault(_react);\n\nvar _Nav = __webpack_require__(/*! ./Nav.css */ \"./src/nav/Nav.css\");\n\nvar _Nav2 = _interopRequireDefault(_Nav);\n\nvar _Constants = __webpack_require__(/*! ../services/Constants */ \"./src/services/Constants.js\");\n\nvar _Constants2 = _interopRequireDefault(_Constants);\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\nvar Nav = function Nav(_ref) {\n  var callbacks = _ref.callbacks,\n      onOkClick = _ref.onOkClick;\n\n  return _react2.default.createElement(\n    'div',\n    { className: 'nav' },\n    _react2.default.createElement('img', { src: 'assets/btn-back.png', alt: '', title: '', onClick: function onClick() {\n        return callbacks.setUiActiveFrame(_Constants2.default.FRAMES.POST_EDITOR);\n      } }),\n    _react2.default.createElement('img', { src: 'assets/btn-ok.png', alt: '', title: '', onClick: onOkClick })\n  );\n};\n\nexports.default = Nav;\n\n//# sourceURL=webpack:///./src/nav/Nav.jsx?");
+
+/***/ }),
+
+/***/ "./src/post/Image.jsx":
+/*!****************************!*\
+  !*** ./src/post/Image.jsx ***!
+  \****************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\n\nvar _react = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n\nvar _react2 = _interopRequireDefault(_react);\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\nvar Image = function Image(_ref) {\n  var _ref$state = _ref.state,\n      state = _ref$state === undefined ? {} : _ref$state;\n\n\n  var divInline = {\n    left: (state.imageX || 0) + 'px',\n    top: (state.imageY || 0) + 'px',\n    transform: 'rotate(' + (state.imageRotation || 0) + 'deg)'\n  };\n\n  var inline = {\n    widht: (state.imageWidth || 0) + 'px',\n    height: (state.imageHeight || 0) + 'px'\n  };\n\n  return _react2.default.createElement(\n    'div',\n    { className: 'image', style: divInline },\n    state.image && _react2.default.createElement('img', { id: 'post-image-preview', style: inline, src: state.image, alt: '', title: '' })\n  );\n};\n\nexports.default = Image;\n\n//# sourceURL=webpack:///./src/post/Image.jsx?");
+
+/***/ }),
+
+/***/ "./src/post/Post.css":
+/*!***************************!*\
+  !*** ./src/post/Post.css ***!
+  \***************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("// extracted by mini-css-extract-plugin\n\n//# sourceURL=webpack:///./src/post/Post.css?");
+
+/***/ }),
+
+/***/ "./src/post/Post.jsx":
+/*!***************************!*\
+  !*** ./src/post/Post.jsx ***!
+  \***************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\n\nvar _react = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n\nvar _react2 = _interopRequireDefault(_react);\n\nvar _Post = __webpack_require__(/*! ./Post.css */ \"./src/post/Post.css\");\n\nvar _Post2 = _interopRequireDefault(_Post);\n\nvar _Image = __webpack_require__(/*! ./Image */ \"./src/post/Image.jsx\");\n\nvar _Image2 = _interopRequireDefault(_Image);\n\nvar _Text = __webpack_require__(/*! ./Text */ \"./src/post/Text.jsx\");\n\nvar _Text2 = _interopRequireDefault(_Text);\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\nvar Post = function Post(_ref) {\n  var _ref$state = _ref.state,\n      state = _ref$state === undefined ? {} : _ref$state,\n      _ref$callbacks = _ref.callbacks,\n      callbacks = _ref$callbacks === undefined ? {} : _ref$callbacks,\n      _ref$upload = _ref.upload,\n      upload = _ref$upload === undefined ? false : _ref$upload,\n      _ref$compact = _ref.compact,\n      compact = _ref$compact === undefined ? false : _ref$compact,\n      _ref$readonly = _ref.readonly,\n      readonly = _ref$readonly === undefined ? false : _ref$readonly;\n\n  var showImage = state.backgroundActiveTab === 'image' && state.backgroundImageIndex != null;\n  var inline = {\n    cursor: upload && 'pointer',\n    backgroundColor: state.backgroundColor || '#000',\n    backgroundImage: showImage ? 'url(' + state.backgroundImage + ')' : ''\n  };\n  return _react2.default.createElement(\n    'div',\n    { className: 'post' },\n    _react2.default.createElement(\n      'div',\n      { className: 'screen', style: inline, onClick: upload ? function () {\n          document.getElementById('image-upload').click();\n        } : null },\n      upload && _react2.default.createElement('input', { id: 'image-upload',\n        accept: 'image/*', type: 'file', value: state.imageFile ? state.imageFile.name : '',\n        hidden: true, onChange: function onChange(e) {\n          var files = e.target.files;\n          if (FileReader && files && files.length) {\n            var fr = new FileReader();\n            fr.onload = function () {\n              callbacks.updateState({ image: fr.result, imageFile: files[0] });\n            };\n            fr.readAsDataURL(files[0]);\n          }\n        } }),\n      state.image && _react2.default.createElement(_Image2.default, { state: state }),\n      state.text && _react2.default.createElement(_Text2.default, { state: state })\n    ),\n    _react2.default.createElement(\n      'div',\n      { className: 'sub' },\n      compact ? _react2.default.createElement('span', null) : readonly ? _react2.default.createElement(\n        'span',\n        null,\n        state.postMessage\n      ) : _react2.default.createElement('input', {\n        type: 'text', placeholder: 'Antippen und hier Text eingeben.',\n        value: state.postMessage, maxLength: '20',\n        onChange: function onChange(e) {\n          return callbacks.setPostMessage(e.target.value);\n        }\n      })\n    )\n  );\n};\n\nexports.default = Post;\n\n//# sourceURL=webpack:///./src/post/Post.jsx?");
+
+/***/ }),
+
+/***/ "./src/post/Text.jsx":
+/*!***************************!*\
+  !*** ./src/post/Text.jsx ***!
+  \***************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\n\nvar _react = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n\nvar _react2 = _interopRequireDefault(_react);\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\nvar Text = function Text(_ref) {\n  var _ref$state = _ref.state,\n      state = _ref$state === undefined ? {} : _ref$state,\n      fonts = _ref.fonts;\n\n\n  var divInline = {\n    left: (state.textX || 0) + 'px',\n    top: (state.textY || 0) + 'px',\n    transform: 'rotate(' + (state.textRotation || 0) + 'deg)'\n  };\n\n  var inline = {\n    fontFamily: fonts || 'Serif',\n    fontSize: (state.textSize || 0) + 'px',\n    color: state.textColor || '#fff'\n  };\n\n  return _react2.default.createElement(\n    'div',\n    { className: 'text', style: divInline },\n    state.text && _react2.default.createElement(\n      'span',\n      { style: inline },\n      state.text\n    )\n  );\n};\n\nexports.default = Text;\n\n//# sourceURL=webpack:///./src/post/Text.jsx?");
+
+/***/ }),
+
+/***/ "./src/services/Constants.js":
+/*!***********************************!*\
+  !*** ./src/services/Constants.js ***!
+  \***********************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\nvar POST_EDITOR = 'postEditor';\nvar BACKGROUND_EDITOR = 'backgroundEditor';\nvar IMAGE_EDITOR = 'imageEditor';\nvar TEXT_EDITOR = 'textEditor';\nvar SUBMIT_EDITOR = 'submitEditor';\n\nvar FRAMES = {\n  POST_EDITOR: POST_EDITOR,\n  BACKGROUND_EDITOR: BACKGROUND_EDITOR,\n  IMAGE_EDITOR: IMAGE_EDITOR,\n  TEXT_EDITOR: TEXT_EDITOR,\n  SUBMIT_EDITOR: SUBMIT_EDITOR\n};\n\nexports.default = {\n  FRAMES: FRAMES\n};\n\n//# sourceURL=webpack:///./src/services/Constants.js?");
+
+/***/ }),
+
+/***/ "./src/services/State.js":
+/*!*******************************!*\
+  !*** ./src/services/State.js ***!
+  \*******************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\n\nvar _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };\n\nvar _Constants = __webpack_require__(/*! ./Constants */ \"./src/services/Constants.js\");\n\nvar _Constants2 = _interopRequireDefault(_Constants);\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\nfunction _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }\n\nfunction createState() {\n  return {\n    uiActiveFrame: _Constants2.default.FRAMES.POST_EDITOR,\n    postMessage: '',\n    backgroundActiveTab: 'color',\n    backgroundColors: ['#f00', '#0f0', '#00f', '#ff0', '#0ff', '#f0f', '#fff', '#000'],\n    backgroundColorIndex: undefined,\n    backgroundColor: '',\n    backgroundImages: ['/assets/bg1.jpeg', '/assets/bg2.jpeg', '/assets/bg3.jpeg', '/assets/bg4.jpeg'],\n    backgroundImageIndex: undefined,\n    backgroundImage: '',\n    image: '',\n    imageFile: undefined,\n    imageX: 0,\n    imageY: 0,\n    imageWidth: 300,\n    imageHeight: 310,\n    imageScale: 100,\n    imageRotation: 0,\n    text: '',\n    textX: 0,\n    textY: 0,\n    textSize: 16,\n    textRotation: 0,\n    textColor: '#000'\n  };\n}\n\nfunction capitalize(string) {\n  return string.charAt(0).toUpperCase() + string.slice(1);\n}\n\nfunction createStateUpdater(component) {\n  return function (values) {\n    return component.setState(_extends({}, values));\n  };\n}\n\nfunction createStateSetter(component, key) {\n  return function (value) {\n    return component.setState(_defineProperty({}, key, value));\n  };\n}\n\nfunction setupState(component) {\n  component.state = createState();\n  component.callbacks = component.callbacks || {};\n  component.callbacks.resetState = function () {\n    return component.setState(createState());\n  };\n  component.callbacks.updateState = createStateUpdater(component);\n  component.callbacks.showStateAndCallbacks = function () {\n    var jsonState = JSON.stringify(component.state);\n    var jsonCallbacks = JSON.stringify(component.callbacks, function (key, val) {\n      if (typeof val === 'function') {\n        return '';\n      }\n      return val;\n    });\n    console.info('State ' + jsonState + ', Callbacks ' + jsonCallbacks + '!');\n  };\n  Object.keys(component.state).forEach(function (prop) {\n    component.callbacks['set' + capitalize(prop)] = createStateSetter(component, prop);\n  });\n}\n\nexports.default = {\n  createState: createState,\n  setupState: setupState\n};\n\n//# sourceURL=webpack:///./src/services/State.js?");
+
+/***/ }),
+
+/***/ "./src/views/BackgroundEditor.css":
+/*!****************************************!*\
+  !*** ./src/views/BackgroundEditor.css ***!
+  \****************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("// extracted by mini-css-extract-plugin\n\n//# sourceURL=webpack:///./src/views/BackgroundEditor.css?");
+
+/***/ }),
+
+/***/ "./src/views/BackgroundEditor.jsx":
+/*!****************************************!*\
+  !*** ./src/views/BackgroundEditor.jsx ***!
+  \****************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\n\nvar _react = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n\nvar _react2 = _interopRequireDefault(_react);\n\nvar _BackgroundEditor = __webpack_require__(/*! ./BackgroundEditor.css */ \"./src/views/BackgroundEditor.css\");\n\nvar _BackgroundEditor2 = _interopRequireDefault(_BackgroundEditor);\n\nvar _Constants = __webpack_require__(/*! ../services/Constants */ \"./src/services/Constants.js\");\n\nvar _Constants2 = _interopRequireDefault(_Constants);\n\nvar _Frame = __webpack_require__(/*! ../frame/Frame */ \"./src/frame/Frame.jsx\");\n\nvar _Frame2 = _interopRequireDefault(_Frame);\n\nvar _Header = __webpack_require__(/*! ../header/Header */ \"./src/header/Header.jsx\");\n\nvar _Header2 = _interopRequireDefault(_Header);\n\nvar _Nav = __webpack_require__(/*! ../nav/Nav */ \"./src/nav/Nav.jsx\");\n\nvar _Nav2 = _interopRequireDefault(_Nav);\n\nvar _FancyBox = __webpack_require__(/*! ../box/FancyBox */ \"./src/box/FancyBox.jsx\");\n\nvar _FancyBox2 = _interopRequireDefault(_FancyBox);\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\nvar BackgroundEditor = function BackgroundEditor(_ref) {\n  var state = _ref.state,\n      callbacks = _ref.callbacks;\n\n  var colorTabSelected = state.backgroundActiveTab === 'color';\n  var imageTabSelected = state.backgroundActiveTab === 'image';\n  return _react2.default.createElement(\n    _Frame2.default,\n    { name: _Constants2.default.FRAMES.BACKGROUND_EDITOR, state: state },\n    _react2.default.createElement(_Header2.default, { icon: '/assets/btn-bg.png', callbacks: callbacks }),\n    _react2.default.createElement(\n      'div',\n      { className: 'view' },\n      _react2.default.createElement(_Nav2.default, { callbacks: callbacks }),\n      _react2.default.createElement(\n        'div',\n        { className: 'content' },\n        _react2.default.createElement(\n          'div',\n          { className: 'tabs' },\n          _react2.default.createElement(\n            'button',\n            {\n              className: colorTabSelected ? 'selected' : '',\n              onClick: function onClick() {\n                return callbacks.setBackgroundActiveTab('color');\n              }\n            },\n            'Farbe'\n          ),\n          _react2.default.createElement(\n            'button',\n            {\n              className: imageTabSelected ? 'selected' : '',\n              onClick: function onClick() {\n                return callbacks.setBackgroundActiveTab('image');\n              }\n            },\n            'Grafik'\n          )\n        ),\n        _react2.default.createElement(\n          'div',\n          { className: 'selection' },\n          colorTabSelected && state.backgroundColors.map(function (c, index) {\n            return _react2.default.createElement(_FancyBox2.default, {\n              key: index, color: c,\n              selected: state.backgroundColorIndex === index,\n              onClick: function onClick() {\n                return callbacks.updateState({ backgroundColorIndex: index, backgroundColor: c });\n              }\n            });\n          }),\n          imageTabSelected && state.backgroundImages.map(function (i, index) {\n            return _react2.default.createElement(_FancyBox2.default, {\n              key: index, image: i,\n              selected: state.backgroundImageIndex === index,\n              onClick: function onClick() {\n                return callbacks.updateState({ backgroundImageIndex: index, backgroundImage: i });\n              }\n            });\n          })\n        )\n      )\n    )\n  );\n};\n\nexports.default = BackgroundEditor;\n\n//# sourceURL=webpack:///./src/views/BackgroundEditor.jsx?");
+
+/***/ }),
+
+/***/ "./src/views/ImageEditor.css":
+/*!***********************************!*\
+  !*** ./src/views/ImageEditor.css ***!
+  \***********************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("// extracted by mini-css-extract-plugin\n\n//# sourceURL=webpack:///./src/views/ImageEditor.css?");
+
+/***/ }),
+
+/***/ "./src/views/ImageEditor.jsx":
+/*!***********************************!*\
+  !*** ./src/views/ImageEditor.jsx ***!
+  \***********************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\n\nvar _react = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n\nvar _react2 = _interopRequireDefault(_react);\n\nvar _ImageEditor = __webpack_require__(/*! ./ImageEditor.css */ \"./src/views/ImageEditor.css\");\n\nvar _ImageEditor2 = _interopRequireDefault(_ImageEditor);\n\nvar _Constants = __webpack_require__(/*! ../services/Constants */ \"./src/services/Constants.js\");\n\nvar _Constants2 = _interopRequireDefault(_Constants);\n\nvar _Frame = __webpack_require__(/*! ../frame/Frame */ \"./src/frame/Frame.jsx\");\n\nvar _Frame2 = _interopRequireDefault(_Frame);\n\nvar _Header = __webpack_require__(/*! ../header/Header */ \"./src/header/Header.jsx\");\n\nvar _Header2 = _interopRequireDefault(_Header);\n\nvar _Post = __webpack_require__(/*! ../post/Post */ \"./src/post/Post.jsx\");\n\nvar _Post2 = _interopRequireDefault(_Post);\n\nvar _Nav = __webpack_require__(/*! ../nav/Nav */ \"./src/nav/Nav.jsx\");\n\nvar _Nav2 = _interopRequireDefault(_Nav);\n\nvar _Slider = __webpack_require__(/*! ../input/Slider */ \"./src/input/Slider.jsx\");\n\nvar _Slider2 = _interopRequireDefault(_Slider);\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\nvar ImageEditor = function ImageEditor(_ref) {\n  var state = _ref.state,\n      callbacks = _ref.callbacks;\n\n  return _react2.default.createElement(\n    _Frame2.default,\n    { name: _Constants2.default.FRAMES.IMAGE_EDITOR, state: state },\n    _react2.default.createElement(_Header2.default, { icon: '/assets/btn-image.png', callbacks: callbacks }),\n    _react2.default.createElement(_Post2.default, { state: state, callbacks: callbacks, upload: true, compact: true }),\n    _react2.default.createElement(\n      'div',\n      { className: 'view' },\n      _react2.default.createElement(_Nav2.default, { callbacks: callbacks }),\n      _react2.default.createElement(\n        'div',\n        { className: 'content' },\n        _react2.default.createElement(\n          'div',\n          { className: 'line' },\n          _react2.default.createElement(_Slider2.default, {\n            name: 'slider-scale', label: 'Skalierung',\n            min: '10', max: '200', step: '10', value: state.imageScale,\n            ticks: ['10%', '100%', '200%'], onChange: function onChange(e) {\n              var scale = e.target.value;\n              callbacks.updateState({\n                imageScale: scale,\n                imageWidth: 300 * (scale / 100),\n                imageHeight: 310 * (scale / 100)\n              });\n            }\n          }),\n          _react2.default.createElement(_Slider2.default, {\n            name: 'slider-rotate', label: 'Rotation',\n            min: '-180', max: '180', step: '5', value: state.imageRotation,\n            ticks: ['-180°', '0°', '+180°'],\n            onChange: function onChange(e) {\n              callbacks.setImageRotation(e.target.value);\n            }\n          })\n        ),\n        _react2.default.createElement(\n          'div',\n          { className: 'line' },\n          _react2.default.createElement(_Slider2.default, {\n            name: 'slider-x', label: 'Position horizontal',\n            min: '-100', max: '350', value: state.imageX,\n            onChange: function onChange(e) {\n              callbacks.setImageX(e.target.value);\n            }\n          }),\n          _react2.default.createElement(_Slider2.default, {\n            name: 'slider-y', label: 'Position vertikal',\n            min: '-100', max: '360', value: state.imageY,\n            onChange: function onChange(e) {\n              callbacks.setImageY(e.target.value);\n            }\n          })\n        )\n      )\n    )\n  );\n};\n\nexports.default = ImageEditor;\n\n//# sourceURL=webpack:///./src/views/ImageEditor.jsx?");
+
+/***/ }),
+
+/***/ "./src/views/PostEditor.css":
+/*!**********************************!*\
+  !*** ./src/views/PostEditor.css ***!
+  \**********************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("// extracted by mini-css-extract-plugin\n\n//# sourceURL=webpack:///./src/views/PostEditor.css?");
+
+/***/ }),
+
+/***/ "./src/views/PostEditor.jsx":
+/*!**********************************!*\
+  !*** ./src/views/PostEditor.jsx ***!
+  \**********************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\n\nvar _react = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n\nvar _react2 = _interopRequireDefault(_react);\n\nvar _PostEditor = __webpack_require__(/*! ./PostEditor.css */ \"./src/views/PostEditor.css\");\n\nvar _PostEditor2 = _interopRequireDefault(_PostEditor);\n\nvar _Constants = __webpack_require__(/*! ../services/Constants */ \"./src/services/Constants.js\");\n\nvar _Constants2 = _interopRequireDefault(_Constants);\n\nvar _Frame = __webpack_require__(/*! ../frame/Frame */ \"./src/frame/Frame.jsx\");\n\nvar _Frame2 = _interopRequireDefault(_Frame);\n\nvar _Header = __webpack_require__(/*! ../header/Header */ \"./src/header/Header.jsx\");\n\nvar _Header2 = _interopRequireDefault(_Header);\n\nvar _Post = __webpack_require__(/*! ../post/Post */ \"./src/post/Post.jsx\");\n\nvar _Post2 = _interopRequireDefault(_Post);\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\nvar PostEditor = function PostEditor(_ref) {\n  var state = _ref.state,\n      callbacks = _ref.callbacks;\n\n  return _react2.default.createElement(\n    _Frame2.default,\n    { name: _Constants2.default.FRAMES.POST_EDITOR, state: state },\n    _react2.default.createElement(_Header2.default, { callbacks: callbacks }),\n    _react2.default.createElement(_Post2.default, { state: state, callbacks: callbacks }),\n    _react2.default.createElement(\n      'div',\n      { className: 'buttons' },\n      _react2.default.createElement('img', { src: '/assets/btn-bg.png', alt: '', title: '', onClick: function onClick() {\n          return callbacks.setUiActiveFrame(_Constants2.default.FRAMES.BACKGROUND_EDITOR);\n        } }),\n      _react2.default.createElement('img', { src: '/assets/btn-image.png', alt: '', title: '', onClick: function onClick() {\n          return callbacks.setUiActiveFrame(_Constants2.default.FRAMES.IMAGE_EDITOR);\n        } }),\n      _react2.default.createElement('img', { src: '/assets/btn-text.png', alt: '', title: '', onClick: function onClick() {\n          return callbacks.setUiActiveFrame(_Constants2.default.FRAMES.TEXT_EDITOR);\n        } }),\n      _react2.default.createElement('img', { src: '/assets/btn-cancel.png', alt: '', title: '', onClick: callbacks.resetState }),\n      _react2.default.createElement('img', { src: '/assets/btn-upload.png', alt: '', title: '', onClick: function onClick() {\n          return callbacks.setUiActiveFrame(_Constants2.default.FRAMES.SUBMIT_EDITOR);\n        } })\n    )\n  );\n};\n\nexports.default = PostEditor;\n\n//# sourceURL=webpack:///./src/views/PostEditor.jsx?");
+
+/***/ }),
+
+/***/ "./src/views/SubmitEditor.css":
+/*!************************************!*\
+  !*** ./src/views/SubmitEditor.css ***!
+  \************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("// extracted by mini-css-extract-plugin\n\n//# sourceURL=webpack:///./src/views/SubmitEditor.css?");
+
+/***/ }),
+
+/***/ "./src/views/SubmitEditor.jsx":
+/*!************************************!*\
+  !*** ./src/views/SubmitEditor.jsx ***!
+  \************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\n\nvar _react = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n\nvar _react2 = _interopRequireDefault(_react);\n\nvar _SubmitEditor = __webpack_require__(/*! ./SubmitEditor.css */ \"./src/views/SubmitEditor.css\");\n\nvar _SubmitEditor2 = _interopRequireDefault(_SubmitEditor);\n\nvar _Constants = __webpack_require__(/*! ../services/Constants */ \"./src/services/Constants.js\");\n\nvar _Constants2 = _interopRequireDefault(_Constants);\n\nvar _Frame = __webpack_require__(/*! ../frame/Frame */ \"./src/frame/Frame.jsx\");\n\nvar _Frame2 = _interopRequireDefault(_Frame);\n\nvar _Header = __webpack_require__(/*! ../header/Header */ \"./src/header/Header.jsx\");\n\nvar _Header2 = _interopRequireDefault(_Header);\n\nvar _Post = __webpack_require__(/*! ../post/Post */ \"./src/post/Post.jsx\");\n\nvar _Post2 = _interopRequireDefault(_Post);\n\nvar _Nav = __webpack_require__(/*! ../nav/Nav */ \"./src/nav/Nav.jsx\");\n\nvar _Nav2 = _interopRequireDefault(_Nav);\n\nvar _Slider = __webpack_require__(/*! ../input/Slider */ \"./src/input/Slider.jsx\");\n\nvar _Slider2 = _interopRequireDefault(_Slider);\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\nvar SubmitEditor = function SubmitEditor(_ref) {\n  var state = _ref.state,\n      callbacks = _ref.callbacks;\n\n  return _react2.default.createElement(\n    _Frame2.default,\n    { name: _Constants2.default.FRAMES.SUBMIT_EDITOR, state: state },\n    _react2.default.createElement(_Header2.default, { icon: '/assets/btn-upload.png', callbacks: callbacks }),\n    _react2.default.createElement(_Post2.default, { state: state, callbacks: callbacks, readonly: true }),\n    _react2.default.createElement(\n      'div',\n      { className: 'view' },\n      _react2.default.createElement('div', null),\n      _react2.default.createElement(_Nav2.default, { callbacks: callbacks, onOkClick: function onOkClick() {\n\n          var promise = Promise.resolve();\n\n          if (state.image) {\n\n            var formData = new FormData();\n            formData.append('file', state.imageFile);\n            formData.append('image', state.imageFile);\n\n            promise = promise.then(function () {\n              return fetch('/posts/upload', {\n                method: 'POST',\n                body: formData\n              });\n            }).then(function (response) {\n              return response.ok ? response.text() : '';\n            });\n          }\n\n          promise = promise.then(function (imageId) {\n            var data = {\n              image: {\n                file: imageId,\n                posX: state.imageX,\n                posY: state.imageY,\n                width: state.imageWidth,\n                height: state.imageHeight,\n                rotation: state.imageRotation\n              },\n              message: {\n                content: state.text,\n                color: state.textColor,\n                size: state.textSize,\n                posX: state.textX,\n                posY: state.textY,\n                rotation: state.textRotation,\n                font: 'Arial-Black'\n              },\n              background: {\n                isImage: state.backgroundImageIndex != null,\n                color: state.backgroundColor,\n                imageId: state.backgroundImageIndex\n              },\n              subtext: state.postMessage,\n              wishes: '',\n              name: 'anonymous'\n            };\n\n            return fetch('/posts', {\n              method: 'POST',\n              headers: {\n                'Accept': 'application/json',\n                'Content-Type': 'application/json'\n              },\n              body: JSON.stringify(data)\n            });\n          }).then(function () {\n            return callbacks.resetState();\n          });\n        } })\n    )\n  );\n};\n\nexports.default = SubmitEditor;\n\n//# sourceURL=webpack:///./src/views/SubmitEditor.jsx?");
+
+/***/ }),
+
+/***/ "./src/views/TextEditor.css":
+/*!**********************************!*\
+  !*** ./src/views/TextEditor.css ***!
+  \**********************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("// extracted by mini-css-extract-plugin\n\n//# sourceURL=webpack:///./src/views/TextEditor.css?");
+
+/***/ }),
+
+/***/ "./src/views/TextEditor.jsx":
+/*!**********************************!*\
+  !*** ./src/views/TextEditor.jsx ***!
+  \**********************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\n\nvar _react = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n\nvar _react2 = _interopRequireDefault(_react);\n\nvar _TextEditor = __webpack_require__(/*! ./TextEditor.css */ \"./src/views/TextEditor.css\");\n\nvar _TextEditor2 = _interopRequireDefault(_TextEditor);\n\nvar _Constants = __webpack_require__(/*! ../services/Constants */ \"./src/services/Constants.js\");\n\nvar _Constants2 = _interopRequireDefault(_Constants);\n\nvar _Frame = __webpack_require__(/*! ../frame/Frame */ \"./src/frame/Frame.jsx\");\n\nvar _Frame2 = _interopRequireDefault(_Frame);\n\nvar _Header = __webpack_require__(/*! ../header/Header */ \"./src/header/Header.jsx\");\n\nvar _Header2 = _interopRequireDefault(_Header);\n\nvar _Post = __webpack_require__(/*! ../post/Post */ \"./src/post/Post.jsx\");\n\nvar _Post2 = _interopRequireDefault(_Post);\n\nvar _Nav = __webpack_require__(/*! ../nav/Nav */ \"./src/nav/Nav.jsx\");\n\nvar _Nav2 = _interopRequireDefault(_Nav);\n\nvar _Slider = __webpack_require__(/*! ../input/Slider */ \"./src/input/Slider.jsx\");\n\nvar _Slider2 = _interopRequireDefault(_Slider);\n\nfunction _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }\n\nvar TextEditor = function TextEditor(_ref) {\n  var state = _ref.state,\n      callbacks = _ref.callbacks;\n\n  return _react2.default.createElement(\n    _Frame2.default,\n    { name: _Constants2.default.FRAMES.TEXT_EDITOR, state: state },\n    _react2.default.createElement(_Header2.default, { icon: '/assets/btn-text.png', callbacks: callbacks }),\n    _react2.default.createElement(_Post2.default, { state: state, callbacks: callbacks, compact: true }),\n    _react2.default.createElement(\n      'div',\n      { className: 'view' },\n      _react2.default.createElement(_Nav2.default, { callbacks: callbacks }),\n      _react2.default.createElement(\n        'div',\n        { className: 'content' },\n        _react2.default.createElement(\n          'div',\n          { className: 'line' },\n          _react2.default.createElement('input', {\n            className: 'input', name: 'input-text',\n            type: 'text', maxLength: '36', value: state.text,\n            onChange: function onChange(e) {\n              callbacks.setText(e.target.value);\n            }\n          }),\n          _react2.default.createElement(_Slider2.default, {\n            name: 'slider-size', label: 'Schriftgr\\xF6\\xDFe',\n            min: '16', max: '48', value: state.textSize,\n            onChange: function onChange(e) {\n              callbacks.setTextSize(e.target.value);\n            }\n          })\n        ),\n        _react2.default.createElement(\n          'div',\n          { className: 'line' },\n          _react2.default.createElement(_Slider2.default, {\n            name: 'slider-x', label: 'Position horizontal',\n            min: '-100', max: '350', value: state.textX,\n            onChange: function onChange(e) {\n              callbacks.setTextX(e.target.value);\n            }\n          }),\n          _react2.default.createElement(_Slider2.default, {\n            name: 'slider-y', label: 'Position vertikal',\n            min: '-100', max: '360', value: state.textY,\n            onChange: function onChange(e) {\n              callbacks.setTextY(e.target.value);\n            }\n          })\n        ),\n        _react2.default.createElement(\n          'div',\n          { className: 'line' },\n          _react2.default.createElement(_Slider2.default, {\n            name: 'slider-rotation', label: 'Rotation',\n            min: '-180', max: '180', step: '5', value: state.textRotation,\n            ticks: ['-180°', '0°', '+180°'],\n            onChange: function onChange(e) {\n              callbacks.setTextRotation(e.target.value);\n            }\n          }),\n          _react2.default.createElement('input', {\n            className: 'input', name: 'input-color',\n            type: 'text', maxLength: '7', value: state.textColor,\n            onChange: function onChange(e) {\n              callbacks.setTextColor(e.target.value);\n            }\n          })\n        )\n      )\n    )\n  );\n};\n\nexports.default = TextEditor;\n\n//# sourceURL=webpack:///./src/views/TextEditor.jsx?");
 
 /***/ })
 

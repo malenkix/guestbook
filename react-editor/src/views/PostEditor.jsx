@@ -14,11 +14,11 @@ const PostEditor = ({ state, callbacks }) => {
       <Header callbacks={callbacks} />
       <Post state={state} callbacks={callbacks} />
       <div className='buttons'>
-        <img src='/assets/btn-bg.png' alt='' title='' onClick={() => callbacks.setUiActiveFrame(Constants.FRAMES.BACKGROUND_EDITOR)} />
-        <img src='/assets/btn-image.png' alt='' title='' onClick={() => callbacks.setUiActiveFrame(Constants.FRAMES.IMAGE_EDITOR)} />
-        <img src='/assets/btn-text.png' alt='' title='' onClick={() => callbacks.setUiActiveFrame(Constants.FRAMES.TEXT_EDITOR)} />
+        <img src='/assets/btn-bg.png' alt='' title='' onClick={callbacks.navigate(Constants.FRAMES.BACKGROUND_EDITOR)} />
+        <img src='/assets/btn-image.png' alt='' title='' onClick={callbacks.navigate(Constants.FRAMES.IMAGE_EDITOR)} />
+        <img src='/assets/btn-text.png' alt='' title='' onClick={callbacks.navigate(Constants.FRAMES.TEXT_EDITOR)} />
         <img src='/assets/btn-cancel.png' alt='' title='' onClick={callbacks.resetState} />
-        <img src='/assets/btn-upload.png' alt='' title='' onClick={() => callbacks.setUiActiveFrame(Constants.FRAMES.SUBMIT_EDITOR)} />
+        <img src='/assets/btn-upload.png' alt='' title='' onClick={callbacks.navigate(Constants.FRAMES.SUBMIT_EDITOR)} />
       </div>
     </Frame>
   )

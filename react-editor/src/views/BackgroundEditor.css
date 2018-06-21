@@ -4,6 +4,10 @@
     background-color: #7f7f7f;
 }
 
+.backgroundEditor .view .nav {
+    margin-bottom: -20px;
+}
+
 .backgroundEditor .view .content {
     display: flex;
     flex-direction: column;
@@ -11,7 +15,7 @@
 }
 
 .backgroundEditor .view .content .tabs {
-    padding-left: 15px;
+    padding-left: 45px;
 }
 
 .backgroundEditor .view .content .tabs button {

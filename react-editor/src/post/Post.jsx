@@ -2,10 +2,13 @@ import React from 'react'
 
 import style from './Post.css'
 
+import Utils from '../services/Utils'
+
 import Image from './Image'
 import Text from './Text'
 
-const Post = ({ state = {}, callbacks = {}, upload = false, compact = false, readonly = false
+const Post = ({
+  state = {}, callbacks = {}, upload = false, compact = false, readonly = false
 }) => {
   const showImage = state.backgroundActiveTab === 'image' && state.backgroundImageIndex != null
   const inline = {
@@ -15,22 +18,14 @@ const Post = ({ state = {}, callbacks = {}, upload = false, compact = false, rea
   }
   return (
     <div className='post'>
-      <div className='screen' style={inline} onClick={upload ? () => {
-        document.getElementById('image-upload').click()
-      } : null}>
+      <div className='screen' style={inline}
+        onClick={upload ? () => document.getElementById('image-upload').click() : null}>
         {upload &&
           <input id='image-upload'
-            accept='image/*' type="file" value={state.imageFile ? state.imageFile.name : ''}
-            hidden onChange={e => {
-              const files = e.target.files
-              if (FileReader && files && files.length) {
-                const fr = new FileReader()
-                fr.onload = () => {
-                  callbacks.updateState({ image: fr.result, imageFile: files[0] })
-                }
-                fr.readAsDataURL(files[0])
-              }
-            }} />}
+            accept='image/*' type="file" value={state.imageFile ? state.imageFile.name : ''} hidden
+            onChange={Utils.delegateFile((file, data, success) => {
+              if (success) callbacks.updateState({ image: data, imageFile: file })
+            })} />}
         {state.image && <Image state={state} />}
         {state.text && <Text state={state} />}
       </div>

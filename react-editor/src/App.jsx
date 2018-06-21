@@ -2,7 +2,6 @@ import React from 'react'
 
 import style from './App.css'
 
-import Constants from './services/Constants'
 import State from './services/State'
 
 import PostEditor from './views/PostEditor'
