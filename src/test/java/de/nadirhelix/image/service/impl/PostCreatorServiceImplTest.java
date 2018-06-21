@@ -6,7 +6,7 @@ import static org.mockito.Mockito.when;
 import java.awt.GraphicsEnvironment;
 import java.lang.reflect.Field;
 import java.util.Date;
-import java.util.UUID;
+import java.util.concurrent.atomic.AtomicLong;
 
 import org.apache.commons.lang3.StringUtils;
 import org.h2.store.fs.FileUtils;
@@ -37,31 +37,32 @@ import de.nadirhelix.guestbook.post.util.PostIdGenerator;
 public class PostCreatorServiceImplTest {
 
 	private static final String FILE_PATH = System.getProperty("user.dir") + "/posts/%s.png";
-	
+	private static final AtomicLong ID = new AtomicLong();
+
 	@InjectMocks
 	private PostCreatorService postCreatorService = new PostCreatorServiceImpl();
-	
+
 	@Mock
 	private PostIdGenerator postIdGenerator;
-	
+
 	private PostData data;
-	
+
 	@BeforeClass
 	public static void prepareTest() throws NoSuchFieldException, SecurityException {
 		Field field = GraphicsEnvironment.class.getDeclaredField("headless");
 		field.setAccessible(true);
 		ReflectionUtils.setField(field, GraphicsEnvironment.class, Boolean.FALSE);
 	}
-	
+
 	@Before
 	public void prepareDependencies() {
-		when(postIdGenerator.generateId()).thenReturn(UUID.randomUUID().toString());
+		when(postIdGenerator.generateId()).thenReturn(ID.incrementAndGet());
 	}
-	
+
 	@Before
 	public void prepareData() {
 		data = new PostData();
-		
+
 		data.setDate(new Date());
 		ImageData image = new ImageData();
 		image.setFile("tempID123456.png");
@@ -71,12 +72,12 @@ public class PostCreatorServiceImplTest {
 		image.setWidth(250);
 		image.setRotation(10);
 		data.setImage(image);
-		
+
 		BackgroundData background = new BackgroundData();
 		background.setIsImage(false);
 		background.setColor("#ffaaff");
 		data.setBackground(background);
-		
+
 		TextData message = new TextData();
 		message.setColor("#0000dd");
 		message.setContent("My Message for you!");
@@ -86,27 +87,27 @@ public class PostCreatorServiceImplTest {
 		message.setRotation(-6);
 		message.setSize(48);
 		data.setMessage(message);
-		
+
 		data.setSubtext("This is a subtext");
 	}
-	
+
 	@Test
 	public void testCreateImage() {
-		
+
 		Post post = postCreatorService.createImage(data);
 
 		assertFileCreated(post.getId());
 	}
-	
+
 	@Test
 	public void testCreateImageWithoutMessage() {
 		data.getMessage().setContent(StringUtils.EMPTY);
-		
+
 		Post post = postCreatorService.createImage(data);
 
 		assertFileCreated(post.getId());
 	}
-	
+
 	@Test
 	public void testCreateImageWithoutImage() {
 		data.setImage(null);
@@ -115,7 +116,7 @@ public class PostCreatorServiceImplTest {
 
 		assertFileCreated(post.getId());
 	}
-	
+
 	private void assertFileCreated(String id) {
 		String fileName = String.format(FILE_PATH, id);
 		assertTrue(FileUtils.exists(fileName));
