@@ -10,4 +10,6 @@ public interface ResourceFacade {
 
 	byte[] getHtml(String string) throws IOException;
 
+	byte[] getFont(String fileName) throws IOException;
+
 }

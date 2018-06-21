@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import javax.annotation.Resource;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Component;
 
 import de.nadirhelix.guestbook.resources.facade.ResourceFacade;
@@ -30,10 +31,18 @@ public class ResourceFacadeImpl implements ResourceFacade {
 		return resourceService.loadResource(buildFullPath("apps", target, "index.html"));
 	}
 
+	@Override
+	public byte[] getFont(String fileName) throws IOException {
+		return resourceService.loadResource(buildFullPath(StringUtils.EMPTY, "fonts", fileName));
+	}
+
 	private String buildFullPath(String path, String type, String fileName) {
 		StringBuilder sb = new StringBuilder();
-		sb.append("classpath:static/").append(path);
-		sb.append('/').append(type);
+		sb.append("classpath:static/");
+		if (StringUtils.isNotBlank(path)) {
+			sb.append(path).append('/');
+		}
+		sb.append(type);
 		sb.append('/').append(fileName);
 		return sb.toString();
 	}
