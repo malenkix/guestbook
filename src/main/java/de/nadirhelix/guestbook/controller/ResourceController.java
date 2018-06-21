@@ -68,6 +68,23 @@ public class ResourceController {
 		}
 		return ResponseEntity.notFound().build();
 	}
+
+	/**
+	 * Retrieves a font file based on fileName.
+	 * 
+	 * @param fileName
+	 * 			the name of the requested file
+	 * @return {@link ResponseEntity} containing byte[] 
+	 */
+	@GetMapping("fonts/{fileName:.+}")
+	public ResponseEntity<byte[]> getFont(@PathVariable("fileName") String fileName) {
+		try {
+			return ResponseEntity.ok().body(resourceFacade.getFont(fileName));
+		} catch (IOException e) {
+			LOG.debug(String.format("Could not find font %s", fileName), e);
+		}
+		return ResponseEntity.notFound().build();
+	}
 	
 	private String normalizePath(String path) {
 		if ("shared".equals(path)) {

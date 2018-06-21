@@ -35,21 +35,19 @@ public class PostConstants {
 	
 	public static final String BACKGROUND_IMAGE_PATH = ASSETS_PATH + buildPath(true, false, "background");
 	
+	public static final String FONTS_PATH = ASSETS_PATH + buildPath(true, false, "fonts");
 	
 	public static final int DEFAULT_FONT_SIZE = 12;
 	
 	public static final int MAX_FONT_SIZE = 72;
-	
-	public static final List<String> FONTS = Arrays.asList("Arial", "Arial Black", "Comic Sans MS", "Ubuntu Condensed");
 
 	public static final String DEFAULT_MESSAGE_FONT = "Arial";
 	
 	public static final int MESSAGE_MAXLENGTH = 32;
 	
-	
 	public static final int SUBTEXT_MAXLENGTH = 32;
 	
-	public static final String DEFAULT_SUBTEXT_FONT = ASSETS_PATH + buildPath(false, false, "subtextFont.vlw");
+	public static final String DEFAULT_SUBTEXT_FONT = FONTS_PATH + buildPath(false, false, "subtextFont.vlw");
 	
 	public static final int DEFAULT_SUBTEXT_COLOR = ColorConverter.convert("#000");
 	

@@ -7,6 +7,9 @@ import java.util.Map;
 import java.util.Stack;
 import java.util.concurrent.ConcurrentHashMap;
 
+import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.math.NumberUtils;
+
 /**
  * This strategy contains and provides hard coded position values for pinned posts.
  * 
@@ -101,7 +104,9 @@ public class PinwallPositioningStrategy {
 	}
 	
 	private static void unpinOldestPost() {
-		String oldestPostId = occupiedPostitions.keySet().stream().sorted().findFirst().orElse("");
+		String oldestPostId = occupiedPostitions.keySet().stream()
+				.map(NumberUtils::toLong).sorted()
+				.map(Object::toString).findFirst().orElse(StringUtils.EMPTY);
 		unpin(oldestPostId);
 	}
 

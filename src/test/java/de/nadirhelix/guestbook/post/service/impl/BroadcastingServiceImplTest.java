@@ -126,13 +126,14 @@ public class BroadcastingServiceImplTest {
 	@Test
 	public void testSetPinnedFalseWithRepin() {
 		int amount = PinwallPositioningStrategy.availablePositionsAmount();
-		List<String> postIds = createPostIdsAndUpdates(amount + 1);
+		List<String> postIds = createPostIdsAndUpdates(amount + 2);
 		String unpinnedPostId = postIds.remove(amount);
+		postIds.remove(0); // the oldest post should not be repinned
 
 		broadcastingService.setPinned(unpinnedPostId, false);
 
-		// delta is 2 because one more element was added and one was repinned.
-		assertIdsInUpdate(postIds, 2);
+		// delta is 3 because two more elements were added and one was repinned.
+		assertIdsInUpdate(postIds, 3);
 		verify(postDao).setPinned(unpinnedPostId, false);
 	}
 

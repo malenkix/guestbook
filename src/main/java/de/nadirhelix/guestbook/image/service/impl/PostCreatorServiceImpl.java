@@ -53,7 +53,7 @@ public class PostCreatorServiceImpl implements PostCreatorService {
 	}
 
 	private String generatePostID(PostData data) {
-		return postIdGenerator.generateId();
+		return Long.toString(postIdGenerator.generateId());
 	}
 
 	private Post createPost(String postId, PostData data, String fileName) {
