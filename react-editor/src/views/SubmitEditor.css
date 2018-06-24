@@ -3,3 +3,7 @@
     flex-direction: column;
     background-color: #7f7f7f;
 }
+
+.submitEditor .view .content {
+  padding: 15px;
+}

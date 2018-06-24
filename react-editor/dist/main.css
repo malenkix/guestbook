@@ -152,6 +152,10 @@
     background-color: #7f7f7f;
 }
 
+.backgroundEditor .view .nav {
+    margin-bottom: -20px;
+}
+
 .backgroundEditor .view .content {
     display: flex;
     flex-direction: column;
@@ -159,7 +163,7 @@
 }
 
 .backgroundEditor .view .content .tabs {
-    padding-left: 15px;
+    padding-left: 45px;
 }
 
 .backgroundEditor .view .content .tabs button {
@@ -369,36 +373,54 @@
     background-color: #7f7f7f;
 }
 
+.textEditor .view .nav {
+    margin-bottom: -20px;
+}
+
 .textEditor .view .content {
-    padding: 0px 15px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
 }
 
-.textEditor .view .content .slider {
-    display: inline-block;
-    width: 50%;
+.textEditor .view .content .tabs {
+    padding-left: 45px;
 }
 
-.textEditor .view .content .input {
-    display: inline-block;
-    width: 50%;
+.textEditor .view .content .tabs button {
+    padding: 2px 10px 2px 10px;
+    background-color: #7f7f7f;
+    border: 2px solid #666666;
+    border-bottom: none;
+    font-size: 18px;
+    cursor: pointer;
 }
 
-.textEditor .view .content .line {
-    margin-bottom: 5px;
+.textEditor .view .content .tabs .selected {
+    background-color: #afafaf;
 }
 
-.textEditor .view .content .line:last-child {
-    margin-bottom: 0px;
+.textEditor .view .content .selection {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    justify-content: space-evenly;
+    padding: 15px;
+    border: 2px solid #666666;
 }
 
-.textEditor .view .content .line .input:first-child,
-.textEditor .view .content .line .slider:first-child {
-    padding-right: 15px;
+.text-input * {
+    font-size: 12px;
 }
 
-.textEditor .view .content .line .input:last-child,
-.textEditor .view .content .line .slider:last-child {
-    padding-left: 15px;
+.text-input .label {
+    text-align: center;
+}
+
+.text-input input {
+    width: 100%;
+    font-size: 16px;
+    border: 1px black solid;
 }
 
 .submitEditor .view {

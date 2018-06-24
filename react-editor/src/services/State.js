@@ -1,16 +1,17 @@
 import Constants from './Constants'
+import Service from './Service'
 
 function createState() {
   return {
     uiActiveFrame: Constants.FRAMES.POST_EDITOR,
     postMessage: '',
     backgroundActiveTab: Constants.TABS.TAB_BG_COLOR,
-    backgroundColors: ['#f00', '#0f0', '#00f', '#ff0', '#0ff', '#f0f', '#fff', '#000'],
+    backgroundColors: [],
     backgroundColorIndex: undefined,
-    backgroundColor: '',
-    backgroundImages: ['/assets/bg1.jpeg', '/assets/bg2.jpeg', '/assets/bg3.jpeg', '/assets/bg4.jpeg'],
+    backgroundColor: undefined,
+    backgroundImages: [],
     backgroundImageIndex: undefined,
-    backgroundImage: '',
+    backgroundImage: undefined,
     image: undefined,
     imageFile: undefined,
     imageX: 0,
@@ -25,8 +26,32 @@ function createState() {
     textSize: 16,
     textRotation: 0,
     textColor: '#000',
-    textActiveTab: Constants.TABS.TAB_TEXT_FONT
+    textFont: 'sans-serif',
+    textFontIndex: undefined,
+    textFonts: [],
+    textActiveTab: Constants.TABS.TAB_TEXT_FONT,
+    postBy: '',
+    postAdditional: ''
   }
+}
+
+function initState(component) {
+  component.setState(createState(), () => {
+    Service.getColorsImagesAndFonts().then(values => {
+
+      const colors = values[0]
+      const images = values[1]
+      const fonts = values[2]
+
+      component.setState({
+        backgroundColors: colors,
+        backgroundImages: images,
+        textFont: fonts[0],
+        textFontIndex: 0,
+        textFonts: fonts,
+      })
+    })
+  })
 }
 
 function capitalize(string) {
@@ -44,7 +69,7 @@ function createStateSetter(component, key) {
 function setupState(component) {
   component.state = createState();
   component.callbacks = component.callbacks || {}
-  component.callbacks.resetState = () => component.setState(createState())
+  component.callbacks.resetState = () => initState(component)
   component.callbacks.updateState = createStateUpdater(component)
   component.callbacks.showStateAndCallbacks = () => {
     const jsonState = JSON.stringify(component.state)
@@ -64,5 +89,6 @@ function setupState(component) {
 
 export default {
   createState,
+  initState,
   setupState
 }

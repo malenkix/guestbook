@@ -2,6 +2,7 @@ import React from 'react'
 
 import style from './BackgroundEditor.css'
 
+import Config from '../services/Config'
 import Constants from '../services/Constants'
 
 import Frame from '../frame/Frame'
@@ -14,9 +15,9 @@ const BackgroundEditor = ({ state, callbacks }) => {
   const imageTabSelected = state.backgroundActiveTab === Constants.TABS.TAB_BG_IMAGE
   return (
     <Frame name={Constants.FRAMES.BACKGROUND_EDITOR} state={state}>
-      <Header icon='/assets/btn-bg.png' callbacks={callbacks} />
+      <Header icon={`${Config.ASSETS}/btn-bg.png`} callbacks={callbacks} />
       <div className='view'>
-        <Nav callbacks={callbacks} />
+        <Nav callbacks={callbacks} hideOk />
         <div className='content'>
           <div className='tabs'>
             <button

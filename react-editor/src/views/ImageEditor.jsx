@@ -2,6 +2,7 @@ import React from 'react'
 
 import style from './ImageEditor.css'
 
+import Config from '../services/Config'
 import Constants from '../services/Constants'
 
 import Frame from '../frame/Frame'
@@ -13,10 +14,10 @@ import Slider from '../input/Slider'
 const ImageEditor = ({ state, callbacks }) => {
   return (
     <Frame name={Constants.FRAMES.IMAGE_EDITOR} state={state}>
-      <Header icon='/assets/btn-image.png' callbacks={callbacks} />
+      <Header icon={`${Config.ASSETS}/btn-image.png`} callbacks={callbacks} />
       <Post state={state} callbacks={callbacks} upload compact />
       <div className='view'>
-        <Nav callbacks={callbacks} />
+        <Nav callbacks={callbacks} hideOk />
         <div className='content'>
           <div className='line'>
             <Slider

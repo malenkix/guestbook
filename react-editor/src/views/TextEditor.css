@@ -33,9 +33,20 @@
 
 .textEditor .view .content .selection {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    flex-wrap: wrap;
     flex-grow: 1;
-    justify-content: space-evenly;
     padding: 15px;
     border: 2px solid #666666;
+}
+
+.textEditor .view .content .selection>div {
+    display: flex;
+    flex-direction: column;
+    flex-basis: calc(50% - 5px);
+    justify-content: center;
+}
+
+.textEditor .view .content .selection>div:first-child {
+  margin-right: 10px
 }

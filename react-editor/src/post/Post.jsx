@@ -22,8 +22,7 @@ const Post = ({
         onClick={upload ? () => document.getElementById('image-upload').click() : null}>
         {upload &&
           <input id='image-upload'
-            accept='image/*' type="file" value={state.imageFile ? state.imageFile.name : ''} hidden
-            onChange={Utils.delegateFile((file, data, success) => {
+            accept='image/*' type="file" hidden onChange={Utils.delegateFile((file, data, success) => {
               if (success) callbacks.updateState({ image: data, imageFile: file })
             })} />}
         {state.image && <Image state={state} />}

@@ -17,6 +17,12 @@ class App extends React.PureComponent {
     State.setupState(this)
   }
 
+
+
+  componentDidMount() {
+    State.initState(this)
+  }
+
   render() {
     return (
       <React.Fragment>

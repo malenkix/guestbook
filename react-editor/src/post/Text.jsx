@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Text = ({ state = {}, fonts }) => {
+const Text = ({ state = {} }) => {
 
   const divInline = {
     left: (state.textX || 0) + 'px',
@@ -9,7 +9,7 @@ const Text = ({ state = {}, fonts }) => {
   }
 
   const inline = {
-    fontFamily: (fonts || 'Serif'),
+    fontFamily: (state.textFont || 'Serif'),
     fontSize: (state.textSize || 0) + 'px',
     color: state.textColor || '#fff'
   }
