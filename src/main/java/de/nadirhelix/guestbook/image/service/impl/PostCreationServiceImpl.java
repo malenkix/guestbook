@@ -1,5 +1,7 @@
 package de.nadirhelix.guestbook.image.service.impl;
 
+import java.util.Objects;
+
 import javax.annotation.Resource;
 
 import org.slf4j.Logger;
@@ -29,14 +31,14 @@ public class PostCreationServiceImpl implements PostCreationService {
 
 	@Override
 	public Post createImage(PostData data) {
-		try{
+		try {
 			PostApplet applet = PostApplet.instance();
 			setBackground(applet, data.getBackground());
 			addImage(applet, data);
 			applet.addMessage(data.getMessage());
 			applet.drawFrame();
 			applet.addSubtext(data.getSubtext());
-			String postId = postIdGenerator.generateId();
+			String postId = Objects.toString(postIdGenerator.generateId());
 			String fileName = applet.storeImage(postId);
 			return createPost(postId, data, fileName);
 		} finally {
@@ -58,8 +60,7 @@ public class PostCreationServiceImpl implements PostCreationService {
 	private void addImage(PostApplet applet, PostData data) {
 		boolean success = applet.addImage(data.getImage());
 		if (!success) {
-			LOG.warn("Could not apply image to post. File ({}) seems to be missing.",
-					data.getImage().getFile());
+			LOG.warn("Could not apply image to post. File ({}) seems to be missing.", data.getImage().getFile());
 		}
 	}
 

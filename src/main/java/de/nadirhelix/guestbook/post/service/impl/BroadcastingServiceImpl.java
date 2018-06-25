@@ -28,10 +28,10 @@ import de.nadirhelix.guestbook.post.util.PinnedPosts;
  */
 @Service("broadcastingService")
 public class BroadcastingServiceImpl implements BroadcastingService {
-	
+
 	@Resource
 	private PostDao postDao;
-	
+
 	@Override
 	public void addPost(Post post) {
 		postDao.storePost(post);
@@ -43,11 +43,11 @@ public class BroadcastingServiceImpl implements BroadcastingService {
 	public PinnedPosts getPinnedPosts(int lastUpdate) {
 		PinnedPosts result = new PinnedPosts();
 		result.setUpdateId(PinwallUpdateStrategy.getLastUpdateId());
-     
+
 		Map<Integer, String> recentUpdates = PinwallUpdateStrategy.getUpdate(lastUpdate);
 		recentUpdates.entrySet().stream().forEach(e -> addPinnedPost(result, e));
-		 
-		return result ;
+
+		return result;
 	}
 
 	private void addPinnedPost(PinnedPosts result, Entry<Integer, String> e) {
@@ -68,7 +68,7 @@ public class BroadcastingServiceImpl implements BroadcastingService {
 	@Override
 	public void setPinned(String postId, boolean pinned) {
 		postDao.setPinned(postId, pinned);
-		int index;  
+		int index;
 		if (pinned) {
 			index = PinwallPositioningStrategy.pin(postId);
 			PinwallUpdateStrategy.update(index, postId);
@@ -87,15 +87,15 @@ public class BroadcastingServiceImpl implements BroadcastingService {
 	}
 
 	private void pinYoungestUnpinnedPost() {
-		List<String> activePostsIds = postDao.getAllActivePosts().stream()
-				.map(Post::getId).collect(Collectors.toList());
+		List<String> activePostsIds = postDao.getAllActivePosts().stream().map(Post::getId)
+				.collect(Collectors.toList());
 		activePostsIds.removeAll(PinwallPositioningStrategy.getPinnedPosts());
-		
+
 		if (!CollectionUtils.isEmpty(activePostsIds)) {
 			Collections.reverse(activePostsIds);
 			String candidate = activePostsIds.get(0);
 			int index = PinwallPositioningStrategy.pin(candidate);
-			
+
 			PinwallUpdateStrategy.update(index, candidate);
 		}
 	}
