@@ -69,17 +69,25 @@ function createStateSetter(component, key) {
 function setupState(component) {
   component.state = createState();
   component.callbacks = component.callbacks || {}
-  component.callbacks.resetState = () => initState(component)
+  component.callbacks.resetState = () => {
+    document.getElementById('image-upload').value = null
+    initState(component)
+  }
   component.callbacks.updateState = createStateUpdater(component)
   component.callbacks.showStateAndCallbacks = () => {
-    const jsonState = JSON.stringify(component.state)
+    const jsonState = JSON.stringify(component.state, (key, val) => {
+      if (key === 'image' || key === 'imageFile') {
+        return val.slice(0, 10) || ''
+      }
+      return val
+    })
     const jsonCallbacks = JSON.stringify(component.callbacks, (key, val) => {
       if (typeof val === 'function') {
         return ''
       }
       return val
     })
-    console.info(`State ${jsonState}, Callbacks ${jsonCallbacks}!`)
+    console.info(jsonState)
   }
   Object.keys(component.state).forEach(prop => {
     component.callbacks[`set${capitalize(prop)}`] = createStateSetter(component, prop)

@@ -21,8 +21,8 @@ const Post = ({
       <div className='screen' style={inline}
         onClick={upload ? () => document.getElementById('image-upload').click() : null}>
         {upload &&
-          <input id='image-upload'
-            accept='image/*' type="file" hidden onChange={Utils.delegateFile((file, data, success) => {
+          <input id='image-upload' accept='image/*' type="file" hidden
+            onChange={Utils.delegateFile((file, data, success) => {
               if (success) callbacks.updateState({ image: data, imageFile: file })
             })} />}
         {state.image && <Image state={state} />}

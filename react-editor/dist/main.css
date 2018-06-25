@@ -1,3 +1,33 @@
+@font-face {
+    font-family: 'Alice';
+    src: url('http://localhost:8080/fonts/Alice-Regular-webfont.eot');
+    src: url('http://localhost:8080/fonts/Alice-Regular-webfont.eot?iefix') format('eot'), url('http://localhost:8080/fonts/Alice-Regular-webfont.woff') format('woff'), url('http://localhost:8080/fonts/Alice-Regular-webfont.ttf') format('truetype'), url('http://localhost:8080/fonts/Alice-Regular-webfont.svg#webfont') format('svg');
+}
+
+@font-face {
+    font-family: 'Concert One';
+    src: url('http://localhost:8080/fonts/concertone-regular-webfont.eot');
+    src: url('http://localhost:8080/fonts/concertone-regular-webfont.eot?iefix') format('eot'), url('http://localhost:8080/fonts/concertone-regular-webfont.woff') format('woff'), url('http://localhost:8080/fonts/concertone-regular-webfont.ttf') format('truetype'), url('http://localhost:8080/fonts/concertone-regular-webfont.svg#webfont') format('svg');
+}
+
+@font-face {
+    font-family: 'Sansation';
+    src: url('http://localhost:8080/fonts/Sansation-Regular-webfont.eot');
+    src: url('http://localhost:8080/fonts/Sansation-Regular-webfont.eot?iefix') format('eot'), url('http://localhost:8080/fonts/Sansation-Regular-webfont.woff') format('woff'), url('http://localhost:8080/fonts/Sansation-Regular-webfont.ttf') format('truetype'), url('http://localhost:8080/fonts/Sansation-Regular-webfont.svg#webfont') format('svg');
+}
+
+@font-face {
+    font-family: 'Ubuntu Titling';
+    src: url('http://localhost:8080/fonts/UbuntuTitling-Bold-webfont.eot');
+    src: url('http://localhost:8080/fonts/UbuntuTitling-Bold-webfont.eot?iefix') format('eot'), url('http://localhost:8080/fonts/UbuntuTitling-Bold-webfont.woff') format('woff'), url('http://localhost:8080/fonts/UbuntuTitling-Bold-webfont.ttf') format('truetype'), url('http://localhost:8080/fonts/UbuntuTitling-Bold-webfont.svg#webfont') format('svg');
+}
+
+@font-face {
+    font-family: 'Walter Turncoat';
+    src: url('http://localhost:8080/fonts/walterturncoat-webfont.eot');
+    src: url('http://localhost:8080/fonts/walterturncoat-webfont.eot?iefix') format('eot'), url('http://localhost:8080/fonts/walterturncoat-webfont.woff') format('woff'), url('http://localhost:8080/fonts/walterturncoat-webfont.ttf') format('truetype'), url('http://localhost:8080/fonts/walterturncoat-webfont.svg#webfont') format('svg');
+}
+
 * {
     margin: 0px;
     padding: 0px;
@@ -402,11 +432,22 @@
 
 .textEditor .view .content .selection {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    flex-wrap: wrap;
     flex-grow: 1;
-    justify-content: space-evenly;
     padding: 15px;
     border: 2px solid #666666;
+}
+
+.textEditor .view .content .selection>div {
+    display: flex;
+    flex-direction: column;
+    flex-basis: calc(50% - 5px);
+    justify-content: center;
+}
+
+.textEditor .view .content .selection>div:first-child {
+  margin-right: 10px
 }
 
 .text-input * {
@@ -427,5 +468,9 @@
     display: flex;
     flex-direction: column;
     background-color: #7f7f7f;
+}
+
+.submitEditor .view .content {
+  padding: 15px;
 }
 

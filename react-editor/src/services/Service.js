@@ -56,13 +56,19 @@ function postImage(file) {
 }
 
 function sendPost(state, imageId) {
+
+  const image = imageId != null && imageId !== ''
+  const img = document.getElementById('post-image-preview')
+  const width = image ? Math.floor(img.width * (310 / img.height)) : 0
+  const height = image ? 310 : 0
+
   const data = {
     image: {
       file: imageId,
       posX: state.imageX,
       posY: state.imageY,
-      width: state.imageWidth,
-      height: state.imageHeight,
+      width: Math.floor(width * (state.imageScale / 100)),
+      height: Math.floor(height * (state.imageScale / 100)),
       rotation: state.imageRotation
     },
     message: {
