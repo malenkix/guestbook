@@ -1,7 +1,11 @@
 var lastUpdate = 0;
 var failureCounter = 0;
 
-(function update(){
+(function startup(){
+	update();
+})();
+
+function update() {
 	setTimeout(function(){
 		$.ajax({
 		    url: "/pinwall/update",
@@ -21,7 +25,7 @@ var failureCounter = 0;
 		})
 		
 	}, 5000);
-})();
+}
 	   
 function append(data) {
 	lastUpdate = data.updateId;
@@ -38,16 +42,17 @@ function pin(pinnedPost) {
 	}
 	var post = document.getElementById(pinnedPost.position.index);
 	var wall = document.getElementById("wall");
-	var isNew = false;
+	var isNew = false;	
+	if (!pinnedPost.postId) {
+		if (post) {
+			wall.removeChild(post);
+		}
+		return;
+	}
 	if (!post) {
 		post = document.createElement("img");
 		isNew = true;
-	}	
-	if (!pinnedPost.postId) {
-		wall.remove(post);
-		return;
 	}
-	
 	populatePost(pinnedPost, post);
 	
 	if (isNew) {

@@ -1,5 +1,8 @@
 package de.nadirhelix.guestbook.image.processing.util;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import processing.core.PGraphics;
 
 /**
@@ -9,6 +12,8 @@ import processing.core.PGraphics;
  * @author Phil
  */
 public class ColorConverter extends PGraphics {
+	
+	private static final Logger LOG = LoggerFactory.getLogger(ColorConverter.class);
 
 	private static ColorConverter instance = new ColorConverter();
 	
@@ -71,7 +76,7 @@ public class ColorConverter extends PGraphics {
 		try {
 			return Integer.parseInt(stringValue, 16);
 		} catch (NumberFormatException e) {
-			// TODO Log Exception
+			LOG.debug("invalid number value: {}", stringValue);
 			return 0;
 		}
 	}

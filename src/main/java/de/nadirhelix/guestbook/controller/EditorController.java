@@ -5,6 +5,8 @@ import java.util.Date;
 
 import javax.annotation.Resource;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -25,6 +27,8 @@ import de.nadirhelix.guestbook.image.facade.PostFacade;
 @RestController
 @RequestMapping("/")
 public class EditorController {
+	
+	private static final Logger LOG = LoggerFactory.getLogger(EditorController.class); 
 
 	@Resource
 	private PostFacade postFacade;
@@ -39,12 +43,10 @@ public class EditorController {
 	@PostMapping("/posts")
 	public ResponseEntity<String> addPost(@RequestBody PostData post) {
 		post.setDate(new Date());
-		String postId = postFacade.addPost(post);
-		// TODO: Send message instead of id.
-		return ResponseEntity.status(HttpStatus.CREATED.value()).body(postId);
+		postFacade.addPost(post);
+		return ResponseEntity.status(HttpStatus.CREATED.value()).body("Danke, Dein Beitrag wird jetzt verarbeitet und in Kürze angezeigt.");
 	}
 	
-	// TODO ...
 	@PostMapping("/posts/upload")
 	public ResponseEntity<String> uploadImage(@RequestParam("image") MultipartFile multipartFile) {
 		String fileName;
@@ -52,8 +54,7 @@ public class EditorController {
 			fileName = postFacade.uploadImage(multipartFile.getBytes(), multipartFile.getOriginalFilename());
 			return ResponseEntity.ok().body(fileName);
 		} catch (IOException e) {
-			// TODO log
-			e.printStackTrace();
+			LOG.warn("FileUpload was not successful.", e);
 		}
 		return ResponseEntity.unprocessableEntity().body("Unable to upload image");
 	}

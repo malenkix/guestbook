@@ -3,12 +3,11 @@ package de.nadirhelix.guestbook.post.dao.impl;
 import static de.nadirhelix.guestbook.PostConstants.XML_DB_FILE_PATH;
 
 import java.io.File;
+import java.io.IOException;
 
-import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
-import javax.xml.bind.Marshaller;
-import javax.xml.bind.Unmarshaller;
 
+import org.apache.commons.io.FileUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
@@ -17,6 +16,7 @@ import de.nadirhelix.guestbook.pinwall.PinwallPositioningStrategy;
 import de.nadirhelix.guestbook.pinwall.PinwallUpdateStrategy;
 import de.nadirhelix.guestbook.post.dao.vo.PostsVO;
 import de.nadirhelix.guestbook.post.model.Post;
+import de.nadirhelix.guestbook.post.util.PostMarshallingUtil;
 
 @Component("postDao")
 public class XmlPostDao extends DefaultPostDao {
@@ -37,10 +37,7 @@ public class XmlPostDao extends DefaultPostDao {
 	private void readPostsFromFile() {
 		try {
 			File file = new File(XML_DB_FILE_PATH);
-			JAXBContext jaxbContext = JAXBContext.newInstance(PostsVO.class);
-			Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
-			
-			storedPosts = (PostsVO) jaxbUnmarshaller.unmarshal(file);
+			storedPosts =  PostMarshallingUtil.unmarshall(PostsVO.class, file);
 			storedPosts.getPosts().forEach(this::addToPinwall);
 		} catch (JAXBException e) {
 			LOG.info("Haven't found file {}. Will create new file. ErrorMessage: {}", XML_DB_FILE_PATH, e.getMessage());
@@ -73,15 +70,11 @@ public class XmlPostDao extends DefaultPostDao {
 	public void writePostsToFile() {
 		try {
 			File file = new File(XML_DB_FILE_PATH);
-			JAXBContext jaxbContext = JAXBContext.newInstance(PostsVO.class);
-			Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
-
-			jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
-			jaxbMarshaller.setProperty(Marshaller.JAXB_ENCODING, "UTF-8");
+			FileUtils.touch(file);
 			synchronized (storedPosts) {
-				jaxbMarshaller.marshal(storedPosts, file);
+				PostMarshallingUtil.marshal(PostsVO.class, storedPosts, file);
 			}
-		} catch (JAXBException e) {
+		} catch (JAXBException | IOException e) {
 			LOG.warn("Could not store post informations to disk", e);
 		}
 	}

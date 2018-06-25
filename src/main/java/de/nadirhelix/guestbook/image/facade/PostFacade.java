@@ -11,7 +11,7 @@ import de.nadirhelix.guestbook.image.dto.PostData;
  */
 public interface PostFacade {
 
-	String addPost(PostData data);
+	void addPost(PostData data);
 
 	String uploadImage(byte[] payload, String originalFileName) throws IOException;
 	
