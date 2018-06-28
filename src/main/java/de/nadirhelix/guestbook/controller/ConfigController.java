@@ -1,6 +1,7 @@
 package de.nadirhelix.guestbook.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
@@ -57,6 +58,17 @@ public class ConfigController {
 	@GetMapping("/fonts")
 	public ResponseEntity<List<String>> getFonts() {
 		List<String> result = FontsProvider.getFonts();
+		return ResponseEntity.ok(result);
+	}
+
+	/**
+	 * Retrieves all available fonts.
+	 * 
+	 * @return {@link ResponseEntity} with font list
+	 */
+	@GetMapping("/fontcolors")
+	public ResponseEntity<Map<String, String>> getFontColors() {
+		Map<String, String> result = colorProvider.getFontColors();
 		return ResponseEntity.ok(result);
 	}
 	

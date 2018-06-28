@@ -34,8 +34,6 @@ public class GuestbookApplication {
 				isDevMode = BooleanUtils.toBoolean(value);
 			}
 		}
-		SpringApplicationBuilder builder = new SpringApplicationBuilder(GuestbookApplication.class);
-		builder.headless(false).run(args);
 	}
 
 	private static void prepareHeadlessProperty() throws NoSuchFieldException {
