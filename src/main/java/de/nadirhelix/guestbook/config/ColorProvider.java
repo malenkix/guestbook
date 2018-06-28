@@ -26,7 +26,11 @@ public class ColorProvider {
 	
 	static {
 		FONT_COLORS.put("Anthrazit", "#333");
+		FONT_COLORS.put("Blauviolett", "#8a2be2");
+		FONT_COLORS.put("Goldgelb", "#ffd700");
+		FONT_COLORS.put("Maigrün", "#468641");
 		FONT_COLORS.put("Marine", "#338");
+		FONT_COLORS.put("Rotorange", "#fc5400");
 		FONT_COLORS.put("Schnee", "#ddd");
 	}
 	
