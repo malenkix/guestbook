@@ -3,6 +3,9 @@ import Service from './Service'
 
 function createState() {
   return {
+    hideModalReset: true,
+    hideModalSubmit: true,
+    modalSubmitMessage: '',
     uiActiveFrame: Constants.FRAMES.POST_EDITOR,
     postMessage: '',
     backgroundActiveTab: Constants.TABS.TAB_BG_COLOR,

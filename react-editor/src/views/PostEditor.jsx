@@ -18,7 +18,7 @@ const PostEditor = ({ state, callbacks }) => {
         <img src={`${Config.ASSETS}/btn-bg.png`} alt='' title='' onClick={callbacks.navigate(Constants.FRAMES.BACKGROUND_EDITOR)} />
         <img src={`${Config.ASSETS}/btn-image.png`} alt='' title='' onClick={callbacks.navigate(Constants.FRAMES.IMAGE_EDITOR)} />
         <img src={`${Config.ASSETS}/btn-text.png`} alt='' title='' onClick={callbacks.navigate(Constants.FRAMES.TEXT_EDITOR)} />
-        <img src={`${Config.ASSETS}/btn-cancel.png`} alt='' title='' onClick={callbacks.resetState} />
+        <img src={`${Config.ASSETS}/btn-cancel.png`} alt='' title='' onClick={() => callbacks.setHideModalReset(false)} />
         <img src={`${Config.ASSETS}/btn-upload.png`} alt='' title='' onClick={callbacks.navigate(Constants.FRAMES.SUBMIT_EDITOR)} />
       </div>
     </Frame>

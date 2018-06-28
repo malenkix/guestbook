@@ -1,0 +1,9 @@
+.submit-modal .buttons {
+    text-align: right
+}
+
+.submit-modal .buttons img {
+    width: 35px;
+    height: 35px;
+    cursor: pointer;
+}

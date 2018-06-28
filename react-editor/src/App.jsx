@@ -9,6 +9,8 @@ import BackgroundEditor from './views/BackgroundEditor'
 import ImageEditor from './views/ImageEditor'
 import TextEditor from './views/TextEditor'
 import SubmitEditor from './views/SubmitEditor'
+import ResetModal from './modal/ResetModal'
+import SubmitModal from './modal/SubmitModal'
 
 class App extends React.PureComponent {
 
@@ -16,8 +18,6 @@ class App extends React.PureComponent {
     super(props)
     State.setupState(this)
   }
-
-
 
   componentDidMount() {
     State.initState(this)
@@ -31,6 +31,8 @@ class App extends React.PureComponent {
         <ImageEditor state={this.state} callbacks={this.callbacks} />
         <TextEditor state={this.state} callbacks={this.callbacks} />
         <SubmitEditor state={this.state} callbacks={this.callbacks} />
+        <ResetModal state={this.state} callbacks={this.callbacks} />
+        <SubmitModal state={this.state} callbacks={this.callbacks} />
       </React.Fragment>
     )
   }

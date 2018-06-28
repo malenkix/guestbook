@@ -1,0 +1,13 @@
+.reset-modal .buttons {
+    text-align: right
+}
+
+.reset-modal .buttons img {
+    width: 35px;
+    height: 35px;
+    cursor: pointer;
+}
+
+.reset-modal .buttons img:last-child {
+    margin-left: 15px;
+}

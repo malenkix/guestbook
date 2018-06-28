@@ -28,7 +28,9 @@ const SubmitEditor = ({ state, callbacks }) => {
 
           promise = promise.then(
             imageId => Service.sendPost(state, imageId || '')
-          ).then(() => callbacks.resetState())
+          ).then(text => callbacks.updateState({
+            hideModalSubmit: false, modalSubmitMessage: text || 'Vielen Dank!'
+          }))
         }} />
         <div className='content'>
           <Input name='by' label='Wer schickt die Grüße?' maxLength='36' value={state.postBy}

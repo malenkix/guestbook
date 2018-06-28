@@ -33,7 +33,7 @@ const Post = ({
           readonly ? <span>{state.postMessage}</span> :
             <input
               type='text' placeholder='Antippen und hier Text eingeben.'
-              value={state.postMessage} maxLength='20'
+              value={state.postMessage} maxLength='32'
               onChange={e => callbacks.setPostMessage(e.target.value)}
             />}
       </div>
