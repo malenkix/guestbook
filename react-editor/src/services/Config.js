@@ -1,4 +1,4 @@
-const ROOT = 'http://localhost:9000'
+const ROOT = 'http://localhost:8080'
 const API = 'http://localhost:8080'
 
 const ASSETS = `${ROOT}/assets`
