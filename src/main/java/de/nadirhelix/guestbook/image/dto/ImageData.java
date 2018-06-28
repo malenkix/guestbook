@@ -11,29 +11,34 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 public class ImageData implements ComponentData {
 
-	private int posX;
-	private int posY;
-	private int width;
-	private int height;
+	private float posX;
+	private float posY;
+	private float width;
+	private float height;
 	private float rotation;
 	private String file;
-	
-	public int getPosX() {
+
+	@Override
+	public float getPosX() {
 		return posX;
 	}
-	
-	public int getPosY() {
+
+	@Override
+	public float getPosY() {
 		return posY;
 	}
-	
-	public int getWidth() {
+
+	@Override
+	public float getWidth() {
 		return width;
 	}
-	
-	public int getHeight() {
+
+	@Override
+	public float getHeight() {
 		return height;
 	}
-	
+
+	@Override
 	public float getRotation() {
 		return rotation;
 	}
@@ -43,22 +48,22 @@ public class ImageData implements ComponentData {
 	}
 
 	@XmlElement
-	public void setPosX(int posX) {
+	public void setPosX(float posX) {
 		this.posX = posX;
 	}
 
 	@XmlElement
-	public void setPosY(int posY) {
+	public void setPosY(float posY) {
 		this.posY = posY;
 	}
 
 	@XmlElement
-	public void setWidth(int width) {
+	public void setWidth(float width) {
 		this.width = width;
 	}
 
 	@XmlElement
-	public void setHeight(int height) {
+	public void setHeight(float height) {
 		this.height = height;
 	}
 

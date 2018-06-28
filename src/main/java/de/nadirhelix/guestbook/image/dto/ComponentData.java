@@ -9,26 +9,26 @@ import de.nadirhelix.guestbook.image.util.Point;
  */
 public interface ComponentData {
 
-	int getPosX();
+	float getPosX();
 	
-	int getPosY();
+	float getPosY();
 
 	float getRotation();
 
-	int getWidth();
+	float getWidth();
 
-	int getHeight();
+	float getHeight();
 	
-	default int getWidthEffective() {
+	default float getWidthEffective() {
 		return getWidth();
 	}
 
-	default int getHeightEffective() {
+	default float getHeightEffective() {
 		return getHeight();
 	}
 	
 	default Point getBuffer() {
-		return new Point(getWidth() * 0.5f, getHeight() * 0.5f);
+		return new Point(getWidthEffective() * 0.5f, getHeightEffective() * 0.5f);
 	}
 
 }
