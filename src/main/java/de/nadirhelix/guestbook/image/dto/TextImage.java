@@ -13,15 +13,15 @@ public class TextImage implements ComponentData {
 
 	private final PImage image;
 	
-	private int posX = 0;
+	private float posX = 0;
 
-	private int posY = 0;
+	private float posY = 0;
 
 	private float rotation = 0;
 
-	private int widthEffective = 0;
+	private float widthEffective = 0;
 
-	private int heightEffective = 0;
+	private float heightEffective = 0;
 
 	private int horizontalTranslation = 0;
 
@@ -73,7 +73,7 @@ public class TextImage implements ComponentData {
 	 * @return the text image width
 	 */
 	@Override
-	public int getWidth() {
+	public float getWidth() {
 		return image.width;
 	}
 	
@@ -83,7 +83,7 @@ public class TextImage implements ComponentData {
 	 * @return the text image height
 	 */
 	@Override
-	public int getHeight() {
+	public float getHeight() {
 		return image.height;
 	}
 
@@ -91,7 +91,7 @@ public class TextImage implements ComponentData {
 	 * @see de.nadirhelix.guestbook.image.dto.ComponentData#getPosX()
 	 */
 	@Override
-	public int getPosX() {
+	public float getPosX() {
 		return posX;
 	}
 
@@ -99,7 +99,7 @@ public class TextImage implements ComponentData {
 	 * @see de.nadirhelix.guestbook.image.dto.ComponentData#getPosY()
 	 */
 	@Override
-	public int getPosY() {
+	public float getPosY() {
 		return posY;
 	}
 
@@ -117,7 +117,7 @@ public class TextImage implements ComponentData {
 	 * @return effective width
 	 */
 	@Override
-	public int getWidthEffective() {
+	public float getWidthEffective() {
 		return widthEffective;
 	}
 
@@ -127,7 +127,7 @@ public class TextImage implements ComponentData {
 	 * @return effective height
 	 */
 	@Override
-	public int getHeightEffective() {
+	public float getHeightEffective() {
 		return heightEffective;
 	}
 
@@ -147,7 +147,7 @@ public class TextImage implements ComponentData {
 	 * @param posX
 	 * 			the x value
 	 */
-	public void setPosX(int posX) {
+	public void setPosX(float posX) {
 		this.posX = posX;  
 	}
 
@@ -158,7 +158,7 @@ public class TextImage implements ComponentData {
 	 * @param posY
 	 * 			the y value
 	 */
-	public void setPosY(int posY) {
+	public void setPosY(float posY) {
 		this.posY = posY; 		
 	}
 	

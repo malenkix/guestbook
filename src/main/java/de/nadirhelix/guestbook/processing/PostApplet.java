@@ -211,7 +211,7 @@ public class PostApplet extends PApplet {
 		if (image != null && StringUtils.isNotBlank(image.getFile())) {
 			PImage postImage = loadImage(TEMP_IMAGE_PATH + image.getFile());
 			if (postImage != null) {
-				applyGraphic(rescaleImage(image), postImage);
+				applyGraphic(applyScalingFactor(image), postImage);
 			} else {
 				return false;
 			}
@@ -219,9 +219,8 @@ public class PostApplet extends PApplet {
 		return true;
 	}
 
-	private ComponentData rescaleImage(ImageData image) {
+	private ComponentData applyScalingFactor(ComponentData image) {
 		ImageData result = new ImageData();
-		result.setFile(image.getFile());
 		result.setHeight(rescale(image.getHeight()));
 		result.setWidth(rescale(image.getWidth()));
 		result.setPosX(rescale(image.getPosX()));
@@ -245,7 +244,13 @@ public class PostApplet extends PApplet {
 			return;
 		}
 		TextImage text = TextCreationUtil.createTextImage(message);
-		applyGraphic(text, text.getImage());
+		applyGraphic(applyScalingFactor(text), text.getImage());
+	}
+	
+	private ComponentData applyScalingFactor(TextImage image) {
+		image.setPosX(rescale(image.getPosX()));
+		image.setPosY(rescale(image.getPosY()));
+		return image;
 	}
 
 	/**
