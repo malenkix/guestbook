@@ -211,12 +211,27 @@ public class PostApplet extends PApplet {
 		if (image != null && StringUtils.isNotBlank(image.getFile())) {
 			PImage postImage = loadImage(TEMP_IMAGE_PATH + image.getFile());
 			if (postImage != null) {
-				applyGraphic(image, postImage);
+				applyGraphic(rescaleImage(image), postImage);
 			} else {
 				return false;
 			}
 		}
 		return true;
+	}
+
+	private ComponentData rescaleImage(ImageData image) {
+		ImageData result = new ImageData();
+		result.setFile(image.getFile());
+		result.setHeight(rescale(image.getHeight()));
+		result.setWidth(rescale(image.getWidth()));
+		result.setPosX(rescale(image.getPosX()));
+		result.setPosY(rescale(image.getPosY()));
+		result.setRotation(image.getRotation());		
+		return result;
+	}
+
+	private float rescale(float value) {
+		return value * SCALING_FACTOR;
 	}
 
 	/**
@@ -260,26 +275,22 @@ public class PostApplet extends PApplet {
 	}
 
 	private void applyGraphic(ComponentData image, PImage postImage) {
-		boolean isRotation = !Integer.valueOf(0).equals(image.getRotation());
+		boolean isRotation = !Float.valueOf(0f).equals(image.getRotation());
 		Point buffer = image.getBuffer();
-		Point absolutePosition = getLeftUpperCorner(image, buffer);
+		Point absolutePosition = getLeftUpperCorner(image);
 		translate(absolutePosition.getX(), absolutePosition.getY());
 		if (isRotation) {
 			rotate(radians(image.getRotation()));
 		}
-		image(postImage, -buffer.getX(), -buffer.getY(),
-				rescale(image.getWidth()), rescale(image.getHeight()));
+		image(postImage, -buffer.getX(), -buffer.getY(), 
+				image.getWidth(), image.getHeight());
 		if (isRotation) {
 			rotate(radians(-image.getRotation()));
 		}
 		translate(-absolutePosition.getX(), -absolutePosition.getY());
 	}
 
-	private float rescale(int value) {
-		return value * SCALING_FACTOR;
-	}
-
-	private Point getLeftUpperCorner(ComponentData component, Point buffer) {
+	private Point getLeftUpperCorner(ComponentData component) {
 		float x = LEFT_UPPER_CORNER.getX() + component.getPosX()
 				+ component.getWidthEffective() * 0.5f;
 		float y = LEFT_UPPER_CORNER.getY() + component.getPosY()
