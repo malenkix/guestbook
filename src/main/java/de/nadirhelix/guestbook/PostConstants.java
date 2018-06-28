@@ -15,13 +15,13 @@ import de.nadirhelix.guestbook.image.util.Point;
  */
 public class PostConstants {
 	
-	public static final int POST_WIDTH = 544;
+	public static final int POST_WIDTH = 690;
 	
-	public static final int POST_HEIGHT = 667;
+	public static final int POST_HEIGHT = 850;
 	
-	public static final Point LEFT_UPPER_CORNER = new Point(25, 25);	
+	public static final Point LEFT_UPPER_CORNER = new Point(45,45);	
 	
-	public static final float SCALING_FACTOR = 1.0f;
+	public static final float SCALING_FACTOR = 2.0f;
 	
 	public static final String ASSETS_PATH = buildPath(true, true, "resources");
 	
@@ -37,9 +37,9 @@ public class PostConstants {
 	
 	public static final String FONTS_PATH = ASSETS_PATH + buildPath(true, false, "fonts");
 	
-	public static final int DEFAULT_FONT_SIZE = 12;
+	public static final int DEFAULT_FONT_SIZE = 20;
 	
-	public static final int MAX_FONT_SIZE = 72;
+	public static final int MAX_FONT_SIZE = 120;
 
 	public static final String DEFAULT_MESSAGE_FONT = "Arial";
 	
@@ -51,9 +51,9 @@ public class PostConstants {
 	
 	public static final int DEFAULT_SUBTEXT_COLOR = ColorConverter.convert("#000");
 	
-	public static final int DEFAULT_SUBTEXT_POS_X = 272;
+	public static final int DEFAULT_SUBTEXT_POS_X = 345;
 	
-	public static final int DEFAULT_SUBTEXT_POS_Y = 600;
+	public static final int DEFAULT_SUBTEXT_POS_Y = 750;
 	
 	public static String buildPath(boolean hasClosingSeparator, boolean isRootPath, String... args) {
 		List<String> arguments = Arrays.asList(args);
