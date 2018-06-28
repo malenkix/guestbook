@@ -10,6 +10,7 @@ import Header from '../header/Header'
 import Post from '../post/Post'
 import Nav from '../nav/Nav'
 import Input from '../input/Input'
+import Select from '../input/Select'
 import Slider from '../input/Slider'
 
 const TextEditor = ({ state, callbacks }) => {
@@ -46,8 +47,12 @@ const TextEditor = ({ state, callbacks }) => {
                   min='16' max='48' value={state.textSize}
                   onChange={(e) => { callbacks.setTextSize(e.target.value) }}
                 />
-                <Input name='color' label='Farbe' maxLength='7' value={state.textColor}
+                <Select name='select-color' label='Farbe'
+                  options={state.textColors} value={state.textColor}
                   onChange={(e) => { callbacks.setTextColor(e.target.value) }} />
+                <Select name='select-font' label='Schriftart'
+                  options={state.textFonts.reduce((obj, f) => { obj[f] = f; return obj; }, {})} value={state.textFont}
+                  onChange={(e) => { callbacks.setTextFont(e.target.value) }} />
               </React.Fragment>
             }
             {positionTabSelected &&

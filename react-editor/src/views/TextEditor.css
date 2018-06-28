@@ -47,6 +47,6 @@
     justify-content: center;
 }
 
-.textEditor .view .content .selection>div:first-child {
-  margin-right: 10px
+.textEditor .view .content .selection>div:nth-child(even) {
+  margin-left: 10px
 }

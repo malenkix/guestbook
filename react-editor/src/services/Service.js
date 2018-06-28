@@ -39,11 +39,17 @@ function getTextFonts() {
   return fetchGET('/fonts', ['sans-serif'])
 }
 
+function getTextColors() {
+  return fetchGET('/fontcolors', { 'Schwarz': '#000' })
+}
+
 function getColorsImagesAndFonts() {
   return getBackgroundColors().then(
     colors => getBackgroundImages().then(
       images => getTextFonts().then(
-        fonts => [colors, images, fonts]
+        fonts => getTextColors().then(
+          fontColors => [colors, images, fonts, fontColors]
+        )
       )
     )
   )

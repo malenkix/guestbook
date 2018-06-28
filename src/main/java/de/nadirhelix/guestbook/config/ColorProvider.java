@@ -1,7 +1,7 @@
 package de.nadirhelix.guestbook.config;
 
 import java.util.Arrays;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -22,12 +22,12 @@ public class ColorProvider {
 				"#cdcdcd"
 			);
 	
-	private static final Map<String, String> FONT_COLORS = new HashMap<>();
+	private static final Map<String, String> FONT_COLORS = new LinkedHashMap<>();
 	
 	static {
-		FONT_COLORS.put("anthrazit", "#333");
-		FONT_COLORS.put("schnee", "#ddd");
-		FONT_COLORS.put("marine", "#338");
+		FONT_COLORS.put("Anthrazit", "#333");
+		FONT_COLORS.put("Marine", "#338");
+		FONT_COLORS.put("Schnee", "#ddd");
 	}
 	
 	public List<String> getColors() {

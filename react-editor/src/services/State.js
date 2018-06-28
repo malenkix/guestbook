@@ -28,10 +28,10 @@ function createState() {
     textY: 0,
     textSize: 16,
     textRotation: 0,
-    textColor: '#000',
     textFont: 'sans-serif',
-    textFontIndex: undefined,
-    textFonts: [],
+    textFonts: ['sans-serif'],
+    textColor: '#000',
+    textColors: { 'Schwarz': '#000' },
     textActiveTab: Constants.TABS.TAB_TEXT_FONT,
     postBy: '',
     postAdditional: ''
@@ -45,13 +45,15 @@ function initState(component) {
       const colors = values[0]
       const images = values[1]
       const fonts = values[2]
+      const fontColors = values[3]
 
       component.setState({
         backgroundColors: colors,
         backgroundImages: images,
         textFont: fonts[0],
-        textFontIndex: 0,
         textFonts: fonts,
+        textColor: fontColors[Object.keys(fontColors)[0]],
+        textColors: fontColors
       })
     })
   })
@@ -80,7 +82,7 @@ function setupState(component) {
   component.callbacks.showStateAndCallbacks = () => {
     const jsonState = JSON.stringify(component.state, (key, val) => {
       if (key === 'image' || key === 'imageFile') {
-        return val.slice(0, 10) || ''
+        return val != null ? val.slice(0, 10) || '' : ''
       }
       return val
     })
