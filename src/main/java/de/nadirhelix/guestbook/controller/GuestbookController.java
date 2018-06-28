@@ -1,11 +1,7 @@
 package de.nadirhelix.guestbook.controller;
 
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-
-import de.nadirhelix.guestbook.NotFoundException;
 
 @Controller
 public class GuestbookController {
@@ -15,27 +11,8 @@ public class GuestbookController {
 		return "index";
 	}
 
-	@RequestMapping("/{path}")
-	public String getTemplate(@PathVariable String path) {
-
-		if (StringUtils.isBlank(path)) {
-			return "index";
-		}
-
-		return path + "/index";
-	}
-
-	@RequestMapping("/{path}/{name}")
-	public String getTemplate(@PathVariable String path, @PathVariable String name) {
-
-		if (StringUtils.isBlank(path)) {
-			throw new NotFoundException();
-		}
-
-		if (StringUtils.isBlank(name)) {
-			name = "index";
-		}
-
-		return path + "/" + name;
+	@RequestMapping(value = { "/pinnwall", "/pinnwall/index" })
+	public String getPinwall() {
+		return "pinnwall/index";
 	}
 }
