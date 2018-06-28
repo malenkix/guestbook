@@ -46,8 +46,8 @@ public class TextCreationUtilTest {
 		TextImage result = TextCreationUtil.createTextImage(data);
 		
 		assertNotNull(result.getImage());
-		assertEquals(data.getPosY(), result.getPosY());
-		assertEquals(data.getPosX(), result.getPosX());	
+		assertEquals(data.getPosY(), result.getPosY(), 0);
+		assertEquals(data.getPosX(), result.getPosX(), 0);	
 		assertEquals(data.getRotation(), result.getRotation(), 0);
 		assertTrue(result.getWidth() > result.getWidthEffective());
 		assertTrue(result.getHeight() > result.getHeightEffective());
