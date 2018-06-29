@@ -6,6 +6,7 @@ function createState() {
     hideModalReset: true,
     hideModalSubmit: true,
     modalSubmitMessage: '',
+    preventSubmit: false,
     uiActiveFrame: Constants.FRAMES.POST_EDITOR,
     postMessage: '',
     backgroundActiveTab: Constants.TABS.TAB_BG_COLOR,
