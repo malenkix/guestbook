@@ -275,7 +275,7 @@ public class PostApplet extends PApplet {
 		textAlign(CENTER);
 		PFont font = loadFont(DEFAULT_SUBTEXT_FONT);
 		fill(DEFAULT_SUBTEXT_COLOR);
-		textFont(font);
+		textFont(font, 36);
 		text(subtext, DEFAULT_SUBTEXT_POS_X, DEFAULT_SUBTEXT_POS_Y);
 	}
 
