@@ -44,6 +44,10 @@
     margin: auto;
 }
 
+body {
+	max-width: 100%;
+	overflow-x: hidden;
+}
 .postEditor .buttons {
     display: flex;
     flex-flow: row;

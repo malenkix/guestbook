@@ -20,6 +20,11 @@ const SubmitEditor = ({ state, callbacks }) => {
       <div className='view'>
         <Nav callbacks={callbacks} onOkClick={() => {
 
+          if (state.preventSubmit) {
+            return;
+          }
+
+		  callbacks.setPreventSubmit(true)
           let promise = Promise.resolve()
 
           if (state.image) {
@@ -29,7 +34,7 @@ const SubmitEditor = ({ state, callbacks }) => {
           promise = promise.then(
             imageId => Service.sendPost(state, imageId || '')
           ).then(text => callbacks.updateState({
-            hideModalSubmit: false, modalSubmitMessage: text || 'Vielen Dank!'
+            hideModalSubmit: false, modalSubmitMessage: text || 'Vielen Dank!', preventSubmit: false
           }))
         }} />
         <div className='content'>
