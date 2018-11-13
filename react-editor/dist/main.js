@@ -658,7 +658,7 @@ eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\n
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\nvar ROOT = '';\nvar API = '';\n\nvar ASSETS = ROOT + '/assets';\n\nexports.default = {\n  ROOT: ROOT,\n  API: API,\n  ASSETS: ASSETS\n};\n\n//# sourceURL=webpack:///./src/services/Config.js?");
+eval("\n\nObject.defineProperty(exports, \"__esModule\", {\n  value: true\n});\nvar ROOT = 'http://localhost:8080';\nvar API = 'http://localhost:8080';\n\nvar ASSETS = ROOT + '/assets';\n\nexports.default = {\n  ROOT: ROOT,\n  API: API,\n  ASSETS: ASSETS\n};\n\n//# sourceURL=webpack:///./src/services/Config.js?");
 
 /***/ }),
 

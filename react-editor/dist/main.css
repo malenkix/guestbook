@@ -1,26 +1,26 @@
 @font-face {
     font-family: 'Alice';
-    src: url('/fonts/Alice-Regular-webfont.woff') format('woff'), url('/fonts/Alice-Regular-webfont.ttf') format('truetype');
+    src: url('http://localhost:8080/fonts/Alice-Regular-webfont.woff') format('woff'), url('http://localhost:8080/fonts/Alice-Regular-webfont.ttf') format('truetype');
 }
 
 @font-face {
     font-family: 'Concert One';
-    src: url('/fonts/concertone-regular-webfont.woff') format('woff'), url('/fonts/concertone-regular-webfont.ttf') format('truetype');
+    src: url('http://localhost:8080/fonts/concertone-regular-webfont.woff') format('woff'), url('http://localhost:8080/fonts/concertone-regular-webfont.ttf') format('truetype');
 }
 
 @font-face {
     font-family: 'Sansation';
-    src: url('/fonts/Sansation-BoldItalic-webfont.woff') format('woff'), url('/fonts/Sansation-BoldItalic-webfont.ttf') format('truetype');
+    src: url('http://localhost:8080/fonts/Sansation-BoldItalic-webfont.woff') format('woff'), url('http://localhost:8080/fonts/Sansation-BoldItalic-webfont.ttf') format('truetype');
 }
 
 @font-face {
     font-family: 'Ubuntu Titling';
-    src: url('/fonts/UbuntuTitling-Bold-webfont.woff') format('woff'), url('/fonts/UbuntuTitling-Bold-webfont.ttf') format('truetype');
+    src: url('http://localhost:8080/fonts/UbuntuTitling-Bold-webfont.woff') format('woff'), url('http://localhost:8080/fonts/UbuntuTitling-Bold-webfont.ttf') format('truetype');
 }
 
 @font-face {
     font-family: 'Walter Turncoat';
-    src: url('/fonts/walterturncoat-webfont.woff') format('woff'), url('/fonts/walterturncoat-webfont.ttf') format('truetype');
+    src: url('http://localhost:8080/fonts/walterturncoat-webfont.woff') format('woff'), url('http://localhost:8080/fonts/walterturncoat-webfont.ttf') format('truetype');
 }
 
 * {
@@ -44,10 +44,6 @@
     margin: auto;
 }
 
-body {
-	max-width: 100%;
-	overflow-x: hidden;
-}
 .postEditor .buttons {
     display: flex;
     flex-flow: row;
